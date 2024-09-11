@@ -1,0 +1,14 @@
+##############
+# InsightApp
+##############
+
+/InsightApp/.vs
+/InsightApp/**/bin
+/InsightApp/**/obj
+
+
+##############
+# Miscellaneous
+##############
+
+/.vs
