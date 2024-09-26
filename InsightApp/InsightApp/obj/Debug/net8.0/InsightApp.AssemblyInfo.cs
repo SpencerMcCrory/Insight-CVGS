@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InsightApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de3adbfdafa1c58969623d85eefc7e2f079dd56d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbf45106184ace209962ea936edabc20f58f148c")]
 [assembly: System.Reflection.AssemblyProductAttribute("InsightApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InsightApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
