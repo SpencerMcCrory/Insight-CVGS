@@ -8,6 +8,7 @@
 
         public ICollection<Game>? Game { get; set; }
         public ICollection<MemberGameCategoryPref>? MemberGameCategoryPref { get; set; }
+        public ICollection<GameCategory>? GameCategory { get; set; }
 
     }
 }

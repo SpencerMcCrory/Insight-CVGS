@@ -8,6 +8,6 @@
 
         // following we are linking with the assocition tables
         public ICollection<MemberPlatformPref>? MemberPlatformPref { get; set; }
-        public ICollection<GamePlatform>? GamePlatform { get; set; }
+        public ICollection<GamePlatform>? GamePlatform { get; set; } 
     }
 }
