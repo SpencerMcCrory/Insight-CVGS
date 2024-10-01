@@ -1,13 +1,22 @@
-﻿namespace InsightApp.Entities
-{
-    public class MemberGameCategoryPref
-    {
-        // Composite PK made of 2 FKs :
-        public int MemberId { get; set; }
-        public int CategoryId { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        // Nav props
-        public Member? Member { get; set; }
-        public GameCategory? Category { get; set; }
-    }
+namespace InsightApp.Entities;
+
+[Keyless]
+[Table("MemberGameCategoryPref")]
+public partial class MemberGameCategoryPref
+{
+    public int? MemberId { get; set; }
+
+    public int? CategoryId { get; set; }
+
+    [ForeignKey("CategoryId")]
+    public virtual GameCategory? Category { get; set; }
+
+    [ForeignKey("MemberId")]
+    public virtual Member? Member { get; set; }
 }

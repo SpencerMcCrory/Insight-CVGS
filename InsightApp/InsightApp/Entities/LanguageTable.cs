@@ -1,13 +1,18 @@
-﻿namespace InsightApp.Entities
-{
-    public class LanguageTable
-    {
-        // EF Core will configure this to be an auto-incremented primary key:
-        public int LanguageId { get; set; }
-        public string LanguageName { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        // following we are linking with the assocition tables
-        public ICollection<MemberLanguagePref>? MemberLanguagePrefs { get; set; }
-        public ICollection<GameDetailsLanguage>? GameDetailsLanguages { get; set; }
-    }
+namespace InsightApp.Entities;
+
+[Table("LanguageTable")]
+public partial class LanguageTable
+{
+    [Key]
+    public int LanguageId { get; set; }
+
+    [StringLength(30)]
+    [Unicode(false)]
+    public string LanguageName { get; set; } = null!;
 }

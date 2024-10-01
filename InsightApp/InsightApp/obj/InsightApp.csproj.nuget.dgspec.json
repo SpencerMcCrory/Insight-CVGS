@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\EmanAbdeen\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {}
+    "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\EmanAbdeen\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {
+    "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\EmanAbdeen\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
+        "projectUniqueName": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
         "projectName": "InsightApp",
-        "projectPath": "C:\\Users\\EmanAbdeen\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
+        "projectPath": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
         "packagesPath": "C:\\Users\\EmanAbdeen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\EmanAbdeen\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\obj\\",
+        "outputPath": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\EmanAbdeen\\AppData\\Roaming\\NuGet\\NuGet.Config",

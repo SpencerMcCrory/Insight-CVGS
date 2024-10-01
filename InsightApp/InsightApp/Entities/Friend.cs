@@ -1,12 +1,22 @@
-﻿namespace InsightApp.Entities
-{
-    public class Friend
-    {
-        // Composite PK made of 2 FKs :
-        public int MemberId { get; set; }
-        public int FriendId { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        // Nav props
-        public Member? MemberFriend { get; set; }
-    }
+namespace InsightApp.Entities;
+
+[Keyless]
+[Table("Friend")]
+public partial class Friend
+{
+    public int? MemberId { get; set; }
+
+    public int? FriendId { get; set; }
+
+    [ForeignKey("FriendId")]
+    public virtual Member? FriendNavigation { get; set; }
+
+    [ForeignKey("MemberId")]
+    public virtual Member? Member { get; set; }
 }

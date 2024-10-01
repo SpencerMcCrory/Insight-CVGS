@@ -1,10 +1,21 @@
-﻿namespace InsightApp.Entities
-{
-    public class ReviewStatus
-    {
-        public int StatusId { get; set; }
-        public string Statusname { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        public ICollection<Review>? Reviews { get; set; } // Nav to all Reviews of this type
-    }
+namespace InsightApp.Entities;
+
+[Table("ReviewStatus")]
+public partial class ReviewStatus
+{
+    [Key]
+    public int StatusId { get; set; }
+
+    [StringLength(15)]
+    [Unicode(false)]
+    public string Statusname { get; set; } = null!;
+
+    [InverseProperty("Status")]
+    public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 }

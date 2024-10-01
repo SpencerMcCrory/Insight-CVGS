@@ -1,10 +1,21 @@
-﻿namespace InsightApp.Entities
-{
-    public class EventType
-    {
-        public int EvTypeId { get; set; }
-        public string EvTypeName { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        public ICollection<GameEvent>? Events { get; set; } // Nav to all Events of this type
-    }
+namespace InsightApp.Entities;
+
+[Table("EventType")]
+public partial class EventType
+{
+    [Key]
+    public int EvTypeId { get; set; }
+
+    [StringLength(15)]
+    [Unicode(false)]
+    public string EvTypeName { get; set; } = null!;
+
+    [InverseProperty("EvType")]
+    public virtual ICollection<GameEvent> GameEvents { get; set; } = new List<GameEvent>();
 }

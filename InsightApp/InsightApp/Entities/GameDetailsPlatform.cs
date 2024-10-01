@@ -1,13 +1,22 @@
-﻿namespace InsightApp.Entities
-{
-    public class GameDetailsPlatform
-    {
-        // Composite PK made of 2 FKs :
-        public int GameId { get; set; }
-        public int PlatformId { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        // Nav props
-        public Game? Game { get; set; }
-        public GamePlatform? Platform { get; set; }
-    }
+namespace InsightApp.Entities;
+
+[Keyless]
+[Table("GameDetailsPlatform")]
+public partial class GameDetailsPlatform
+{
+    public int? GameId { get; set; }
+
+    public int? PlatformId { get; set; }
+
+    [ForeignKey("GameId")]
+    public virtual Game? Game { get; set; }
+
+    [ForeignKey("PlatformId")]
+    public virtual GamePlatform? Platform { get; set; }
 }

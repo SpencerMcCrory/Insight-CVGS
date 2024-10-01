@@ -1,0 +1,34 @@
+﻿@model List<GameEvent>
+@{
+    ViewData["Title"] = "All Movies";
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Details</th>
+            <th>Event Type</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ev in Model)
+        {
+            <tr>
+                <td>@ev.EventName</td>
+                <td>@ev.Details</td>
+                <td>@ev.EvType.EvTypeName</td>
+                <td>@ev.EventLink</td>
+                
+                <td>
+                    <a asp-controller="Movie" asp-action="GetMovieById" asp-route-id="@ev.EventId">Details</a>
+                    <span class="mx-1">|</span>
+                    <a asp-controller="Movie" asp-action="GetEditRequestById" asp-route-id="@ev.EventId">Edit</a>
+                    <span class="mx-1">|</span>
+                    <a asp-controller="Movie" asp-action="GetDeleteRequestById" asp-route-id="@ev.EventId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

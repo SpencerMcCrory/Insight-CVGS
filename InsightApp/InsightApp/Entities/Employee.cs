@@ -1,15 +1,29 @@
-﻿namespace InsightApp.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace InsightApp.Entities;
+
+[Table("Employee")]
+[Index("AccountId", Name = "UQ__Employee__349DA5A75FB07791", IsUnique = true)]
+public partial class Employee
 {
-    public class Employee
-    {
-        // EF Core will configure this to be an auto-incremented primary key:
-        public int EmployeeId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string? PhoneNumber { get; set; }
+    [Key]
+    public int EmployeeId { get; set; }
 
-        public int AccountId { get; set; } //FK
-        public Account Account { get; set; }// to get the ability to have all the account detail in this model
+    [StringLength(20)]
+    [Unicode(false)]
+    public string? FirstName { get; set; }
 
-    }
+    [StringLength(25)]
+    [Unicode(false)]
+    public string? LastName { get; set; }
+
+    public int? AccountId { get; set; }
+
+    [ForeignKey("AccountId")]
+    [InverseProperty("Employee")]
+    public virtual Account? Account { get; set; }
 }

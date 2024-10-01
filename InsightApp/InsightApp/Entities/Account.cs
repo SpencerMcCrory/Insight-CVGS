@@ -1,35 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace InsightApp.Entities
+namespace InsightApp.Entities;
+
+[Table("Account")]
+public partial class Account
 {
-    public class Account
-    {
-        public int AccountId { get; set; }
+    [Key]
+    public int AccountId { get; set; }
 
-        // The "Remote" attr is a way to inform the client to call this action method
-        [Required(ErrorMessage = "Please enter an email address")]
-        [Remote("CheckEmail", "Validation")]  // "CheckEmail"==> action name,"Validation" ==> controller name ..this controller to get remote validn:
-        [EmailAddress(ErrorMessage = "Please enter a valid email address")]
-        public string? EmailAddress { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string EmailAddress { get; set; } = null!;
 
+    [StringLength(100)]
+    [Unicode(false)]
+    public string UserPassword { get; set; } = null!;
 
-        [Required(ErrorMessage = "Please enter a password")]
-        [StringLength(25, ErrorMessage = "Your password cannot be more than 25 characters")]
-        [Compare("PasswordConfirmation", ErrorMessage = "Your password entries must match")]
-        public string? UserPassword { get; set; }
+    [StringLength(10)]
+    [Unicode(false)]
+    public string AccountType { get; set; } = null!;
 
+    public bool? AccountBlocked { get; set; }
 
-        // The "NotMapped" attr means this field will not be mapped to a DB
-        // field and therefore its values will not end up in the DB
-        [Required(ErrorMessage = "Please re-enter your password for confirmation")]
-        [Display(Name = "Confirm password")]
-        [NotMapped()]
-        public string? PasswordConfirmation { get; set; }
+    [InverseProperty("Account")]
+    public virtual Employee? Employee { get; set; }
 
-        public string? AccountType { get; set; }
-        public bool AccountBlocked { get; set; } = false; //as a default value
-
-    }
+    [InverseProperty("Account")]
+    public virtual Member? Member { get; set; }
 }

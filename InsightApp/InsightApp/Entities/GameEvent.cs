@@ -1,37 +1,47 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace InsightApp.Entities
+namespace InsightApp.Entities;
+
+[Table("GameEvent")]
+public partial class GameEvent
 {
-    public class GameEvent
-    {
-        // EF Core will configure this to be an auto-incremented primary key:
-        public int EventId { get; set; }
+    [Key]
+    public int EventId { get; set; }
 
-        [Required(ErrorMessage = "Please enter a name.")]
-        public string EventName { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string EventName { get; set; } = null!;
 
-        [Required(ErrorMessage = "Please enter the event's detail.")]
-        public string? Details { get; set; }
+    [Unicode(false)]
+    public string Details { get; set; } = null!;
 
-        [Required(ErrorMessage = "Please enter the start date.")]
-        public DateOnly? StartDate { get; set; }
-        public DateOnly? EndDate { get; set; }
+    public DateOnly StartDate { get; set; }
 
-        [Required(ErrorMessage = "Please enter the start time.")]
-        public TimeOnly? StartTime { get; set; }
-        public TimeOnly? EndTime { get; set; }
+    public DateOnly? EndDate { get; set; }
 
-        public string? EventLink { get; set; }
+    public TimeOnly? StartTime { get; set; }
 
-        public bool? IsDeleted { get; set; } = false; //default
+    public TimeOnly? EndTime { get; set; }
 
-        public string? EvTypeId { get; set; } //FK
-        public EventType? EventType { get; set; } //add a full EventType object as a 2nd prop
+    public int EvTypeId { get; set; }
 
-        public int? AddressId { get; set; } //FK
-        public AddressTable? Address { get; set; } //add a full Address object as a 2nd prop
+    [StringLength(100)]
+    [Unicode(false)]
+    public string? EventLink { get; set; }
 
-        public ICollection<MemberEventRegist>? MemberEventRegists { get; set; } // Nav to all members regestered
-    }
+    public bool? IsDeleted { get; set; }
+
+    public int? AddressId { get; set; }
+
+    [ForeignKey("AddressId")]
+    [InverseProperty("GameEvents")]
+    public virtual AddressTable? Address { get; set; }
+
+    [ForeignKey("EvTypeId")]
+    [InverseProperty("GameEvents")]
+    public virtual EventType EvType { get; set; } = null!;
 }

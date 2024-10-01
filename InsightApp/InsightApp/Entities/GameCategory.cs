@@ -1,14 +1,18 @@
-﻿namespace InsightApp.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace InsightApp.Entities;
+
+[Table("GameCategory")]
+public partial class GameCategory
 {
-    public class GameCategory
-    {
-        // EF Core will configure this to be an auto-incremented primary key:
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+    [Key]
+    public int CategoryId { get; set; }
 
-        public ICollection<Game>? Game { get; set; }
-        public ICollection<MemberGameCategoryPref>? MemberGameCategoryPrefs { get; set; }
-        public ICollection<GameDetailsCategory>? GameDetailsCategorys { get; set; }
-
-    }
+    [StringLength(30)]
+    [Unicode(false)]
+    public string CategoryName { get; set; } = null!;
 }

@@ -1,13 +1,22 @@
-﻿namespace InsightApp.Entities
-{
-    public class GameDetailsCategory
-    {
-        // Composite PK made of 2 FKs :
-        public int GameId { get; set; }
-        public int CategoryId { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        // Nav props
-        public Game? Game { get; set; }
-        public GameCategory? Category { get; set; }
-    }
+namespace InsightApp.Entities;
+
+[Keyless]
+[Table("GameDetailsCategory")]
+public partial class GameDetailsCategory
+{
+    public int? GameId { get; set; }
+
+    public int? CategoryId { get; set; }
+
+    [ForeignKey("CategoryId")]
+    public virtual GameCategory? Category { get; set; }
+
+    [ForeignKey("GameId")]
+    public virtual Game? Game { get; set; }
 }

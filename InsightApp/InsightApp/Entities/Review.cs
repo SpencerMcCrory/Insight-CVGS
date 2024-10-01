@@ -1,22 +1,38 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace InsightApp.Entities
+namespace InsightApp.Entities;
+
+[Table("Review")]
+public partial class Review
 {
-    public class Review
-    {
-        // EF Core will configure this to be an auto-incremented primary key:
-        public int ReviewId { get; set; }
-        
-        [Required(ErrorMessage = "Please insert your review")]
-        public string? ReviewBody { get; set; }
-        public string? RejectReason { get; set; }
+    [Key]
+    public int ReviewId { get; set; }
 
-        public string? MemberId { get; set; } //FK
-        public Member? Member { get; set; } //add a full EventType object as a 2nd prop
-        public string? GameId { get; set; } //FK
-        public Game? Game { get; set; } //add a full EventType object as a 2nd prop
+    public int? GameId { get; set; }
 
-        public string? StatusId { get; set; } //FK
-        public ReviewStatus? ReviewStatus { get; set; } //add a full EventType object as a 2nd prop
-    }
+    public int? MemberId { get; set; }
+
+    public int StatusId { get; set; }
+
+    [Unicode(false)]
+    public string ReviewBody { get; set; } = null!;
+
+    [Unicode(false)]
+    public string? RejectReason { get; set; }
+
+    [ForeignKey("GameId")]
+    [InverseProperty("Reviews")]
+    public virtual Game? Game { get; set; }
+
+    [ForeignKey("MemberId")]
+    [InverseProperty("Reviews")]
+    public virtual Member? Member { get; set; }
+
+    [ForeignKey("StatusId")]
+    [InverseProperty("Reviews")]
+    public virtual ReviewStatus Status { get; set; } = null!;
 }

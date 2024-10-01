@@ -1,13 +1,22 @@
-﻿namespace InsightApp.Entities
-{
-    public class WishList
-    {
-        // Composite PK made of 2 FKs :
-        public int MemberId { get; set; }
-        public int GameId { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        // Nav props
-        public Member? Member { get; set; }
-        public Game? Game { get; set; }
-    }
+namespace InsightApp.Entities;
+
+[Keyless]
+[Table("WishList")]
+public partial class WishList
+{
+    public int? MemberId { get; set; }
+
+    public int? GameId { get; set; }
+
+    [ForeignKey("GameId")]
+    public virtual Game? Game { get; set; }
+
+    [ForeignKey("MemberId")]
+    public virtual Member? Member { get; set; }
 }
