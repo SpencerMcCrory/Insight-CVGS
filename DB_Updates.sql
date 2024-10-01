@@ -40,7 +40,7 @@ CREATE TABLE Member (
 
 CREATE TABLE AddressTable (
 	AddressId INT IDENTITY(1,1) PRIMARY KEY,
-	MemberId INT NOT NULL,
+	MemberId INT DEFAULT NULL, /*---------updated-----*/
 	StreetName VARCHAR (40) NOT NULL,
 	StreetNumber VARCHAR (10) NOT NULL,
 	Unit VARCHAR (10) DEFAULT NULL,
