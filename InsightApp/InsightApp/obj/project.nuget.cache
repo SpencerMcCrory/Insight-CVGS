@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5ADX+yOJYK8=",
+  "dgSpecHash": "ZIwIlgtsNA8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
+  "projectFilePath": "C:\\Users\\EmanAbdeen\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\EmanAbdeen\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\EmanAbdeen\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

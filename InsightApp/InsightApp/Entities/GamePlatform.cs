@@ -7,7 +7,7 @@
         public string PlatformName { get; set; }
 
         // following we are linking with the assocition tables
-        public ICollection<MemberPlatformPref>? MemberPlatformPref { get; set; }
-        public ICollection<GameDetailsPlatform>? GamePlatform { get; set; } 
+        public ICollection<MemberPlatformPref>? MemberPlatformPrefs { get; set; }
+        public ICollection<GameDetailsPlatform>? GameDetalsPlatforms { get; set; } 
     }
 }

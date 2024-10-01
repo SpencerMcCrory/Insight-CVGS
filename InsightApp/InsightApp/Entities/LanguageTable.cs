@@ -7,7 +7,7 @@
         public string LanguageName { get; set; }
 
         // following we are linking with the assocition tables
-        public ICollection<MemberLanguagePref>? MemberLanguagePref { get; set; }
-        public ICollection<GameDetailsLanguage>? GameLanguage { get; set; }
+        public ICollection<MemberLanguagePref>? MemberLanguagePrefs { get; set; }
+        public ICollection<GameDetailsLanguage>? GameDetailsLanguages { get; set; }
     }
 }

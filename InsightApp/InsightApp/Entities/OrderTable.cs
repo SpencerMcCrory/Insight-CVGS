@@ -12,6 +12,6 @@ namespace InsightApp.Entities
         public int MemberId { get; set; } //FK
         public Member? Member { get; set; } //add a full Member object as a 2nd prop
 
-        public ICollection<OrderItem>? OrderItem { get; set; } // Nav to all order items
+        public ICollection<OrderItem>? OrderItems { get; set; } // Nav to all order items
     }
 }

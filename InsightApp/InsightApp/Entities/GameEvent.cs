@@ -32,6 +32,6 @@ namespace InsightApp.Entities
         public int? AddressId { get; set; } //FK
         public AddressTable? Address { get; set; } //add a full Address object as a 2nd prop
 
-        public ICollection<MemberEventRegist>? MemberEventRegist { get; set; } // Nav to all members regestered
+        public ICollection<MemberEventRegist>? MemberEventRegists { get; set; } // Nav to all members regestered
     }
 }

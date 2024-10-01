@@ -34,12 +34,12 @@ namespace InsightApp.Entities
 
         //----following we are linking with the assocition tables
 
-        public ICollection<Friend>? Friend { get; set; } // Nav to all friends in friend list
-        public ICollection<WishList>? WishList { get; set; } // Nav to all games as in wish list
-        public ICollection<MemberEventRegist>? MemberEventRegist { get; set; } // Nav to all registerd events
-        public ICollection<MemberLanguagePref>? MemberLanguagePref { get; set; } // Nav to all preferd languages
-        public ICollection<MemberGameCategoryPref>? MemberGameCategoryPref { get; set; } // Nav to all preferd game categories
-        public ICollection<MemberPlatformPref>? MemberPlatformPref { get; set; } // Nav to all preferd game platforms
+        public ICollection<Friend>? Friends { get; set; } // Nav to all friends in friend list
+        public ICollection<WishList>? WishLists { get; set; } // Nav to all games as in wish list
+        public ICollection<MemberEventRegist>? MemberEventRegists { get; set; } // Nav to all registerd events
+        public ICollection<MemberLanguagePref>? MemberLanguagePrefs { get; set; } // Nav to all preferd languages
+        public ICollection<MemberGameCategoryPref>? MemberGameCategoryPrefs { get; set; } // Nav to all preferd game categories
+        public ICollection<MemberPlatformPref>? MemberPlatformPrefs { get; set; } // Nav to all preferd game platforms
 
     }
 }
