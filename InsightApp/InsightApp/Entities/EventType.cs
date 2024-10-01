@@ -2,9 +2,9 @@
 {
     public class EventType
     {
-        public string EvTypeId { get; set; }
-        public string Name { get; set; }
+        public int EvTypeId { get; set; }
+        public string EvTypeName { get; set; }
 
-        public ICollection<Event>? Events { get; set; } // Nav to all Events of this type
+        public ICollection<GameEvent>? Events { get; set; } // Nav to all Events of this type
     }
 }

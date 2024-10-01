@@ -8,6 +8,6 @@
 
         // Nav props
         public Member? Member { get; set; }
-        public Language? Language { get; set; }
+        public LanguageTable? Language { get; set; }
     }
 }

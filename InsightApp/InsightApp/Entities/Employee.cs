@@ -1,6 +1,6 @@
 ﻿namespace InsightApp.Entities
 {
-    public class Emoloyee
+    public class Employee
     {
         // EF Core will configure this to be an auto-incremented primary key:
         public int EmployeeId { get; set; }

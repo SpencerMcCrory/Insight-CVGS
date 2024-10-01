@@ -8,19 +8,19 @@ namespace InsightApp.Entities
         public int GameId { get; set; }
 
         [Required(ErrorMessage = "Please enter the game name")]
-        public string Name { get; set; }
+        public string GameName { get; set; }
 
         [Required(ErrorMessage = "Please enter the game detail")]
         public string Details { get; set; }
         public float Price { get; set; } = 0; //default value
         public bool? IsDeleted { get; set; } = false; //default value
-
+        public bool? PhysicalAvailable { get; set; } = true;//default value
         public ICollection<Review>? Review { get; set; } // Nav to all reviews
         public ICollection<WishList>? WishList { get; set; } // Nav to all games as in wish list
         public ICollection<OrderItem>? OrderItem { get; set; } // Nav to all order items
-        public ICollection<GameLanguage>? GameLanguage { get; set; } // Nav to all game languages
-        public ICollection<GamePlatform>? GamePlatform { get; set; } // Nav to all game platforms
-        public ICollection<GameCategory>? GameCategory { get; set; } // Nav to all game categories
+        public ICollection<GameDetailsLanguage>? GameLanguage { get; set; } // Nav to all game languages
+        public ICollection<GameDetailsPlatform>? GamePlatform { get; set; } // Nav to all game platforms
+        public ICollection<GameDetailsCategory>? GameCategory { get; set; } // Nav to all game categories
 
     }
 }

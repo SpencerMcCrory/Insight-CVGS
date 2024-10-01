@@ -8,6 +8,6 @@
 
         // Nav props
         public Member? Member { get; set; }
-        public Event? Event { get; set; }
+        public GameEvent? Event { get; set; }
     }
 }

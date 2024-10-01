@@ -8,7 +8,7 @@ namespace InsightApp.Entities
         public int ReviewId { get; set; }
         
         [Required(ErrorMessage = "Please insert your review")]
-        public string? Details { get; set; }
+        public string? ReviewBody { get; set; }
         public string? RejectReason { get; set; }
 
         public string? MemberId { get; set; } //FK

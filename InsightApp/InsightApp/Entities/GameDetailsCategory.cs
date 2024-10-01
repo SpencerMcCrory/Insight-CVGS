@@ -1,14 +1,13 @@
 ﻿namespace InsightApp.Entities
 {
-    public class OrderItem
+    public class GameDetailsCategory
     {
         // Composite PK made of 2 FKs :
-        public int OrderId { get; set; }
         public int GameId { get; set; }
-        public bool IsShipped { get; set; }
+        public int CategoryId { get; set; }
 
         // Nav props
-        public OrderTable? Order { get; set; }
         public Game? Game { get; set; }
+        public GameCategory? Category { get; set; }
     }
 }

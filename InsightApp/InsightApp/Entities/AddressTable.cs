@@ -2,7 +2,7 @@
 
 namespace InsightApp.Entities
 {
-    public class Address
+    public class AddressTable
     {
         // EF Core will configure this to be an auto-incremented primary key:
         public int AddressId { get; set; }
@@ -21,6 +21,6 @@ namespace InsightApp.Entities
         public bool IsShipping { get; set; }=true;//default value
         public string? DelivaryInstructions { get; set; }
         public int MemberId { get; set; }//FK
-        public ICollection<Event>? Events { get; set; } // Nav to all Events
+        public ICollection<GameEvent>? Events { get; set; } // Nav to all Events
     }
 }

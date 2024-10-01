@@ -27,8 +27,8 @@ namespace InsightApp.Entities
         public Account Account { get; set; }// to get the ability to have all the account detail in this model
 
 
-        public ICollection<Address>? Address { get; set; } // Nav to all Addresses
-        public ICollection<Order>? Order { get; set; }
+        public ICollection<AddressTable>? Address { get; set; } // Nav to all Addresses
+        public ICollection<OrderTable>? Order { get; set; }
         //public ICollection<Review>? Review { get; set; }
 
 

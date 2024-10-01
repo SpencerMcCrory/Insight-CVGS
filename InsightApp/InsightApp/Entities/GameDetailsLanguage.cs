@@ -1,6 +1,6 @@
 ﻿namespace InsightApp.Entities
 {
-    public class GameLanguage
+    public class GameDetailsLanguage
     {
         // Composite PK made of 2 FKs :
         public int GameId { get; set; }
@@ -8,6 +8,6 @@
 
         // Nav props
         public Game? Game { get; set; }
-        public Language? Language { get; set; }
+        public LanguageTable? Language { get; set; }
     }
 }

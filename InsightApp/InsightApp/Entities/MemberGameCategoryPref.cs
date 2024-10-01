@@ -8,6 +8,6 @@
 
         // Nav props
         public Member? Member { get; set; }
-        public Category? Category { get; set; }
+        public GameCategory? Category { get; set; }
     }
 }

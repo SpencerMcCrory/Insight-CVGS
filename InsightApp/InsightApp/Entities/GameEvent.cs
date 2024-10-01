@@ -3,13 +3,13 @@ using System.Diagnostics;
 
 namespace InsightApp.Entities
 {
-    public class Event
+    public class GameEvent
     {
         // EF Core will configure this to be an auto-incremented primary key:
         public int EventId { get; set; }
 
         [Required(ErrorMessage = "Please enter a name.")]
-        public string Name { get; set; }
+        public string EventName { get; set; }
 
         [Required(ErrorMessage = "Please enter the event's detail.")]
         public string? Details { get; set; }
@@ -30,7 +30,7 @@ namespace InsightApp.Entities
         public EventType? EventType { get; set; } //add a full EventType object as a 2nd prop
 
         public int? AddressId { get; set; } //FK
-        public Address? Address { get; set; } //add a full Address object as a 2nd prop
+        public AddressTable? Address { get; set; } //add a full Address object as a 2nd prop
 
         public ICollection<MemberEventRegist>? MemberEventRegist { get; set; } // Nav to all members regestered
     }

@@ -2,12 +2,12 @@
 {
     public class GamePlatform
     {
-        // Composite PK made of 2 FKs :
-        public int GameId { get; set; }
+        // EF Core will configure this to be an auto-incremented primary key:
         public int PlatformId { get; set; }
+        public string PlatformName { get; set; }
 
-        // Nav props
-        public Game? Game { get; set; }
-        public Platform? Platform { get; set; }
+        // following we are linking with the assocition tables
+        public ICollection<MemberPlatformPref>? MemberPlatformPref { get; set; }
+        public ICollection<GameDetailsPlatform>? GamePlatform { get; set; } 
     }
 }

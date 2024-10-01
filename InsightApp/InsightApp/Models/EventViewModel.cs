@@ -7,6 +7,6 @@ namespace InsightApp.Models
     {
         public List<EventType>? EventTypes { get; set; }
 
-        public Event ActiveEvent { get; set; }
+        public GameEvent ActiveEvent { get; set; }
     }
 }
