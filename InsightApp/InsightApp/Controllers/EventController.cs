@@ -28,7 +28,7 @@ namespace InsightApp.Controllers
         {
             EventViewModel eventViewModel = new EventViewModel()
             {
-                EventTypes = _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeName).ToList(),
+                EventTypes = _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeId).ToList(),
                 ActiveEvent = new GameEvent()
             };
 
@@ -37,9 +37,10 @@ namespace InsightApp.Controllers
 
         [HttpPost("/events")]
         public IActionResult AddNewEvent(EventViewModel eventViewModel)
-        {
+        {            
             if (ModelState.IsValid)
             {
+                
                 // it's valid so we want to add the new event to the DB:
                 _SVGSDbContext.GameEvents.Add(eventViewModel.ActiveEvent);
                 _SVGSDbContext.SaveChanges();

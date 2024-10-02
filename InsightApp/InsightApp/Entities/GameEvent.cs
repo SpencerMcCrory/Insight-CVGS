@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -39,9 +40,11 @@ public partial class GameEvent
 
     [ForeignKey("AddressId")]
     [InverseProperty("GameEvents")]
+    [NotMapped]
     public virtual AddressTable? Address { get; set; }
 
     [ForeignKey("EvTypeId")]
     [InverseProperty("GameEvents")]
-    public virtual EventType EvType { get; set; } = null!;
+    [NotMapped]
+    public virtual EventType? EvType { get; set; }
 }

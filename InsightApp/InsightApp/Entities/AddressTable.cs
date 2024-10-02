@@ -12,15 +12,15 @@ public partial class AddressTable
     [Key]
     public int AddressId { get; set; }
 
-    public int MemberId { get; set; }
+    public int? MemberId { get; set; }
 
     [StringLength(40)]
     [Unicode(false)]
-    public string StreetName { get; set; } = null!;
+    public string StreetName { get; set; }
 
     [StringLength(10)]
     [Unicode(false)]
-    public string StreetNumber { get; set; } = "";
+    public string StreetNumber { get; set; } 
 
     [StringLength(10)]
     [Unicode(false)]
@@ -40,7 +40,7 @@ public partial class AddressTable
 
     [StringLength(25)]
     [Unicode(false)]
-    public string Country { get; set; } = "Canada";
+    public string? Country { get; set; } = "Canada";
 
     public bool? IsShipping { get; set; }
 
@@ -48,9 +48,11 @@ public partial class AddressTable
     public string? DelivaryInstructions { get; set; }
 
     [InverseProperty("Address")]
-    public virtual ICollection<GameEvent> GameEvents { get; set; } = new List<GameEvent>();
+    [NotMapped]
+    public virtual ICollection<GameEvent>? GameEvents { get; set; }
 
     [ForeignKey("MemberId")]
     [InverseProperty("AddressTables")]
-    public virtual Member Member { get; set; } = null!;
+    [NotMapped]
+    public virtual Member? Member { get; set; }
 }
