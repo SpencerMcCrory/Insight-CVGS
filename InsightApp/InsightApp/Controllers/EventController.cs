@@ -1,4 +1,5 @@
 ﻿using InsightApp.Entities;
+using InsightApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,38 @@ namespace InsightApp.Controllers
                 .Include(e => e.Address)
                 .OrderBy(e => e.EventName).ToList();
             return View("Items", allEvents);
+        }
+
+        [HttpGet("/events/add-request")]
+        public IActionResult GetAddEventRequest()
+        {
+            EventViewModel eventViewModel = new EventViewModel()
+            {
+                EventTypes = _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeName).ToList(),
+                ActiveEvent = new GameEvent()
+            };
+
+            return View("AddEvent", eventViewModel);
+        }
+
+        [HttpPost("/events")]
+        public IActionResult AddNewEvent(EventViewModel eventViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // it's valid so we want to add the new event to the DB:
+                _SVGSDbContext.GameEvents.Add(eventViewModel.ActiveEvent);
+                _SVGSDbContext.SaveChanges();
+                TempData["LastActionMessage"] = $"The event \"{eventViewModel.ActiveEvent.EventName}\" is successfully add.";
+                return RedirectToAction("GetAllEvents", "Event");
+            }
+            else
+            {
+                // it's invalid so we simply return the event object
+                // to the Edit view again:
+                eventViewModel.EventTypes = _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeName).ToList();
+                return View("AddEvent", eventViewModel);
+            }
         }
 
         public IActionResult Index()

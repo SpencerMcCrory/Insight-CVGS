@@ -3,32 +3,48 @@
     ViewData["Title"] = "All Movies";
 }
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Event</th>
-            <th>Details</th>
-            <th>Event Type</th>
-            <th>Link</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var ev in Model)
-        {
+
+<div class="d-inline-flex p-2 bd-highlight flex-column justify-content-start">
+    <h7 class="myclass">Conestoga Virtual Game Store - Admin Panel</h7>
+</div>
+<div class="d-flex justify-content-center" style="margin-top:30px">
+    <h2 class="pageTitle" style="color:rgb(80, 140, 155);">Events</h2>
+</div>
+
+<!--------Add New Button------------->
+<div >
+    <div class="d-flex justify-content-start" style="margin-left: 50px;">
+        <a asp-controller="Event" asp-action="GetAddEventRequest" role="button" class=" btn btn-outline-dark btn-lg AddNew">Add New Event</a>
+    </div>
+</div>
+
+<!----------------table------------->
+<div class="d-flex flex-row bd-highlight mb-3">
+    <table class="table table-bordered table-striped itemsPage">
+        <thead>
             <tr>
-                <td>@ev.EventName</td>
-                <td>@ev.Details</td>
-                <td>@ev.EvType.EvTypeName</td>
-                <td>@ev.EventLink</td>
-                
-                <td>
-                    <a asp-controller="Movie" asp-action="GetMovieById" asp-route-id="@ev.EventId">Details</a>
-                    <span class="mx-1">|</span>
-                    <a asp-controller="Movie" asp-action="GetEditRequestById" asp-route-id="@ev.EventId">Edit</a>
-                    <span class="mx-1">|</span>
-                    <a asp-controller="Movie" asp-action="GetDeleteRequestById" asp-route-id="@ev.EventId">Delete</a>
-                </td>
+                <th class="tableHheader" style="background-color:rgb(80, 140, 155); width:500px">Title</th>
+                <th class="tableHheader" style="background-color:rgb(80, 140, 155); width:150px">Event Type</th>
+                <th class="tableHheader" style="background-color:rgb(80, 140, 155); width:200px"></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var ev in Model)
+            {
+                <tr>
+                    <td style="font-size:16px; font-weight:bold;">@ev.EventName</td>
+                    <td class="itemsPage">@ev.EvType.EvTypeName</td>
+
+                    <td class="itemsPage">
+                        <a asp-controller="Movie" asp-action="GetMovieById" asp-route-id="@ev.EventId">Details</a>
+                        <span class="mx-1">|</span>
+                        <a asp-controller="Movie" asp-action="GetEditRequestById" asp-route-id="@ev.EventId">Edit</a>
+                        <span class="mx-1">|</span>
+                        <a asp-controller="Movie" asp-action="GetDeleteRequestById" asp-route-id="@ev.EventId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

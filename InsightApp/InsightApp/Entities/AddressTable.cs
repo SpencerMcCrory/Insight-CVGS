@@ -20,7 +20,7 @@ public partial class AddressTable
 
     [StringLength(10)]
     [Unicode(false)]
-    public string StreetNumber { get; set; } = null!;
+    public string StreetNumber { get; set; } = "";
 
     [StringLength(10)]
     [Unicode(false)]
@@ -40,7 +40,7 @@ public partial class AddressTable
 
     [StringLength(25)]
     [Unicode(false)]
-    public string Country { get; set; } = null!;
+    public string Country { get; set; } = "Canada";
 
     public bool? IsShipping { get; set; }
 

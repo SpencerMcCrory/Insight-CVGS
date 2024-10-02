@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entity\**" />
+    <Content Remove="Entity\**" />
+    <EmbeddedResource Remove="Entity\**" />
+    <None Remove="Entity\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Imgs\TeamLogo.png" />
+    <Content Remove="wwwroot\lib\Imgs\TeamLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
@@ -18,7 +30,11 @@
 
   <ItemGroup>
     <Folder Include="Entities\Generated\" />
-    <Folder Include="Entity\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Imgs\TeamLogo.png" />
+    <None Include="wwwroot\lib\Imgs\TeamLogo.png" />
   </ItemGroup>
 
 </Project>
