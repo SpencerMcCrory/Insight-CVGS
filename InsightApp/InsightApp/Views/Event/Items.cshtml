@@ -36,7 +36,7 @@
                     <td class="itemsPage">@ev.EvType.EvTypeName</td>
 
                     <td class="itemsPage">
-                        <a asp-controller="Movie" asp-action="GetMovieById" asp-route-id="@ev.EventId">Details</a>
+                        <a asp-controller="Event" asp-action="GetEventById" asp-route-id="@ev.EventId">Details</a>
                         <span class="mx-1">|</span>
                         <a asp-controller="Movie" asp-action="GetEditRequestById" asp-route-id="@ev.EventId">Edit</a>
                         <span class="mx-1">|</span>

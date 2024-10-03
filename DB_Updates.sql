@@ -2,9 +2,9 @@
 * This script creates the database named InsightCVGS
 *********************************************************/
 
---DROP DATABASE IF EXISTS InsightCVGS;
-CREATE DATABASE InsightCVGS;
-USE InsightCVGS;
+--DROP DATABASE IF EXISTS InsightUpdateCVGS;
+--CREATE DATABASE InsightUpdateCVGS;
+--USE InsightUpdateCVGS;
 
 
 /********************************************************
@@ -130,6 +130,7 @@ CREATE TABLE OrderTable (
 );
 
 CREATE TABLE OrderItem ( /* junction table */
+	id INT IDENTITY (1,1) PRIMARY KEY,
 	OrderId INT,
 	GameId INT,
 	IsShipped BIT DEFAULT 0,
@@ -138,25 +139,29 @@ CREATE TABLE OrderItem ( /* junction table */
 );
 
 CREATE TABLE MemberPlatformPref ( /* junction table */
-    MemberId INT,
+    id INT IDENTITY (1,1) PRIMARY KEY,
+	MemberId INT,
     PlatformId INT,
     FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
     FOREIGN KEY (PlatformId) REFERENCES GamePlatform (PlatformId),
 );
 CREATE TABLE MemberGameCategoryPref ( /* junction table */
-    MemberId INT,
+    id INT IDENTITY (1,1) PRIMARY KEY,
+	MemberId INT,
     CategoryId INT,
     FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
     FOREIGN KEY (CategoryId) REFERENCES GameCategory (CategoryId),
 );
 CREATE TABLE MemberLanguagePref ( /* junction table */
-    MemberId INT,
+    id INT IDENTITY (1,1) PRIMARY KEY,
+	MemberId INT,
     LanguageId INT,
     FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
     FOREIGN KEY (LanguageId) REFERENCES LanguageTable (LanguageId),
 );
 
 CREATE TABLE GameDetailsCategory ( /* junction table */
+	id INT IDENTITY (1,1) PRIMARY KEY,
 	GameId INT,
 	CategoryId INT,
 	FOREIGN KEY (GameId) REFERENCES Game (GameId),
@@ -164,13 +169,15 @@ CREATE TABLE GameDetailsCategory ( /* junction table */
 );
 
 CREATE TABLE GameDetailsPlatform ( /* junction table */
-    GameId INT,
+    id INT IDENTITY (1,1) PRIMARY KEY,
+	GameId INT,
     PlatformId INT,
     FOREIGN KEY (GameId) REFERENCES Game (GameId),
     FOREIGN KEY (PlatformId) REFERENCES GamePlatform (PlatformId),
 );
 
 CREATE TABLE GameDetailsLanguage ( /* junction table */
+	id INT IDENTITY (1,1) PRIMARY KEY,
 	GameId INT,
 	LanguageId INT,
 	FOREIGN KEY (GameId) REFERENCES Game (GameId),
@@ -178,6 +185,7 @@ CREATE TABLE GameDetailsLanguage ( /* junction table */
 );
 
 CREATE TABLE WishList ( /* junction table */
+	id INT IDENTITY (1,1) PRIMARY KEY,
 	MemberId INT,
 	GameId INT,
 	FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
@@ -185,6 +193,7 @@ CREATE TABLE WishList ( /* junction table */
 );
 
 CREATE TABLE MemberEventRegist ( /* junction table */
+	id INT IDENTITY (1,1) PRIMARY KEY,
 	MemberId INT,
 	EventId INT,
 	FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
@@ -192,6 +201,7 @@ CREATE TABLE MemberEventRegist ( /* junction table */
 );
 
 CREATE TABLE Friend ( /* junction table */
+	id INT IDENTITY (1,1) PRIMARY KEY,
 	MemberId INT,
 	FriendId INT,
 	FOREIGN KEY (MemberId) REFERENCES Member (MemberId),

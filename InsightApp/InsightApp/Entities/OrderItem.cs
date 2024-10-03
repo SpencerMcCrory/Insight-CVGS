@@ -6,10 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InsightApp.Entities;
 
-[Keyless]
 [Table("OrderItem")]
 public partial class OrderItem
 {
+    [Key]
+    [Column("id")]
+    public int Id { get; set; }
+
     public int? OrderId { get; set; }
 
     public int? GameId { get; set; }
@@ -17,8 +20,10 @@ public partial class OrderItem
     public bool? IsShipped { get; set; }
 
     [ForeignKey("GameId")]
+    [InverseProperty("OrderItems")]
     public virtual Game? Game { get; set; }
 
     [ForeignKey("OrderId")]
+    [InverseProperty("OrderItems")]
     public virtual OrderTable? Order { get; set; }
 }

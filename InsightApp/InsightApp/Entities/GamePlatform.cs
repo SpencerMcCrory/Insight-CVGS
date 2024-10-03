@@ -15,4 +15,10 @@ public partial class GamePlatform
     [StringLength(30)]
     [Unicode(false)]
     public string PlatformName { get; set; } = null!;
+
+    [InverseProperty("Platform")]
+    public virtual ICollection<GameDetailsPlatform> GameDetailsPlatforms { get; set; } = new List<GameDetailsPlatform>();
+
+    [InverseProperty("Platform")]
+    public virtual ICollection<MemberPlatformPref> MemberPlatformPrefs { get; set; } = new List<MemberPlatformPref>();
 }

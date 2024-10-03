@@ -1,4 +1,4 @@
-USE InsightCVGS;
+
 -- games_categories table
 INSERT INTO GameCategory VALUES ('Board'); /*(e.g., Monopoly).*/
 INSERT INTO GameCategory VALUES ('Adventure'); /*(e.g., The Legend of Zelda).*/

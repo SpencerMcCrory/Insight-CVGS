@@ -56,6 +56,25 @@ namespace InsightApp.Controllers
             }
         }
 
+        [HttpGet("/events/{id}")]
+        public IActionResult GetEventById(int id)
+        {
+            var gameEvent = _SVGSDbContext.GameEvents
+                .Include(e => e.EvType)
+                .Include(e => e.Address)
+                .Include(e => e.MemberEventRegists).ThenInclude(m => m.Member)
+                .Where(e => e.EventId == id).FirstOrDefault();
+
+            EventDetailViewModel eventDetailViewModel = new EventDetailViewModel()
+            {
+                ActiveEvent = gameEvent
+                //,
+                //AverageRating = movie.Reviews.Average(r => r.Rating).GetValueOrDefault()
+            };
+
+            return View("Details", eventDetailViewModel);
+        }
+
         public IActionResult Index()
         {
             return View();

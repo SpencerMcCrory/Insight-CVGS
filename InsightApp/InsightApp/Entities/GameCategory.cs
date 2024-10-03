@@ -15,4 +15,10 @@ public partial class GameCategory
     [StringLength(30)]
     [Unicode(false)]
     public string CategoryName { get; set; } = null!;
+
+    [InverseProperty("Category")]
+    public virtual ICollection<GameDetailsCategory> GameDetailsCategories { get; set; } = new List<GameDetailsCategory>();
+
+    [InverseProperty("Category")]
+    public virtual ICollection<MemberGameCategoryPref> MemberGameCategoryPrefs { get; set; } = new List<MemberGameCategoryPref>();
 }

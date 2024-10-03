@@ -15,4 +15,10 @@ public partial class LanguageTable
     [StringLength(30)]
     [Unicode(false)]
     public string LanguageName { get; set; } = null!;
+
+    [InverseProperty("Language")]
+    public virtual ICollection<GameDetailsLanguage> GameDetailsLanguages { get; set; } = new List<GameDetailsLanguage>();
+
+    [InverseProperty("Language")]
+    public virtual ICollection<MemberLanguagePref> MemberLanguagePrefs { get; set; } = new List<MemberLanguagePref>();
 }

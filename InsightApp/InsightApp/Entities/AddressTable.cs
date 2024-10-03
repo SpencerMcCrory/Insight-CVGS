@@ -40,7 +40,7 @@ public partial class AddressTable
 
     [StringLength(25)]
     [Unicode(false)]
-    public string? Country { get; set; } = "Canada";
+    public string Country { get; set; } = "Canada";
 
     public bool? IsShipping { get; set; }
 
@@ -48,11 +48,9 @@ public partial class AddressTable
     public string? DelivaryInstructions { get; set; }
 
     [InverseProperty("Address")]
-    [NotMapped]
-    public virtual ICollection<GameEvent>? GameEvents { get; set; }
+    public virtual ICollection<GameEvent>? GameEvents { get; set; } = new List<GameEvent>();
 
     [ForeignKey("MemberId")]
     [InverseProperty("AddressTables")]
-    [NotMapped]
     public virtual Member? Member { get; set; }
 }

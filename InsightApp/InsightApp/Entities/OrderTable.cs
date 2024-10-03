@@ -25,4 +25,7 @@ public partial class OrderTable
     [ForeignKey("MemberId")]
     [InverseProperty("OrderTables")]
     public virtual Member Member { get; set; } = null!;
+
+    [InverseProperty("Order")]
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 }

@@ -26,5 +26,20 @@ public partial class Game
     public bool? IsDeleted { get; set; }
 
     [InverseProperty("Game")]
+    public virtual ICollection<GameDetailsCategory> GameDetailsCategories { get; set; } = new List<GameDetailsCategory>();
+
+    [InverseProperty("Game")]
+    public virtual ICollection<GameDetailsLanguage> GameDetailsLanguages { get; set; } = new List<GameDetailsLanguage>();
+
+    [InverseProperty("Game")]
+    public virtual ICollection<GameDetailsPlatform> GameDetailsPlatforms { get; set; } = new List<GameDetailsPlatform>();
+
+    [InverseProperty("Game")]
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+    [InverseProperty("Game")]
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+
+    [InverseProperty("Game")]
+    public virtual ICollection<WishList> WishLists { get; set; } = new List<WishList>();
 }

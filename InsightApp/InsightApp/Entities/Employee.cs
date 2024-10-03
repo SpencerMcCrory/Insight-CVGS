@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace InsightApp.Entities;
 
 [Table("Employee")]
-[Index("AccountId", Name = "UQ__Employee__349DA5A75FB07791", IsUnique = true)]
+[Index("AccountId", Name = "UQ__Employee__349DA5A7ED2D4D70", IsUnique = true)]
 public partial class Employee
 {
     [Key]

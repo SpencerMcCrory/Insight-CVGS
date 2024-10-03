@@ -68,14 +68,14 @@ public partial class SVGSDbContext : DbContext
     {
         modelBuilder.Entity<Account>(entity =>
         {
-            entity.HasKey(e => e.AccountId).HasName("PK__Account__349DA5A639872FAA");
+            entity.HasKey(e => e.AccountId).HasName("PK__Account__349DA5A6029E9857");
 
             entity.Property(e => e.AccountBlocked).HasDefaultValue(false);
         });
 
         modelBuilder.Entity<AddressTable>(entity =>
         {
-            entity.HasKey(e => e.AddressId).HasName("PK__AddressT__091C2AFB82DEBA47");
+            entity.HasKey(e => e.AddressId).HasName("PK__AddressT__091C2AFB39A9FCFC");
 
             entity.Property(e => e.City).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.DelivaryInstructions).HasDefaultValueSql("(NULL)");
@@ -90,26 +90,28 @@ public partial class SVGSDbContext : DbContext
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.EmployeeId).HasName("PK__Employee__7AD04F1179E54605");
+            entity.HasKey(e => e.EmployeeId).HasName("PK__Employee__7AD04F11AC26BB96");
 
             entity.HasOne(d => d.Account).WithOne(p => p.Employee).HasConstraintName("FK__Employee__Accoun__4AB81AF0");
         });
 
         modelBuilder.Entity<EventType>(entity =>
         {
-            entity.HasKey(e => e.EvTypeId).HasName("PK__EventTyp__AB03639D91BDAE91");
+            entity.HasKey(e => e.EvTypeId).HasName("PK__EventTyp__AB03639D23DD2E7D");
         });
 
         modelBuilder.Entity<Friend>(entity =>
         {
-            entity.HasOne(d => d.FriendNavigation).WithMany().HasConstraintName("FK__Friend__FriendId__778AC167");
+            entity.HasKey(e => e.Id).HasName("PK__Friend__3213E83FF8C767A3");
 
-            entity.HasOne(d => d.Member).WithMany().HasConstraintName("FK__Friend__MemberId__76969D2E");
+            entity.HasOne(d => d.FriendNavigation).WithMany(p => p.FriendFriendNavigations).HasConstraintName("FK__Friend__FriendId__01142BA1");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.FriendMembers).HasConstraintName("FK__Friend__MemberId__00200768");
         });
 
         modelBuilder.Entity<Game>(entity =>
         {
-            entity.HasKey(e => e.GameId).HasName("PK__Game__2AB897FD782C91DE");
+            entity.HasKey(e => e.GameId).HasName("PK__Game__2AB897FDFDD7A2F9");
 
             entity.Property(e => e.IsDeleted).HasDefaultValue(false);
             entity.Property(e => e.PhysicalAvailable).HasDefaultValue(false);
@@ -118,33 +120,39 @@ public partial class SVGSDbContext : DbContext
 
         modelBuilder.Entity<GameCategory>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__GameCate__19093A0B6D7EFAF9");
+            entity.HasKey(e => e.CategoryId).HasName("PK__GameCate__19093A0B9B437C98");
         });
 
         modelBuilder.Entity<GameDetailsCategory>(entity =>
         {
-            entity.HasOne(d => d.Category).WithMany().HasConstraintName("FK__GameDetai__Categ__693CA210");
+            entity.HasKey(e => e.Id).HasName("PK__GameDeta__3213E83FF75E4E2C");
 
-            entity.HasOne(d => d.Game).WithMany().HasConstraintName("FK__GameDetai__GameI__68487DD7");
+            entity.HasOne(d => d.Category).WithMany(p => p.GameDetailsCategories).HasConstraintName("FK__GameDetai__Categ__6E01572D");
+
+            entity.HasOne(d => d.Game).WithMany(p => p.GameDetailsCategories).HasConstraintName("FK__GameDetai__GameI__6D0D32F4");
         });
 
         modelBuilder.Entity<GameDetailsLanguage>(entity =>
         {
-            entity.HasOne(d => d.Game).WithMany().HasConstraintName("FK__GameDetai__GameI__6E01572D");
+            entity.HasKey(e => e.Id).HasName("PK__GameDeta__3213E83F73E5CFA0");
 
-            entity.HasOne(d => d.Language).WithMany().HasConstraintName("FK__GameDetai__Langu__6EF57B66");
+            entity.HasOne(d => d.Game).WithMany(p => p.GameDetailsLanguages).HasConstraintName("FK__GameDetai__GameI__74AE54BC");
+
+            entity.HasOne(d => d.Language).WithMany(p => p.GameDetailsLanguages).HasConstraintName("FK__GameDetai__Langu__75A278F5");
         });
 
         modelBuilder.Entity<GameDetailsPlatform>(entity =>
         {
-            entity.HasOne(d => d.Game).WithMany().HasConstraintName("FK__GameDetai__GameI__6B24EA82");
+            entity.HasKey(e => e.Id).HasName("PK__GameDeta__3213E83F0DF49720");
 
-            entity.HasOne(d => d.Platform).WithMany().HasConstraintName("FK__GameDetai__Platf__6C190EBB");
+            entity.HasOne(d => d.Game).WithMany(p => p.GameDetailsPlatforms).HasConstraintName("FK__GameDetai__GameI__70DDC3D8");
+
+            entity.HasOne(d => d.Platform).WithMany(p => p.GameDetailsPlatforms).HasConstraintName("FK__GameDetai__Platf__71D1E811");
         });
 
         modelBuilder.Entity<GameEvent>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__GameEven__7944C810A1CEA78D");
+            entity.HasKey(e => e.EventId).HasName("PK__GameEven__7944C810B391920B");
 
             entity.Property(e => e.AddressId).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.EndDate).HasDefaultValueSql("(NULL)");
@@ -160,17 +168,17 @@ public partial class SVGSDbContext : DbContext
 
         modelBuilder.Entity<GamePlatform>(entity =>
         {
-            entity.HasKey(e => e.PlatformId).HasName("PK__GamePlat__F559F6FA03BD6FA4");
+            entity.HasKey(e => e.PlatformId).HasName("PK__GamePlat__F559F6FA12C9DA8F");
         });
 
         modelBuilder.Entity<LanguageTable>(entity =>
         {
-            entity.HasKey(e => e.LanguageId).HasName("PK__Language__B93855AB66D471D3");
+            entity.HasKey(e => e.LanguageId).HasName("PK__Language__B93855ABFE91B4BF");
         });
 
         modelBuilder.Entity<Member>(entity =>
         {
-            entity.HasKey(e => e.MemberId).HasName("PK__Member__0CF04B182BCCD2F7");
+            entity.HasKey(e => e.MemberId).HasName("PK__Member__0CF04B184382EC6A");
 
             entity.Property(e => e.Dob).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.Gender).HasDefaultValueSql("(NULL)");
@@ -182,44 +190,54 @@ public partial class SVGSDbContext : DbContext
 
         modelBuilder.Entity<MemberEventRegist>(entity =>
         {
-            entity.HasOne(d => d.Event).WithMany().HasConstraintName("FK__MemberEve__Event__74AE54BC");
+            entity.HasKey(e => e.Id).HasName("PK__MemberEv__3213E83F25D92871");
 
-            entity.HasOne(d => d.Member).WithMany().HasConstraintName("FK__MemberEve__Membe__73BA3083");
+            entity.HasOne(d => d.Event).WithMany(p => p.MemberEventRegists).HasConstraintName("FK__MemberEve__Event__7D439ABD");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.MemberEventRegists).HasConstraintName("FK__MemberEve__Membe__7C4F7684");
         });
 
         modelBuilder.Entity<MemberGameCategoryPref>(entity =>
         {
-            entity.HasOne(d => d.Category).WithMany().HasConstraintName("FK__MemberGam__Categ__6383C8BA");
+            entity.HasKey(e => e.Id).HasName("PK__MemberGa__3213E83F24BAB782");
 
-            entity.HasOne(d => d.Member).WithMany().HasConstraintName("FK__MemberGam__Membe__628FA481");
+            entity.HasOne(d => d.Category).WithMany(p => p.MemberGameCategoryPrefs).HasConstraintName("FK__MemberGam__Categ__66603565");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.MemberGameCategoryPrefs).HasConstraintName("FK__MemberGam__Membe__656C112C");
         });
 
         modelBuilder.Entity<MemberLanguagePref>(entity =>
         {
-            entity.HasOne(d => d.Language).WithMany().HasConstraintName("FK__MemberLan__Langu__66603565");
+            entity.HasKey(e => e.Id).HasName("PK__MemberLa__3213E83FDC7C2908");
 
-            entity.HasOne(d => d.Member).WithMany().HasConstraintName("FK__MemberLan__Membe__656C112C");
+            entity.HasOne(d => d.Language).WithMany(p => p.MemberLanguagePrefs).HasConstraintName("FK__MemberLan__Langu__6A30C649");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.MemberLanguagePrefs).HasConstraintName("FK__MemberLan__Membe__693CA210");
         });
 
         modelBuilder.Entity<MemberPlatformPref>(entity =>
         {
-            entity.HasOne(d => d.Member).WithMany().HasConstraintName("FK__MemberPla__Membe__5FB337D6");
+            entity.HasKey(e => e.Id).HasName("PK__MemberPl__3213E83F889AE61D");
 
-            entity.HasOne(d => d.Platform).WithMany().HasConstraintName("FK__MemberPla__Platf__60A75C0F");
+            entity.HasOne(d => d.Member).WithMany(p => p.MemberPlatformPrefs).HasConstraintName("FK__MemberPla__Membe__619B8048");
+
+            entity.HasOne(d => d.Platform).WithMany(p => p.MemberPlatformPrefs).HasConstraintName("FK__MemberPla__Platf__628FA481");
         });
 
         modelBuilder.Entity<OrderItem>(entity =>
         {
+            entity.HasKey(e => e.Id).HasName("PK__OrderIte__3213E83F8DE83A7D");
+
             entity.Property(e => e.IsShipped).HasDefaultValue(false);
 
-            entity.HasOne(d => d.Game).WithMany().HasConstraintName("FK__OrderItem__GameI__5DCAEF64");
+            entity.HasOne(d => d.Game).WithMany(p => p.OrderItems).HasConstraintName("FK__OrderItem__GameI__5EBF139D");
 
-            entity.HasOne(d => d.Order).WithMany().HasConstraintName("FK__OrderItem__Order__5CD6CB2B");
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderItems).HasConstraintName("FK__OrderItem__Order__5DCAEF64");
         });
 
         modelBuilder.Entity<OrderTable>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__OrderTab__C3905BCFDE6D5B1B");
+            entity.HasKey(e => e.OrderId).HasName("PK__OrderTab__C3905BCFB966C68E");
 
             entity.Property(e => e.OrderDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.OrderFulfilled).HasDefaultValue(true);
@@ -232,7 +250,7 @@ public partial class SVGSDbContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ReviewId).HasName("PK__Review__74BC79CE6A6F9151");
+            entity.HasKey(e => e.ReviewId).HasName("PK__Review__74BC79CE5A4B41B3");
 
             entity.HasOne(d => d.Game).WithMany(p => p.Reviews).HasConstraintName("FK__Review__GameId__52593CB8");
 
@@ -245,14 +263,16 @@ public partial class SVGSDbContext : DbContext
 
         modelBuilder.Entity<ReviewStatus>(entity =>
         {
-            entity.HasKey(e => e.StatusId).HasName("PK__ReviewSt__C8EE2063ECC1FBD1");
+            entity.HasKey(e => e.StatusId).HasName("PK__ReviewSt__C8EE206307A035F5");
         });
 
         modelBuilder.Entity<WishList>(entity =>
         {
-            entity.HasOne(d => d.Game).WithMany().HasConstraintName("FK__WishList__GameId__71D1E811");
+            entity.HasKey(e => e.Id).HasName("PK__WishList__3213E83F32F00C6C");
 
-            entity.HasOne(d => d.Member).WithMany().HasConstraintName("FK__WishList__Member__70DDC3D8");
+            entity.HasOne(d => d.Game).WithMany(p => p.WishLists).HasConstraintName("FK__WishList__GameId__797309D9");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.WishLists).HasConstraintName("FK__WishList__Member__787EE5A0");
         });
 
         OnModelCreatingPartial(modelBuilder);
