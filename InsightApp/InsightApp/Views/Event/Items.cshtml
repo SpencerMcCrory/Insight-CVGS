@@ -5,7 +5,7 @@
 
 
 <div class="d-inline-flex p-2 bd-highlight flex-column justify-content-start">
-    <h7 class="myclass">Conestoga Virtual Game Store - Admin Panel</h7>
+    <h7 class="myHeader">Conestoga Virtual Game Store - Admin Panel</h7>
 </div>
 <div class="d-flex justify-content-center" style="margin-top:30px">
     <h2 class="pageTitle" style="color:rgb(80, 140, 155);">Events</h2>
@@ -14,7 +14,7 @@
 <!--------Add New Button------------->
 <div >
     <div class="d-flex justify-content-start" style="margin-left: 50px;">
-        <a asp-controller="Event" asp-action="GetAddEventRequest" role="button" class=" btn btn-outline-dark btn-lg AddNew">Add New Event</a>
+        <a asp-controller="Event" asp-action="GetAddEventRequest" role="button" class=" btn btn-outline-dark btn-lg AddNewButton">Add New Event</a>
     </div>
 </div>
 
@@ -38,13 +38,25 @@
                     <td class="itemsPage">
                         <a asp-controller="Event" asp-action="GetEventById" asp-route-id="@ev.EventId">Details</a>
                         <span class="mx-1">|</span>
-                        <a asp-controller="Movie" asp-action="GetEditRequestById" asp-route-id="@ev.EventId">Edit</a>
+                        <a asp-controller="Event" asp-action="GetEditRequestById" asp-route-id="@ev.EventId">Edit</a>
                         <span class="mx-1">|</span>
-                        <a asp-controller="Movie" asp-action="GetDeleteRequestById" asp-route-id="@ev.EventId">Delete</a>
+                        <a asp-controller="Event" asp-action="ProcessDeleteRequest" asp-route-id="@ev.EventId" class="delete-link" data-name="@ev.EventName">Delete</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.delete-link').on('click', function (e) {
+            var eventName = $(this).data('name');  // Get the event name from data attribute
+            var result = confirm('Are you sure you want to delete (' + eventName + ')?');
+            if (!result) {
+                e.preventDefault(); // Prevents the delete action if user clicks 'Cancel'
+            }
+        });
+    });
+</script>
 

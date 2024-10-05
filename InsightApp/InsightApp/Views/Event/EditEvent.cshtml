@@ -1,6 +1,6 @@
 ﻿@model EventViewModel
 @{
-    ViewData["Title"] = "Add Event";
+    ViewData["Title"] = "Edite Event";
 }
 
 @section scripts {
@@ -13,14 +13,13 @@
 </div>
 <!-----------------------page title------------------------------->
 <div style="margin-top:15px">
-    <h2 class="myHeader">Add New Event</h2>
+    <h2 class="myHeader">Edit Event</h2>
 </div>
 
 <!-----------------------form------------------------------->
 <div style="margin-top:40px; border:groove; border-radius: 3px;  padding:40px; box-shadow: 33px -20px 37px -27px rgba(80,140,155,0.5); ">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-    <form asp-controller="Event" asp-action="AddNewEvent" method="post" enctype="application/x-www-form-urlencoded">
+        <form asp-controller="Event" asp-action="ProcessEditRequest" method="post" enctype="application/x-www-form-urlencoded">
 
         <!-------EventName----------->
         <div class="form-group row" style="margin-bottom:15px;">
@@ -36,18 +35,18 @@
         <div class="form-group row" style="margin-bottom:15px;">
             <div class="col-sm-2"><label class="lablesForm required-label">Event Details:</label></div>
             <div class="col-sm-7">
-                <textarea maxlength="500" asp-for="ActiveEvent.Details" class="form-control" > </textarea>
+                <textarea maxlength="500" asp-for="ActiveEvent.Details" class="form-control"> </textarea>
             </div>
             <div class="col-sm-3">
                 <span asp-validation-for="ActiveEvent.Details" class="text-danger"></span>
             </div>
-            
+
         </div>
         <!-------StartDate----------->
         <div class="form-group row" style="margin-bottom:15px;">
             <div class="col-sm-2"><label class="lablesForm required-label">Start Date:</label></div>
             <div class="col-sm-5">
-                <input type="date" asp-for="ActiveEvent.StartDate" class="form-control" required/>
+                <input type="date" asp-for="ActiveEvent.StartDate" class="form-control" required />
             </div>
             <div class="col-sm-5">
                 <span asp-validation-for="ActiveEvent.StartDate" class="text-danger"></span>
@@ -89,18 +88,18 @@
         <!----------EvTypeId-------->
         @* <div class="form-group row" style="margin-bottom:15px;">
         <div class="col-sm-2"><label class="lablesForm required-label">Event Type:</label></div>
-            <div class="col-sm-5">
-                <select asp-for="ActiveEvent.EventId" class="form-control" required>
-                    <option value="">Select a Event type..</option>
-                    @foreach (EventType evType in Model.EventTypes)
-                    {
-                        <option value="@evType.EvTypeId">@evType.EvTypeName</option>
-                    }
-                </select>
-            </div>
-            <div class="col-sm-5">
-                <span asp-validation-for="ActiveEvent.EventId" class="text-danger"></span>
-            </div>
+        <div class="col-sm-5">
+        <select asp-for="ActiveEvent.EventId" class="form-control" required>
+        <option value="">Select a Event type..</option>
+        @foreach (EventType evType in Model.EventTypes)
+        {
+        <option value="@evType.EvTypeId">@evType.EvTypeName</option>
+        }
+        </select>
+        </div>
+        <div class="col-sm-5">
+        <span asp-validation-for="ActiveEvent.EventId" class="text-danger"></span>
+        </div>
         </div> *@
 
         <!-- Event Type Selection  Radio button -->
@@ -109,7 +108,7 @@
             <div class="col-sm-2">
                 <label class="lablesForm required-label">Event Type:</label>
             </div>
-            
+
             <div class="col-sm-10">
                 @{
                     // Track the index of the loop to select the first option
@@ -120,9 +119,10 @@
                     <div class="form-check">
                         @if (isFirst)
                         {
-                            <input class="form-check-input" type="radio" asp-for="ActiveEvent.EvTypeId" value="@evType.EvTypeId" id="evType-@evType.EvTypeName" checked  required />
+                            <input class="form-check-input" type="radio" asp-for="ActiveEvent.EvTypeId" value="@evType.EvTypeId" id="evType-@evType.EvTypeName" checked required />
                             isFirst = false; // Ensure only the first radio button gets 'checked'
-                        }else
+                        }
+                        else
                         {
                             <input class="form-check-input" type="radio" asp-for="ActiveEvent.EvTypeId" value="@evType.EvTypeId" id="evType-@evType.EvTypeName" required />
                         }
@@ -133,18 +133,18 @@
                     </div>
                 }
             </div>
-            
+
             <div class="col-sm-5">
                 <span asp-validation-for="ActiveEvent.EventId" class="text-danger"></span>
             </div>
         </div>
-       
+
 
         <!-------Event Link----------->
         <div class="form-group row" style="margin-bottom:30px;">
             <div class="col-sm-2"><label class="lablesForm ">Event Link:</label></div>
             <div class="col-sm-6" style="padding-right:30px;">
-                <input type="text" class="form-control" id="virtual-input" placeholder="Enter the events' link" asp-for="ActiveEvent.EventLink">
+                <input type="text" class="form-control" id="virtual-input"  asp-for="ActiveEvent.EventLink">
             </div>
             <div class="col-sm-4">
                 <span id="virtual-input-valid-message" asp-validation-for="ActiveEvent.EventLink" class="text-danger"></span>
@@ -158,7 +158,7 @@
                 <div class="form-group row" style="margin-bottom:15px;">
                     <div class="col-sm-2"><label class="lablesForm ">Street Number:</label></div>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="on-site-input1" placeholder="Enter Street Name" asp-for="ActiveEvent.Address.StreetNumber">
+                        <input type="text" class="form-control" id="on-site-input1"  asp-for="ActiveEvent.Address.StreetNumber">
                     </div>
                     <div class="col-sm-5">
                         <span id="stNumber-input-valid-message" asp-validation-for="ActiveEvent.Address.StreetNumber" class="text-danger"></span>
@@ -167,7 +167,7 @@
                 <div class="form-group row" style="margin-bottom:15px;">
                     <div class="col-sm-2"><label class="lablesForm ">Street Name:</label></div>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="on-site-input2" placeholder="Enter Street Name" asp-for="ActiveEvent.Address.StreetName">
+                        <input type="text" class="form-control" id="on-site-input2"  asp-for="ActiveEvent.Address.StreetName">
                     </div>
                     <div class="col-sm-5">
                         <span id="stName-input-valid-message" asp-validation-for="ActiveEvent.Address.StreetName" class="text-danger"></span>
@@ -177,9 +177,13 @@
 
         </div>
 
+        <input type="hidden" asp-for="ActiveEvent.EventId" />
+        <input type="hidden" asp-for="ActiveEvent.AddressId">
+        <input type="hidden" asp-for="EventTypes" >
+        <!---------------------Buttons------------------------------>
         <div>
             <div class=" flex-row d-flex justify-content-end">
-                <button type="submit" class=" pageForm btn btn-custom btn-lg">Add</button>
+                <button type="submit" class=" pageForm btn btn-custom btn-lg">Save</button>
                 <a asp-controller="Event" asp-action="GetAllEvents" class=" pageForm btn-outline-dark btn btn-lg">Cancel</a>
             </div>
         </div>
@@ -218,7 +222,7 @@
         onSiteInput1.value = ''; // Clear on-site input
         onSiteInput2.value = ''; // Clear on-site input
     }
-    
+
     // Function to handle radio button change
     function handleRadioChange() {
         if (onSiteRadio.checked) {
