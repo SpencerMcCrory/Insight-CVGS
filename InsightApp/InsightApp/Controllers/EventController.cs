@@ -13,19 +13,59 @@ namespace InsightApp.Controllers
             _SVGSDbContext = sVGSDbContext;
         }
 
-        [HttpGet("/events")]
-        public IActionResult GetAllEvents()
-        {
-            //will return only the events that (isDeleted=false)
-            var allEvents = _SVGSDbContext.GameEvents
-                .Include(e => e.EvType)
-                .Include(e => e.Address)
-                .Where(e => e.IsDeleted == false)
-                .OrderBy(e => e.EventName).ToList();
+        //[HttpGet("/events")]
+        //public IActionResult GetAllEvents()
+        //{
+        //    //will return only the events that (isDeleted=false)
+        //    var allEvents = _SVGSDbContext.GameEvents
+        //        .Include(e => e.EvType)
+        //        .Include(e => e.Address)
+        //        .Where(e => e.IsDeleted == false)
+        //        .OrderBy(e => e.EventName).ToList();
 
-            return View("Items", allEvents);
+        //    return View("List", allEvents);
+        //}
+
+
+        [HttpGet("/events")]
+        public IActionResult GetAllEvents(EventListModel eventListModel)
+        {
+            //EventListModel eventListModel = new EventListModel();
+
+            if (eventListModel.SearchText==null)
+            {
+                //will return only the events that (isDeleted=false)
+                var allEvents = _SVGSDbContext.GameEvents
+                    .Include(e => e.EvType)
+                    .Include(e => e.Address)
+                    .Where(e => e.IsDeleted == false)
+                    .OrderBy(e => e.EventName).ToList();
+
+                eventListModel.EventList = allEvents;
+
+            }
+            else
+            {
+                //will return only the events that (isDeleted=false) && start with SearchText
+                var allEvents = _SVGSDbContext.GameEvents
+                    .Include(e => e.EvType)
+                    .Include(e => e.Address)
+                    .Where(e => e.IsDeleted == false && e.EventName.StartsWith(eventListModel.SearchText))
+                    .OrderBy(e => e.EventName).ToList();
+
+                eventListModel.EventList = allEvents;
+            }
+
+            return View("List", eventListModel);
         }
 
+        [HttpPost("/events/searchResult")]
+        public IActionResult GetsearchResultEvents(EventListModel eventListModel)
+        {
+            return RedirectToAction("GetAllEvents", "Event", new { EventList = eventListModel.EventList, SearchText = eventListModel.SearchText });
+        }
+
+        
         [HttpGet("/events/add-request")]
         public IActionResult GetAddEventRequest()
         {

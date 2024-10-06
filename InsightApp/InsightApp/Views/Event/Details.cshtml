@@ -11,6 +11,15 @@
 
 <div class="d-inline-flex p-2 bd-highlight flex-column justify-content-start">
     <h7 class="myHeader">Conestoga Virtual Game Store - Admin Panel</h7>
+
+    <!------Breadcrumb------>
+    <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Admin Panel</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Event" asp-action="GetAllEvents">Events</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Event Details</li>
+        </ol>
+    </nav>
 </div>
 <!-----------------------page title------------------------------->
 <div style="margin-top:15px">
