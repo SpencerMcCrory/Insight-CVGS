@@ -21,15 +21,16 @@
         </ol>
     </nav>
 </div>
-<!-----------------------page title------------------------------->
-<div style="margin-top:15px">
-    <h2 class="myHeader" style="text-align:center;">@Model.ActiveEvent.EventName</h2>
-</div>
 
-<!------------------------------------------------------>
-<div style="margin-top:40px; border:groove; border-radius: 3px; padding:40px; box-shadow: 33px -20px 37px -27px rgba(80,140,155,0.5); ">
+<div class="pageBody">
+    <!-----------------------page title------------------------------->
+    <div style="margin-top:15px">
+        <h2 class="myHeader" style="text-align:center;">@Model.ActiveEvent.EventName</h2>
+    </div>
+
+    <!------------------------------------------------------>
+    <div class="formFrame">
     
-    <div style="padding-left:100px; padding-right:100px;">
         <!-------EventName----------->
         <div class="form-group row" style="margin-bottom:25px;">
             <div class="col-sm-2"><label class="lablesForm">Event Title:</label></div>
@@ -132,8 +133,10 @@
                 <a asp-controller="Event" asp-action="GetAllEvents" class=" detailsPage btn-outline-dark btn btn-lg">Cancel</a>
             </div>
         </div>
+        
     </div>
 </div>
+
 
 <script>
     $(document).ready(function () {

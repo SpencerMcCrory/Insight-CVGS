@@ -152,4 +152,20 @@ div.detailsPage {
     border-radius: 3px;
     padding-bottom:5px;
 }
+div.pageBody {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+div.formFrame {
+    margin-top: 40px;
+    padding-top:40px;
+    padding-left:100px;
+    padding-right:100px;
+    padding-bottom:40px;
+    border: groove;
+    border-radius: 3px;
+    padding: 40px;
+    box-shadow: 33px -20px 37px -27px rgba(80,140,155,0.5);
+}
 
