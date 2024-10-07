@@ -15,6 +15,8 @@ namespace InsightApp.Controllers
         }
         public ActionResult MemberPortal()
         {
+            ViewBag.Page = "MemberPortal";
+            ViewBag.Account = "Guest";
             return View("MemberPortal");
         }
         
@@ -46,6 +48,8 @@ namespace InsightApp.Controllers
                 bool x = true;
             }
 
+            ViewBag.Page = "MemberPortal";
+            ViewBag.Account = "Member";
             return View("Profile", profileViewModel);
         }
 
