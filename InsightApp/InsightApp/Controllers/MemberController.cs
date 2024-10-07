@@ -1,88 +1,87 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using InsightApp.Entities;
+using InsightApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace InsightApp.Controllers
 {
     public class MemberController : Controller
     {
-
-        public ActionResult MemberProfile()
+        private SVGSDbContext _SVGSDbContext;
+        public MemberController(SVGSDbContext sVGSDbContext)
         {
-            return View("Profile");
+            _SVGSDbContext = sVGSDbContext;
         }
-        // GET: MemberController
-        public ActionResult Index()
+        public ActionResult MemberPortal()
         {
-            return View();
+            return View("MemberPortal");
         }
-
-        // GET: MemberController/Details/5
-        public ActionResult Details(int id)
+        
+        [HttpGet("/members/{id}")]
+        public ActionResult MemberProfile(int id)
         {
-            return View();
-        }
+            var member = _SVGSDbContext.Members
+                .Include(e => e.Account)
+                .Include(e => e.AddressTables)
+                .Where(e => e.MemberId == id).FirstOrDefault();
+            
+            var addr= member.AddressTables.Where(a => a.IsShipping==false).FirstOrDefault();
+            var addrShipping = member.AddressTables.Where(a => a.IsShipping == true).FirstOrDefault();
 
-        // GET: MemberController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MemberController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            bool areEqual = AreAddressEqual(addr, addrShipping);
+            ViewBag.AddressesAreEqual= AreAddressEqual(addr, addrShipping);
+            ProfileViewModel profileViewModel = new ProfileViewModel()
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+                ActiveMember= member,
+                MemberAddress = addr,
+                ShippingAddress = addrShipping
+
+            };
+
+            string str1 = addr.ToString();
+            string str2= addrShipping.ToString();
+            if (str1==str2)
             {
-                return View();
+                bool x = true;
             }
+
+            return View("Profile", profileViewModel);
         }
 
-        // GET: MemberController/Edit/5
-        public ActionResult Edit(int id)
+
+        public static bool AreAddressEqual<T>(T obj1, T obj2)
         {
-            return View();
+            // If one object is null and the other is not, they are not equal
+            if (obj1 == null || obj2 == null)
+                return false;
+
+            // Get all the public properties of the objects
+            PropertyInfo[] properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.Name== "StreetName" || property.Name == "StreetNumber"
+                    || property.Name == "Unit" || property.Name == "PostalCode"
+                    || property.Name == "City" || property.Name == "Province"|| property.Name == "Country")
+                {
+                    object value1 = property.GetValue(obj1);
+                    object value2 = property.GetValue(obj2);
+
+                    // Check if values are not equal
+                    if (!Equals(value1, value2))
+                    {
+                        return false;
+                    }
+                } 
+            }
+
+            return true; // All properties are equal
         }
 
-        // POST: MemberController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: MemberController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: MemberController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+
+
     }
 }

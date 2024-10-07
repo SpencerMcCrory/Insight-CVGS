@@ -33,7 +33,7 @@ public partial class GameEvent
     [Unicode(false)]
     public string? EventLink { get; set; }
 
-    public bool? IsDeleted { get; set; }
+    public bool IsDeleted { get; set; } = false;
 
     public int? AddressId { get; set; }
 

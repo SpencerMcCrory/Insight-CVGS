@@ -6,14 +6,11 @@
     <title>@ViewData["Title"] - InsightApp</title>
     
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
-    @* <link rel="stylesheet" href="~/lib/jquery-ui-1.13.2/jquery-ui.min.css" /> *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/InsightApp.styles.css" asp-append-version="true" />
 
     <!-- Bootstrap Icons CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet">
-
-    
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -21,23 +18,34 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <img src="~/Imgs/TeamLogo.png" alt="description of your image" class="header">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">InsightApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex ">
-                    <ul class="navbar-nav flex-grow-1 justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="FirstPage">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+            <div class="container-fluid d-flex justify-content-between">
+                <div class="d-inline-flex flex-row align-items-center">
+                    <img src="~/Imgs/TeamLogo.png" alt="description of your image" class="header">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="FirstPage">InsightApp</a>
                 </div>
+                <div class ="d-inline-flex flex-row align-items-center">
+                    <div class="navbar-collapse collapse d-sm-inline-flex ">
+                        <!-- Right Icons and Links -->
+                        <div class="d-flex align-items-center">
+                            <!-- Icons Group -->
+                            <div class="icon-group d-flex align-items-center">
+                                <a class="navbar-brand" asp-area="" asp-controller="" asp-action=""><span class="icon" style="margin-right:30px;">❤️</span></a>  <!-- Favorite -->
+                                <a class="navbar-brand" asp-area="" asp-controller="" asp-action=""><span class="icon" style="margin-right:30px;">🛒</span></a>  <!-- Shopping Cart -->
+                                <a class="navbar-brand" asp-area="" asp-controller="Member" asp-action="MemberPortal"><span class="icon">👤 Log in | Register</span></a>  <!-- User Account -->
+                            </div>
+                        </div>
+
+                        @* <ul class="navbar-nav flex-grow-1 justify-content-end">
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="FirstPage">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        </ul> *@
+                    </div>
+                </div>
+                
             </div>
         </nav>
     </header>
@@ -58,3 +66,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+ 

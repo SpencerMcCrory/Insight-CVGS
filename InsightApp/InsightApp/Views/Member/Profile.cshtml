@@ -1,87 +1,301 @@
-﻿<div class="container-xl px-4 mt-4">
-    <!-- Account page navigation-->
-    <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page" target="__blank">Billing</a>
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page" target="__blank">Notifications</a>
+﻿@model ProfileViewModel
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div class="d-inline-flex p-2 bd-highlight flex-column justify-content-start">
+    <h7 class="myHeader">Conestoga Virtual Game Store</h7>
+
+    <!------Breadcrumb------>
+    <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Member" asp-action="MemberPortal">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+        </ol>
     </nav>
-    <hr class="mt-0 mb-4">
-    <div class="row">
-        <div class="col-xl-4">
-            <!-- Profile picture card-->
-            <div class="card mb-4 mb-xl-0">
-                <div class="card-header">Profile Picture</div>
-                <div class="card-body text-center">
-                    <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                    <!-- Profile picture help block-->
-                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                    <!-- Profile picture upload button-->
-                    <button class="btn btn-primary" type="button">Upload new image</button>
+</div>
+
+
+<div class="pageBody" >
+    <div class="container-xl px-4 mt-4">
+        <!-- Account page navigation-->
+        <nav class="nav nav-borders">
+            <a class="nav-link active ms-0" href="" target="__blank">Profile</a>
+            <a class="nav-link" href="" target="__blank">Account</a>
+            <a class="nav-link" href="" target="__blank">My Orders</a>
+        </nav>
+        <hr class="mt-0 mb-4">
+        <div class="row">
+            <div class="col-xl-4">
+                <!-- Profile picture card-->
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        <!-- Profile picture help block-->
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <!-- Profile picture upload button-->
+                        <button class="btn btn-primary" type="button">Upload new image</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-8">
-            <!-- Account details card-->
-            <div class="card mb-4">
-                <div class="card-header">Account Details</div>
-                <div class="card-body">
-                    <form>
-                        <!-- Form Group (username)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
-                        </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (first name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputFirstName">First name</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
+            
+            <div class="col-xl-8" id="profileDetails">
+                <!-- Profile Details-->
+                <div class="card mb-4">
+                    <div class="card-header">Profile</div>
+                    <div class="card-body">
+                        <form>
+                            <!-- Form Group (username)-->
+                            <div class="mb-3">
+                                <label class="small mb-1 required-label" for="inputUsername">Display Name</label>
+                                <input class="form-control" id="inputUsername"  type="text" asp-for="ActiveMember.DisplayName">
                             </div>
-                            <!-- Form Group (last name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Last name</label>
-                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1 required-label" for="inputFirstName">First name</label>
+                                    <input class="form-control" id="inputFirstName" name="inputTag" type="text" asp-for="ActiveMember.FirstName">
+                                </div>
+                                <!-- Form Group (last name)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1 required-label" for="inputLastName">Last name</label>
+                                    <input class="form-control" id="inputLastName" name="inputTag" type="text" asp-for="ActiveMember.LastName">
+                                </div>
                             </div>
-                        </div>
-                        <!-- Form Row        -->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (organization name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (phone number)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputPhone">Phone number</label>
+                                    <input class="form-control" id="inputPhone" name="inputTag" type="tel" asp-for="ActiveMember.PhoneNumber">
+                                </div>
+                                <!-- Form Group (birthday)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputBirthday">Birthday</label>
+                                    <input type="date" class="form-control" id="inputBirthday" name="inputTag" asp-for="ActiveMember.Dob">
+                                </div>
                             </div>
-                            <!-- Form Group (location)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Location</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
+                            
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (Gender)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputPhone">Gender</label>
+                                    <select class="form-control" required name="inputTag" asp-for="ActiveMember.Gender">
+                                        <option value="">Select...</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="NA">Prefer not to answer</option> 
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Form Group (email address)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
-                        </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
+                        
+                        
+                            <!-- Checkbox Row-->
+                            <div class="row gx-3 mb-3" style="margin-top:30px; font-weight:bold;" >
+                                <!-- Form Group (RecievesEmails)-->
+                                <div class="col-md-6">
+                                    <input type="checkbox" id="RecievesEmails" name="inputTag" >
+                                    <label> Recieves Emails</label><br>
+                                </div>
                             </div>
-                            <!-- Form Group (birthday)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+
+                            <hr style="margin-bottom:20px;">
+
+                            <!-- Address Title-->
+                            <div class="row gx-3 mb-3">
+                                <p style="font-weight:bolder; text-align:center; font-size:20px; text-decoration:underline;">Address</p>
                             </div>
-                        </div>
-                        <!-- Save changes button-->
-                        <button class="btn btn-primary" type="button">Save changes</button>
-                    </form>
+                            <div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Unit)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="unit">Unit</label>
+                                        <input class="form-control" id="unit" type="text" name="inputTag" asp-for="MemberAddress.Unit">
+                                        <span asp-validation-for="MemberAddress.Unit" class="text-danger"></span>
+                                    </div>
+                                    <!-- Form Group (Street No)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="streetNo">Street Number</label>
+                                        <input class="form-control" id="streetNo" type="text" name="inputTag" asp-for="MemberAddress.StreetNumber">
+                                        <span asp-validation-for="MemberAddress.StreetNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Street Number)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="streetName">Street Name</label>
+                                        <input class="form-control" id="streetName" type="text" name="inputTag" asp-for="MemberAddress.StreetName">
+                                        <span asp-validation-for="MemberAddress.StreetName" class="text-danger"></span>
+                                    </div>
+                                    <!-- Form Group (Postal Code)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="city">City</label>
+                                        <input class="form-control" id="city" type="text" name="inputTag" asp-for="MemberAddress.City">
+                                        <span asp-validation-for="MemberAddress.City" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Postal Code)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="postalCode">Postal Code</label>
+                                        <input class="form-control" id="postalCode" type="text" name="inputTag" asp-for="MemberAddress.PostalCode">
+                                        <span asp-validation-for="MemberAddress.PostalCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Province)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="province">Province</label>
+                                        <input class="form-control" id="province" type="text" name="inputTag" asp-for="MemberAddress.Province">
+                                        <span asp-validation-for="MemberAddress.Province" class="text-danger"></span>
+                                    </div>
+                                    <!-- Form Group (Country)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="country">Country</label>
+                                        <input class="form-control" id="country" type="text" name="inputTag" asp-for="MemberAddress.Country">
+                                        <span asp-validation-for="MemberAddress.Country" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <!-- Checkbox Row-->
+                            <div class="row gx-3 mb-3" style="margin-top:30px; font-weight:bold;">
+                                <!-- Form Group (Shipping Address)-->
+                                <div class="col-md-6">
+                                    @if (ViewBag.AddressesAreEqual==true)
+                                    {
+                                        <input type="checkbox" id="sameShippingAddress"  checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" id="sameShippingAddress">
+                                    }
+                                    <label for="sameShippingAddress"> Shipping Address is the same</label><br>
+                                </div>
+                            </div>
+
+                            <!----shipping Address-------->
+                            <div id="shippingAddressDiv">
+                                <!-- Title-->
+                                <div class="row gx-3 mb-3">
+                                    <p style="font-weight:bolder; text-decoration:underline; margin-bottom:3px; margin-top:30px;">Shipping Address:</p>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Unit)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="unitShipping">Unit</label>
+                                        <input class="form-control" id="unitShipping" type="text" name="inputTag" asp-for="ShippingAddress.Unit">
+                                        <span asp-validation-for="ShippingAddress.Unit" class="text-danger"></span>
+                                    </div>
+                                    <!-- Form Group (Street No)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="streetNoShipping">Street Number</label>
+                                        <input class="form-control" id="streetNoShipping" type="text" name="inputTag" asp-for="ShippingAddress.StreetNumber">
+                                        <span asp-validation-for="ShippingAddress.StreetNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Street Name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="streetNameShipping">Street Name</label>
+                                        <input class="form-control" id="streetNameShipping" type="text" name="inputTag" asp-for="ShippingAddress.StreetName">
+                                        <span asp-validation-for="ShippingAddress.StreetName" class="text-danger"></span>
+                                    </div>
+                                    <!-- Form Group (City)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="cityShipping">City</label>
+                                        <input class="form-control" id="cityShipping" type="text" name="inputTag" asp-for="ShippingAddress.City">
+                                        <span asp-validation-for="ShippingAddress.City" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Postal Code)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="postalCodeShipping">Postal Code</label>
+                                        <input class="form-control" id="postalCodeShipping" type="text" name="inputTag" asp-for="ShippingAddress.PostalCode">
+                                        <span asp-validation-for="ShippingAddress.PostalCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Province)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="provinceShipping">Province</label>
+                                        <input class="form-control" id="provinceShipping" type="text" name="inputTag" asp-for="ShippingAddress.Province">
+                                        <span asp-validation-for="ShippingAddress.Province" class="text-danger"></span>
+                                    </div>
+                                    <!-- Form Group (Country)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="countryShipping">Country</label>
+                                        <input class="form-control" id="countryShipping" type="text" name="inputTag" asp-for="ShippingAddress.Country">
+                                        <span asp-validation-for="ShippingAddress.Country" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Form Row DelivaryInstructions-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Province)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="provinceShipping">Delivary Instructions</label>
+                                        <textarea maxlength="500" class="form-control" name="inputTag" asp-for="ShippingAddress.DelivaryInstructions"> </textarea>
+                                    </div>
+                                </div>
+
+                                @* <input type="hidden" asp-for="ShippingAddress.IsShipping" value="true"> *@
+
+                            </div>
+                        
+                       
+                            <!-- Save changes button-->
+                            <button class="btn btn-primary" type="button">Save changes</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    // Get references to the radio buttons and input fields
+    const sameAsAddressCheckbox = document.getElementById('sameShippingAddress');
+    const shippingAddressDiv = document.getElementById('shippingAddressDiv');  
+
+    if (sameAsAddressCheckbox.checked) {
+        shippingAddressDiv.hidden = true; // will hide the shipping address div
+    }
+    else {
+        shippingAddressDiv.hidden = false; // will show the shipping address div
+    }
+
+    // Function to handle radio button change
+    function handleRadioChange() 
+    {
+        if (sameAsAddressCheckbox.checked) {
+            shippingAddressDiv.hidden = true; // will hide the shipping address div
+        }
+        else {
+            shippingAddressDiv.hidden = false; // will show the shipping address div
+        }
+    }
+
+    // Add event listeners to radio buttons
+    sameAsAddressCheckbox.addEventListener('change', handleRadioChange);
+
+</script>

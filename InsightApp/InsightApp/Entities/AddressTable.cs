@@ -16,30 +16,36 @@ public partial class AddressTable
 
     [StringLength(40)]
     [Unicode(false)]
+    [Required(ErrorMessage = "Please enter a Street Name.")]
     public string StreetName { get; set; }
 
     [StringLength(10)]
     [Unicode(false)]
-    public string StreetNumber { get; set; } 
+    [Required(ErrorMessage = "Please enter a Street Number.")]
+    public string StreetNumber { get; set; }
 
     [StringLength(10)]
     [Unicode(false)]
-    public string? Unit { get; set; }
+    public string Unit { get; set; } = "";
 
     [StringLength(12)]
     [Unicode(false)]
-    public string? PostalCode { get; set; }
+    [Required(ErrorMessage = "Please enter a PostalCode.")]
+    public string PostalCode { get; set; }
 
     [StringLength(30)]
     [Unicode(false)]
-    public string? City { get; set; }
+    [Required(ErrorMessage = "Please enter a City.")]
+    public string City { get; set; }
 
     [StringLength(25)]
     [Unicode(false)]
-    public string? Province { get; set; }
+    [Required(ErrorMessage = "Please enter a Province.")]
+    public string Province { get; set; }
 
     [StringLength(25)]
     [Unicode(false)]
+    [Required(ErrorMessage = "Please enter a Country.")]
     public string Country { get; set; } = "Canada";
 
     public bool? IsShipping { get; set; }

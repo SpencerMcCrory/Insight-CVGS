@@ -32,26 +32,30 @@ INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member5@g
 
 -- GameEvent table
 INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
-('Event1', 'Event1 details', '2024-08-30', '13:00', '14:00', 1, 'https://www.example.com/events/event1');
+('KW GamesCom', 'KW GamesCom details', '2024-08-30', '13:00', '14:00', 1, 'https://www.example.com/events/event1');
 INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
-('Event2', 'Event2 details', '2024-12-30', '14:00', '16:00', 1, 'https://www.example.com/events/event2');
+('Tokyo Game Show', 'Tokyo Game Show details', '2024-12-30', '14:00', '16:00', 1, 'https://www.example.com/events/event2');
+INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
+('Astronomical Showdown', 'Astronomical Showdown details', '2024-05-30', '15:00', '17:00', 1, 'https://www.example.com/events/event3');
+INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
+('Collision Soundwave', 'Collision Soundwave details', '2024-01-30', '14:30', '16:30', 1, 'https://www.example.com/events/event4');
 
 
 -- Employee table
 INSERT INTO Employee (FirstName, LastName, AccountId) VALUES 
-('emp1_FName', 'emp1_LName', 1);
+('Adam', 'John', 1);
 
 -- Member table
 INSERT INTO Member (FirstName, LastName, DisplayName,AccountId) VALUES 
-('member1_FName', 'member1_LName','dislayName1' ,2);
+('Salma', 'Essam','Salma Essam' ,2);
 INSERT INTO Member (FirstName, LastName, DisplayName, AccountId)VALUES 
-('member2_FName', 'member2_LName','dislayName2', 3);
+('Ali', 'Mher','Ali Maher', 3);
 INSERT INTO Member (FirstName, LastName, DisplayName, AccountId) VALUES 
-('member3_FName', 'member3_LName','dislayName3', 4);
+('Omar', 'Karim','Omar Karim', 4);
 INSERT INTO Member (FirstName, LastName, DisplayName, AccountId) VALUES 
-('member4_FName', 'member4_LName','dislayName4', 5);
+('Aya', 'Khalid','Aya Khalid', 5);
 INSERT INTO Member (FirstName, LastName, DisplayName, AccountId) VALUES 
-('member5_FName', 'member5_LName','dislayName5', 6);
+('Hazem', 'Tarek','Hazem Tarek', 6);
 
 
 -- Game table
@@ -140,3 +144,59 @@ INSERT INTO Friend (MemberId, FriendId) VALUES
 (2,4);
 INSERT INTO Friend (MemberId, FriendId) VALUES 
 (3,5);
+
+--Address Table
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (1,'123','King Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (1,'123','King Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
+
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (2,'222','Weber Street','2B','N2K 5Y9','Waterloo','Ontario','canada',0);
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (2,'321','Westmount Street','3B','N2S 4R5','Kitchener','Ontario','canada',1,'My Delivary Instructions2');
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (3,'333','Alin Street','2B','N2K 5Y9','Toronto','Ontario','canada',0);
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (3,'32','Westmount Street','3B','N2S 4R5','Toronto','Ontario','canada',1,'My Delivary Instructions2');
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (4,'15','Bristol Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (4,'15','Bristol Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (5,'3','Erb Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (5,'3','Erb Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
+
+
+
+/*UPDATE GameEvent SET IsDeleted = 0
+WHERE EventId = 1;*/

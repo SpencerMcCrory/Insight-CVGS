@@ -94,6 +94,12 @@ a.homePage {
     width: 50%;
     color: white;
 }
+a.MemberPanel {
+    margin-bottom: 30px;
+    width: 50%;
+    color: black;
+}
+
 img.header {
     width: 100%;
     max-width: 50px;

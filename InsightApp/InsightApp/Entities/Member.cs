@@ -45,32 +45,32 @@ public partial class Member
     public virtual Account? Account { get; set; }
 
     [InverseProperty("Member")]
-    public virtual ICollection<AddressTable> AddressTables { get; set; } = new List<AddressTable>();
+    public virtual ICollection<AddressTable>? AddressTables { get; set; } = new List<AddressTable>();
 
     [InverseProperty("FriendNavigation")]
-    public virtual ICollection<Friend> FriendFriendNavigations { get; set; } = new List<Friend>();
+    public virtual ICollection<Friend>? FriendFriendNavigations { get; set; } = new List<Friend>();
 
     [InverseProperty("Member")]
-    public virtual ICollection<Friend> FriendMembers { get; set; } = new List<Friend>();
+    public virtual ICollection<Friend>? FriendMembers { get; set; } = new List<Friend>();
 
     [InverseProperty("Member")]
-    public virtual ICollection<MemberEventRegist> MemberEventRegists { get; set; } = new List<MemberEventRegist>();
+    public virtual ICollection<MemberEventRegist>? MemberEventRegists { get; set; } = new List<MemberEventRegist>();
 
     [InverseProperty("Member")]
-    public virtual ICollection<MemberGameCategoryPref> MemberGameCategoryPrefs { get; set; } = new List<MemberGameCategoryPref>();
+    public virtual ICollection<MemberGameCategoryPref>? MemberGameCategoryPrefs { get; set; } = new List<MemberGameCategoryPref>();
 
     [InverseProperty("Member")]
-    public virtual ICollection<MemberLanguagePref> MemberLanguagePrefs { get; set; } = new List<MemberLanguagePref>();
+    public virtual ICollection<MemberLanguagePref>? MemberLanguagePrefs { get; set; } = new List<MemberLanguagePref>();
 
     [InverseProperty("Member")]
-    public virtual ICollection<MemberPlatformPref> MemberPlatformPrefs { get; set; } = new List<MemberPlatformPref>();
+    public virtual ICollection<MemberPlatformPref>? MemberPlatformPrefs { get; set; } = new List<MemberPlatformPref>();
 
     [InverseProperty("Member")]
-    public virtual ICollection<OrderTable> OrderTables { get; set; } = new List<OrderTable>();
+    public virtual ICollection<OrderTable>? OrderTables { get; set; } = new List<OrderTable>();
 
     [InverseProperty("Member")]
-    public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+    public virtual ICollection<Review>? Reviews { get; set; } = new List<Review>();
 
     [InverseProperty("Member")]
-    public virtual ICollection<WishList> WishLists { get; set; } = new List<WishList>();
+    public virtual ICollection<WishList>? WishLists { get; set; } = new List<WishList>();
 }
