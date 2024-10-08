@@ -1,17 +1,16 @@
-﻿
-using InsightApp.Entities;
-using InsightApp.Entities;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsightApp.Entities;
 
-public partial class SVGSDbContext : DbContext
+public partial class InsightUpdateCvgs2Context : DbContext
 {
-    public SVGSDbContext()
+    public InsightUpdateCvgs2Context()
     {
     }
 
-    public SVGSDbContext(DbContextOptions<SVGSDbContext> options)
+    public InsightUpdateCvgs2Context(DbContextOptions<InsightUpdateCvgs2Context> options)
         : base(options)
     {
     }

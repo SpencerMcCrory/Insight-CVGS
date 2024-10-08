@@ -22,12 +22,25 @@ INSERT INTO LanguageTable VALUES ('English');
 INSERT INTO LanguageTable VALUES ('French');
 
 -- Account table
-INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('admin_acc@gmail.com', 'admin123', 'ADMIN');
-INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member1@gmail.com', 'member123', 'MEMBER');
-INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member2@gmail.com', 'member123', 'MEMBER');
-INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member3@gmail.com', 'member123', 'MEMBER');
-INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member4@gmail.com', 'member123', 'MEMBER');
-INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member5@gmail.com', 'member123', 'MEMBER');
+--INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('admin_acc@gmail.com', 'admin123', 'ADMIN');
+--INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member1@gmail.com', 'member123', 'MEMBER');
+--INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member2@gmail.com', 'member123', 'MEMBER');
+--INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member3@gmail.com', 'member123', 'MEMBER');
+--INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member4@gmail.com', 'member123', 'MEMBER');
+--INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member5@gmail.com', 'member123', 'MEMBER');
+
+INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
+VALUES (1,'Salma123','member5@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
+VALUES (2,'SalmaEssam','salma@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
+VALUES (3,'Ali123','ali@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
+VALUES (4,'Omar123','omar@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
+VALUES (5,'Aya123','aya@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
+VALUES (6,'Hazem123','hazem@gmail.com', 1,'123-123-1234', 1, 0,0,0);
 
 
 -- GameEvent table
@@ -46,16 +59,16 @@ INSERT INTO Employee (FirstName, LastName, AccountId) VALUES
 ('Adam', 'John', 1);
 
 -- Member table
-INSERT INTO Member (FirstName, LastName, DisplayName,AccountId) VALUES 
-('Salma', 'Essam','Salma Essam' ,2);
-INSERT INTO Member (FirstName, LastName, DisplayName, AccountId)VALUES 
-('Ali', 'Mher','Ali Maher', 3);
-INSERT INTO Member (FirstName, LastName, DisplayName, AccountId) VALUES 
-('Omar', 'Karim','Omar Karim', 4);
-INSERT INTO Member (FirstName, LastName, DisplayName, AccountId) VALUES 
-('Aya', 'Khalid','Aya Khalid', 5);
-INSERT INTO Member (FirstName, LastName, DisplayName, AccountId) VALUES 
-('Hazem', 'Tarek','Hazem Tarek', 6);
+INSERT INTO Member (FirstName, LastName, DisplayName,Gender,AccountId) VALUES 
+('Salma', 'Essam','Salma Essam' ,'Female',2);
+INSERT INTO Member (FirstName, LastName, DisplayName, Gender,AccountId)VALUES 
+('Ali', 'Mher','Ali Maher', 'Male',3);
+INSERT INTO Member (FirstName, LastName, DisplayName, Gender,AccountId) VALUES 
+('Omar', 'Karim','Omar Karim', 'Male',4);
+INSERT INTO Member (FirstName, LastName, DisplayName, Gender,AccountId) VALUES 
+('Aya', 'Khalid','Aya Khalid', 'Female',5);
+INSERT INTO Member (FirstName, LastName, DisplayName, Gender,AccountId) VALUES 
+('Hazem', 'Tarek','Hazem Tarek', 'Male',6);
 
 
 -- Game table
@@ -200,3 +213,5 @@ INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
 
 /*UPDATE GameEvent SET IsDeleted = 0
 WHERE EventId = 1;*/
+
+

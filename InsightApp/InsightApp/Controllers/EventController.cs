@@ -28,18 +28,17 @@ namespace InsightApp.Controllers
 
 
         [HttpGet("/events")]
-        public IActionResult GetAllEvents(EventListModel eventListModel)
+        public async Task<IActionResult> GetAllEvents(EventListModel eventListModel)
         {
-            //EventListModel eventListModel = new EventListModel();
 
             if (eventListModel.SearchText==null)
             {
                 //will return only the events that (isDeleted=false)
-                var allEvents = _SVGSDbContext.GameEvents
+                var allEvents = await _SVGSDbContext.GameEvents
                     .Include(e => e.EvType)
                     .Include(e => e.Address)
                     .Where(e => e.IsDeleted == false)
-                    .OrderBy(e => e.EventName).ToList();
+                    .OrderBy(e => e.StartDate).ToListAsync();
 
                 eventListModel.EventList = allEvents;
 
@@ -47,11 +46,11 @@ namespace InsightApp.Controllers
             else
             {
                 //will return only the events that (isDeleted=false) && start with SearchText
-                var allEvents = _SVGSDbContext.GameEvents
+                var allEvents = await _SVGSDbContext.GameEvents
                     .Include(e => e.EvType)
                     .Include(e => e.Address)
                     .Where(e => e.IsDeleted == false && e.EventName.StartsWith(eventListModel.SearchText))
-                    .OrderBy(e => e.EventName).ToList();
+                    .OrderBy(e => e.EventName).ToListAsync();
 
                 eventListModel.EventList = allEvents;
             }
@@ -59,34 +58,36 @@ namespace InsightApp.Controllers
             return View("List", eventListModel);
         }
 
+        
         [HttpPost("/events/searchResult")]
-        public IActionResult GetsearchResultEvents(EventListModel eventListModel)
+        public async Task<IActionResult> GetsearchResultEvents(EventListModel eventListModel)
         {
             return RedirectToAction("GetAllEvents", "Event", new { EventList = eventListModel.EventList, SearchText = eventListModel.SearchText });
         }
 
         
         [HttpGet("/events/add-request")]
-        public IActionResult GetAddEventRequest()
+        public async Task<IActionResult> GetAddEventRequest()
         {
             EventViewModel eventViewModel = new EventViewModel()
             {
-                EventTypes = _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeId).ToList(),
+                EventTypes = await _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeId).ToListAsync(),
                 ActiveEvent = new GameEvent()
             };
 
             return View("AddEvent", eventViewModel);
         }
 
+        
         [HttpPost("/events")]
-        public IActionResult AddNewEvent(EventViewModel eventViewModel)
+        public async Task<IActionResult> AddNewEvent(EventViewModel eventViewModel)
         {            
             if (ModelState.IsValid)
             {
                 
                 // it's valid so we want to add the new event to the DB:
-                _SVGSDbContext.GameEvents.Add(eventViewModel.ActiveEvent);
-                _SVGSDbContext.SaveChanges();
+                await _SVGSDbContext.GameEvents.AddAsync(eventViewModel.ActiveEvent);
+                await _SVGSDbContext.SaveChangesAsync();
                 TempData["LastActionMessage"] = $"The event \"{eventViewModel.ActiveEvent.EventName}\" is successfully add.";
                 return RedirectToAction("GetAllEvents", "Event");
             }
@@ -99,14 +100,15 @@ namespace InsightApp.Controllers
             }
         }
 
+        
         [HttpGet("/events/{id}")]
-        public IActionResult GetEventById(int id)
+        public async Task<IActionResult> GetEventById(int id)
         {
-            var gameEvent = _SVGSDbContext.GameEvents
+            var gameEvent = await _SVGSDbContext.GameEvents
                 .Include(e => e.EvType)
                 .Include(e => e.Address)
                 .Include(e => e.MemberEventRegists).ThenInclude(m => m.Member)
-                .Where(e => e.EventId == id).FirstOrDefault();
+                .Where(e => e.EventId == id).FirstOrDefaultAsync();
 
             EventDetailViewModel eventDetailViewModel = new EventDetailViewModel()
             {
@@ -117,48 +119,44 @@ namespace InsightApp.Controllers
             return View("Details", eventDetailViewModel);
         }
 
+        
         [HttpGet("/events/{id}/edit-request")]
-        public IActionResult GetEditRequestById(int id)
+        public async Task<IActionResult> GetEditRequestById(int id)
         {
-            var gameEvent = _SVGSDbContext.GameEvents
+            var gameEvent = await _SVGSDbContext.GameEvents
                 .Include(e => e.EvType)
                 .Include(e => e.Address)
-                .Where(e => e.EventId == id).FirstOrDefault();
+                .Where(e => e.EventId == id).FirstOrDefaultAsync();
 
             EventViewModel eventViewModel = new EventViewModel()
             {
-                EventTypes = _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeId).ToList(),
+                EventTypes = await _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeId).ToListAsync(),
                 ActiveEvent = gameEvent
             };
 
             return View("EditEvent", eventViewModel);
         }
 
+        
         [HttpPost("/events/edit-requests")]
-        public IActionResult ProcessEditRequest(EventViewModel eventViewModel)
+        public async Task<IActionResult> ProcessEditRequest(EventViewModel eventViewModel)
         {
             if (ModelState.IsValid)
             {
-                var eventType = _SVGSDbContext.EventTypes
-                .Where(e => e.EvTypeId == eventViewModel.ActiveEvent.EvTypeId).FirstOrDefault();
+                var eventType = await _SVGSDbContext.EventTypes
+                .Where(e => e.EvTypeId == eventViewModel.ActiveEvent.EvTypeId).FirstOrDefaultAsync();
                 
                 //the event is virtual and there is a value for Address id,
                 //will remove the address record from Address table then change the addressId to null in the Gameevent table
                 
                 if (eventType.EvTypeName.ToLower()=="virtual" && eventViewModel.ActiveEvent.AddressId !=null)
                 {
-                    // Find the address record to delete:
-                    //var address = _SVGSDbContext.AddressTables.Find(eventViewModel.ActiveEvent.AddressId);
-
-                    //_SVGSDbContext.AddressTables.Remove(address);
-                    //_SVGSDbContext.SaveChanges();
-
                     eventViewModel.ActiveEvent.AddressId = null;
                 }
                 
-                // it's valid so we want to update the existing movie in the DB:
+                // it's valid so we want to update the existing GameEvents in the DB:
                 _SVGSDbContext.GameEvents.Update(eventViewModel.ActiveEvent);
-                _SVGSDbContext.SaveChanges();
+                await _SVGSDbContext.SaveChangesAsync();
 
                 TempData["LastActionMessage"] = $"The event \"{eventViewModel.ActiveEvent.EventName}\" was updated.";
 
@@ -166,33 +164,34 @@ namespace InsightApp.Controllers
             }
             else
             {
-                eventViewModel.EventTypes = _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeId).ToList();
+                eventViewModel.EventTypes = await _SVGSDbContext.EventTypes.OrderBy(t => t.EvTypeId).ToListAsync();
                 return View("EditEvent", eventViewModel);
             }
         }
 
         
         [HttpGet("/events/{id}/delete-requests")]
-        public IActionResult ProcessDeleteRequest(int id)
+        public async Task<IActionResult> ProcessDeleteRequest(int id)
         {
             //actually we are not deleting the event record, we only update "isDeleted" to true without saving any changes that happened in the form
             //here we get the original event by id
-            var gameEvent = _SVGSDbContext.GameEvents
+            var gameEvent = await _SVGSDbContext.GameEvents
             .Include(e => e.EvType)
             .Include(e => e.Address)
-            .Where(e => e.EventId == id).FirstOrDefault();
+            .Where(e => e.EventId == id).FirstOrDefaultAsync();
 
             // do soft deletion
             gameEvent.IsDeleted = true;
 
             // save the changes to DB:
             _SVGSDbContext.GameEvents.Update(gameEvent);
-            _SVGSDbContext.SaveChanges();
+            await _SVGSDbContext.SaveChangesAsync();
 
             return RedirectToAction("GetAllEvents", "Event");
             
         }
 
+        
         public IActionResult Index()
         {
             return View();

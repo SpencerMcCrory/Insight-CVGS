@@ -46,7 +46,7 @@ public partial class AddressTable
     [StringLength(25)]
     [Unicode(false)]
     [Required(ErrorMessage = "Please enter a Country.")]
-    public string Country { get; set; } = "Canada";
+    public string Country { get; set; }
 
     public bool? IsShipping { get; set; }
 

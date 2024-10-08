@@ -50,6 +50,7 @@
             <thead>
                 <tr>
                     <th class="tableHheader" style="background-color:rgb(80, 140, 155); width:500px">Title</th>
+                    <th class="tableHheader" style="background-color:rgb(80, 140, 155); width:150px">Date</th>
                     <th class="tableHheader" style="background-color:rgb(80, 140, 155); width:150px">Event Type</th>
                     <th class="tableHheader" style="background-color:rgb(80, 140, 155); width:200px"></th>
                 </tr>
@@ -59,6 +60,7 @@
                 {
                     <tr>
                         <td > <a asp-controller="Event" asp-action="GetEventById" asp-route-id="@ev.EventId">@ev.EventName</a></td>
+                        <td class="itemsPage"> @ev.StartDate.ToString("dd MMMM yyyy")</td>
                         <td class="itemsPage"> @ev.EvType.EvTypeName</td>
 
                         <td class="itemsPage">

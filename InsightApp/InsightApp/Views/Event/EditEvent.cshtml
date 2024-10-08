@@ -30,7 +30,7 @@
     <!-----------------------form------------------------------->
     <div class="formFrame">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <form asp-controller="Event" asp-action="ProcessEditRequest" method="post" enctype="application/x-www-form-urlencoded">
+        <form asp-controller="Event" asp-action="ProcessEditRequest" method="post" enctype="application/x-www-form-urlencoded">
 
             <!-------EventName----------->
             <div class="form-group row" style="margin-bottom:15px;">
@@ -166,6 +166,8 @@
             <div class="form-group row" style="margin-bottom:15px;">
                 <div class="col-sm-2"><label class="lablesForm ">Event Address:</label></div>
                 <div class="col-sm-10">
+                    
+                    <!------form-group------->
                     <div class="form-group row" style="margin-bottom:15px;">
                         <div class="col-sm-2"><label class="lablesForm ">Street Number:</label></div>
                         <div class="col-sm-5">
@@ -175,6 +177,8 @@
                             <span id="stNumber-input-valid-message" asp-validation-for="ActiveEvent.Address.StreetNumber" class="text-danger"></span>
                         </div>
                     </div>
+                    
+                    <!------form-group------->
                     <div class="form-group row" style="margin-bottom:15px;">
                         <div class="col-sm-2"><label class="lablesForm ">Street Name:</label></div>
                         <div class="col-sm-5">
@@ -184,12 +188,57 @@
                             <span id="stName-input-valid-message" asp-validation-for="ActiveEvent.Address.StreetName" class="text-danger"></span>
                         </div>
                     </div>
+                    
+                    <!------form-group------->
+                    <div class="form-group row" style="margin-bottom:15px;">
+                        <div class="col-sm-2"><label class="lablesForm ">City:</label></div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="on-site-input3"  asp-for="ActiveEvent.Address.City">
+                        </div>
+                        <div class="col-sm-5">
+                            <span id="stName-input-valid-message" asp-validation-for="ActiveEvent.Address.City" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <!------form-group------->
+                    <div class="form-group row" style="margin-bottom:15px;">
+                        <div class="col-sm-2"><label class="lablesForm ">Province:</label></div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="on-site-input4"  asp-for="ActiveEvent.Address.Province">
+                        </div>
+                        <div class="col-sm-5">
+                            <span id="stName-input-valid-message" asp-validation-for="ActiveEvent.Address.Province" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <!------form-group------->
+                    <div class="form-group row" style="margin-bottom:15px;">
+                        <div class="col-sm-2"><label class="lablesForm ">Country:</label></div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="on-site-input5" asp-for="ActiveEvent.Address.Country">
+                        </div>
+                        <div class="col-sm-5">
+                            <span id="stName-input-valid-message" asp-validation-for="ActiveEvent.Address.Country" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!------form-group------->
+                    <div class="form-group row" style="margin-bottom:15px;">
+                        <div class="col-sm-2"><label class="lablesForm ">Postal Code:</label></div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="on-site-input6" asp-for="ActiveEvent.Address.PostalCode">
+                        </div>
+                        <div class="col-sm-5">
+                            <span id="stName-input-valid-message" asp-validation-for="ActiveEvent.Address.PostalCode" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
-            <input type="hidden" asp-for="ActiveEvent.EventId" />
-            <input type="hidden" asp-for="ActiveEvent.AddressId">
+
+            <input type="hidden" asp-for="ActiveEvent.EventId" />@*to return the id with the object*@
+            <input type="hidden" asp-for="ActiveEvent.AddressId">@*to return the id with the object*@
             <input type="hidden" asp-for="EventTypes" >
             <!---------------------Buttons------------------------------>
             <div>
@@ -203,13 +252,16 @@
 </div>
 
 
-
 <script>
     // Get references to the radio buttons and input fields
     const onSiteRadio = document.getElementById('evType-On-Site');
     const virtualRadio = document.getElementById('evType-Virtual');
     const onSiteInput1 = document.getElementById('on-site-input1');
     const onSiteInput2 = document.getElementById('on-site-input2');
+    const onSiteInput3 = document.getElementById('on-site-input3');
+    const onSiteInput4 = document.getElementById('on-site-input4');
+    const onSiteInput5 = document.getElementById('on-site-input5');
+    const onSiteInput6 = document.getElementById('on-site-input6');
     const virtualInput = document.getElementById('virtual-input');
     const virtualValidationMessagem = document.getElementById('virtual-input-valid-message');
     const streetNumberValidationMessagem = document.getElementById('stNumber-input-valid-message');
@@ -218,8 +270,16 @@
     if (onSiteRadio.checked) {
         onSiteInput1.disabled = false; // Enable on-site input
         onSiteInput2.disabled = false; // Enable on-site input
+        onSiteInput3.disabled = false; // Enable on-site input
+        onSiteInput4.disabled = false; // Enable on-site input
+        onSiteInput5.disabled = false; // Enable on-site input
+        onSiteInput6.disabled = false; // Enable on-site input
         onSiteInput1.required = true; // make it required
         onSiteInput2.required = true; // make it required
+        onSiteInput3.required = true; // make it required
+        onSiteInput4.required = true; // make it required
+        onSiteInput5.required = true; // make it required
+        onSiteInput6.required = true; // make it required
         virtualInput.disabled = true; // Disable virtual input
         virtualInput.required = false; //make it Not required
         virtualInput.value = ''; // Clear virtual input
@@ -228,32 +288,63 @@
         virtualInput.required = true; // make it required
         onSiteInput1.disabled = true; // Disable on-site input
         onSiteInput2.disabled = true; // Disable on-site input
+        onSiteInput3.disabled = true; // Disable on-site input
+        onSiteInput4.disabled = true; // Disable on-site input
+        onSiteInput5.disabled = true; // Disable on-site input
+        onSiteInput6.disabled = true; // Disable on-site input
         onSiteInput1.required = false; //make it Not required
         onSiteInput2.required = false; //make it Not required
+        onSiteInput3.required = false; //make it Not required
+        onSiteInput4.required = false; //make it Not required
+        onSiteInput5.required = false; //make it Not required
+        onSiteInput6.required = false; //make it Not required
         onSiteInput1.value = ''; // Clear on-site input
         onSiteInput2.value = ''; // Clear on-site input
+        onSiteInput3.value = ''; // Clear on-site input
+        onSiteInput4.value = ''; // Clear on-site input
+        onSiteInput5.value = ''; // Clear on-site input
+        onSiteInput6.value = ''; // Clear on-site input
     }
 
     // Function to handle radio button change
     function handleRadioChange() {
         if (onSiteRadio.checked) {
             onSiteInput1.disabled = false; // Enable on-site input
-            onSiteInput2.disabled = false; // Enable on-site input
-            onSiteInput1.required = true; // make it required
-            onSiteInput2.required = true; // make it required
-            virtualInput.disabled = true; // Disable virtual input
-            virtualInput.required = false; //make it Not required
-            virtualInput.value = ''; // Clear virtual input
-            virtualValidationMessagem.innerHTML = '';
+        onSiteInput2.disabled = false; // Enable on-site input
+        onSiteInput3.disabled = false; // Enable on-site input
+        onSiteInput4.disabled = false; // Enable on-site input
+        onSiteInput5.disabled = false; // Enable on-site input
+        onSiteInput6.disabled = false; // Enable on-site input
+        onSiteInput1.required = true; // make it required
+        onSiteInput2.required = true; // make it required
+        onSiteInput3.required = true; // make it required
+        onSiteInput4.required = true; // make it required
+        onSiteInput5.required = true; // make it required
+        onSiteInput6.required = true; // make it required
+        virtualInput.disabled = true; // Disable virtual input
+        virtualInput.required = false; //make it Not required
+        virtualInput.value = ''; // Clear virtual input
         } else if (virtualRadio.checked) {
             virtualInput.disabled = false; // Enable virtual input
-            virtualInput.required = true; // make it required
-            onSiteInput1.disabled = true; // Disable on-site input
-            onSiteInput2.disabled = true; // Disable on-site input
-            onSiteInput1.required = false; //make it Not required
-            onSiteInput2.required = false; //make it Not required
-            onSiteInput1.value = ''; // Clear on-site input
-            onSiteInput2.value = ''; // Clear on-site input
+        virtualInput.required = true; // make it required
+        onSiteInput1.disabled = true; // Disable on-site input
+        onSiteInput2.disabled = true; // Disable on-site input
+        onSiteInput3.disabled = true; // Disable on-site input
+        onSiteInput4.disabled = true; // Disable on-site input
+        onSiteInput5.disabled = true; // Disable on-site input
+        onSiteInput6.disabled = true; // Disable on-site input
+        onSiteInput1.required = false; //make it Not required
+        onSiteInput2.required = false; //make it Not required
+        onSiteInput3.required = false; //make it Not required
+        onSiteInput4.required = false; //make it Not required
+        onSiteInput5.required = false; //make it Not required
+        onSiteInput6.required = false; //make it Not required
+        onSiteInput1.value = ''; // Clear on-site input
+        onSiteInput2.value = ''; // Clear on-site input
+        onSiteInput3.value = ''; // Clear on-site input
+        onSiteInput4.value = ''; // Clear on-site input
+        onSiteInput5.value = ''; // Clear on-site input
+        onSiteInput6.value = ''; // Clear on-site input
         }
     }
 

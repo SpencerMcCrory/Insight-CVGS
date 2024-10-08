@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace InsightApp.Entities;
 
 [Table("Employee")]
-[Index("AccountId", Name = "UQ__Employee__349DA5A7ED2D4D70", IsUnique = true)]
+[Index("AccountId", Name = "UQ__Employee__349DA5A7DBFA546D", IsUnique = true)]
 public partial class Employee
 {
     [Key]
@@ -21,9 +21,11 @@ public partial class Employee
     [Unicode(false)]
     public string? LastName { get; set; }
 
-    public int? AccountId { get; set; }
+    [StringLength(36)]
+    [Unicode(false)]
+    public string AccountId { get; set; } = null!;
 
     [ForeignKey("AccountId")]
     [InverseProperty("Employee")]
-    public virtual Account? Account { get; set; }
+    public virtual AspNetUser Account { get; set; } = null!;
 }

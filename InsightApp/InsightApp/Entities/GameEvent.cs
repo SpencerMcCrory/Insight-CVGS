@@ -19,7 +19,7 @@ public partial class GameEvent
     [Unicode(false)]
     public string Details { get; set; } = null!;
 
-    public DateOnly? StartDate { get; set; }
+    public DateOnly StartDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);
 
     public DateOnly? EndDate { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using InsightApp.Entities;
+﻿using InsightApp.Components;
+using InsightApp.Entities;
 using InsightApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,71 +22,100 @@ namespace InsightApp.Controllers
         }
         
         [HttpGet("/members/{id}")]
-        public ActionResult MemberProfile(int id)
+        public async Task<ActionResult> MemberProfile(int id)
         {
-            var member = _SVGSDbContext.Members
-                .Include(e => e.Account)
-                .Include(e => e.AddressTables)
-                .Where(e => e.MemberId == id).FirstOrDefault();
-            
-            var addr= member.AddressTables.Where(a => a.IsShipping==false).FirstOrDefault();
-            var addrShipping = member.AddressTables.Where(a => a.IsShipping == true).FirstOrDefault();
-
-            bool areEqual = AreAddressEqual(addr, addrShipping);
-            ViewBag.AddressesAreEqual= AreAddressEqual(addr, addrShipping);
-            ProfileViewModel profileViewModel = new ProfileViewModel()
-            {
-                ActiveMember= member,
-                MemberAddress = addr,
-                ShippingAddress = addrShipping
-
-            };
-
-            string str1 = addr.ToString();
-            string str2= addrShipping.ToString();
-            if (str1==str2)
-            {
-                bool x = true;
-            }
-
+            ProfileViewModel profileViewModel = new ProfileViewModel();
+            profileViewModel.ActiveMember = new Member();           
+            profileViewModel.ActiveMember.MemberId= id;
             ViewBag.Page = "MemberPortal";
             ViewBag.Account = "Member";
+            
             return View("Profile", profileViewModel);
         }
 
-
-        public static bool AreAddressEqual<T>(T obj1, T obj2)
+        [HttpPost("/add-edit-address-requests")]
+        public async Task<IActionResult> AddAddressesById(MemberAddressesViewModel memberAddressesViewModel)
         {
-            // If one object is null and the other is not, they are not equal
-            if (obj1 == null || obj2 == null)
-                return false;
+            //----Member Address------
+            AddressTable memberAdr = memberAddressesViewModel.MemberAddress;
+            memberAdr.MemberId = memberAddressesViewModel.MemberId;
+            
+            //-----Shipping Address-----
+            AddressTable shippingAdr = memberAddressesViewModel.ShippingAddress;
+            shippingAdr.MemberId = memberAddressesViewModel.MemberId;
 
-            // Get all the public properties of the objects
-            PropertyInfo[] properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            foreach (PropertyInfo property in properties)
+            //if same address checked copy the main properies will be the same
+            if (memberAddressesViewModel.IsAdressesSame == true) 
             {
-                if (property.Name== "StreetName" || property.Name == "StreetNumber"
-                    || property.Name == "Unit" || property.Name == "PostalCode"
-                    || property.Name == "City" || property.Name == "Province"|| property.Name == "Country")
-                {
-                    object value1 = property.GetValue(obj1);
-                    object value2 = property.GetValue(obj2);
-
-                    // Check if values are not equal
-                    if (!Equals(value1, value2))
-                    {
-                        return false;
-                    }
-                } 
+                shippingAdr.Unit=memberAdr.Unit;
+                shippingAdr.StreetNumber=memberAdr.StreetNumber;
+                shippingAdr.StreetName=memberAdr.StreetName;
+                shippingAdr.City=memberAdr.City;
+                shippingAdr.PostalCode=memberAdr.PostalCode;
+                shippingAdr.Province=memberAdr.Province;
+                shippingAdr.Country=memberAdr.Country;
             }
 
-            return true; // All properties are equal
+
+            //if new addresses, create new address records ( MemberAddress => isShipping=false + ShippingAddress=> isShipping=true)
+            if (memberAdr.AddressId == 0 && shippingAdr.AddressId == 0)
+            {
+                // it's valid so we want to add the new address to the DB ((Member Address)):
+                await _SVGSDbContext.AddressTables.AddAsync(memberAdr);
+                await _SVGSDbContext.SaveChangesAsync();
+
+                // it's valid so we want to add the new address to the DB ((Shipping Address)):
+                await _SVGSDbContext.AddressTables.AddAsync(shippingAdr);
+                await _SVGSDbContext.SaveChangesAsync();
+
+                TempData["LastActionMessage"] = $"The Adress is successfully Added";
+            }
+            else
+            {
+                // it's valid so we want to add the new address to the DB ((Member Address)):
+                _SVGSDbContext.AddressTables.Update(memberAdr);
+                await _SVGSDbContext.SaveChangesAsync();
+
+                // it's valid so we want to add the new address to the DB ((Shipping Address)):
+                _SVGSDbContext.AddressTables.Update(shippingAdr);
+                await _SVGSDbContext.SaveChangesAsync();
+
+                TempData["LastActionMessage"] = $"The Adress is successfully updated";
+
+            }
+
+            return RedirectToAction("MemberProfile", "Member", new { id = memberAddressesViewModel.MemberId });
+            
+        }
+
+        [HttpPost("/edit-profile-requests")]
+        public async Task<IActionResult> EditMemberProfileId( MemberProfileViewModel memberProfileViewModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                // it's valid so we want to update the existing Members in the DB:
+                _SVGSDbContext.Members.Update(memberProfileViewModel.ActiveMember);
+                await _SVGSDbContext.SaveChangesAsync();
+
+                TempData["LastActionMessage"] = $"The Profile has been updated.";
+
+                return RedirectToAction("MemberProfile", "Member", new { id = memberProfileViewModel.ActiveMember.MemberId });
+            }
+            else
+            {
+                // it's invalid so we simply return the memberProfileViewModel object
+                // to the Edit view again:
+
+                return View("Profile", memberProfileViewModel.ActiveMember.MemberId);
+            }
+
+            
         }
 
 
-
-
-
+        
     }
 }
