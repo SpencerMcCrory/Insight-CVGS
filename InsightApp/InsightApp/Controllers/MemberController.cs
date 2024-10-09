@@ -9,8 +9,8 @@ namespace InsightApp.Controllers
 {
     public class MemberController : Controller
     {
-        private SVGSDbContext _SVGSDbContext;
-        public MemberController(SVGSDbContext sVGSDbContext)
+        private InsightUpdateCvgs2Context _SVGSDbContext;
+        public MemberController(InsightUpdateCvgs2Context sVGSDbContext)
         {
             _SVGSDbContext = sVGSDbContext;
         }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {}
+    "C:\\Users\\twoe_\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {
+    "C:\\Users\\twoe_\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
+        "projectUniqueName": "C:\\Users\\twoe_\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
         "projectName": "InsightApp",
-        "projectPath": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
-        "packagesPath": "C:\\Users\\EmanAbdeen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\obj\\",
+        "projectPath": "C:\\Users\\twoe_\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
+        "packagesPath": "C:\\Users\\twoe_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\twoe_\\Source\\Repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\EmanAbdeen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\twoe_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,11 +46,23 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.0.8, )"
             },
@@ -84,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

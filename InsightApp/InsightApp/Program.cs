@@ -1,5 +1,7 @@
 using InsightApp.Entities;
 using Microsoft.EntityFrameworkCore;
+//using InsightApp.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,9 @@ builder.Services.AddControllersWithViews();
 
 var connStr = builder.Configuration.GetConnectionString("SVGSContext");
 
-builder.Services.AddDbContext<SVGSDbContext>(options => options.UseSqlServer(connStr));
+builder.Services.AddDbContext<InsightUpdateCvgs2Context>(options => options.UseSqlServer(connStr));
+
+builder.Services.AddDefaultIdentity<Account>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<InsightUpdateCvgs2Context>();
 
 var app = builder.Build();
 
@@ -25,10 +29,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=FirstPage}/{id?}");
+app.MapRazorPages();
 
 app.Run();

@@ -1,11 +1,11 @@
 ﻿
 using InsightApp.Entities;
-using InsightApp.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsightApp.Entities;
 
-public partial class SVGSDbContext : DbContext
+public partial class SVGSDbContext : IdentityDbContext
 {
     public SVGSDbContext()
     {
@@ -17,18 +17,6 @@ public partial class SVGSDbContext : DbContext
     }
 
     public virtual DbSet<AddressTable> AddressTables { get; set; }
-
-    public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-
-    public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
-
-    public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-
-    public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-
-    public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-
-    public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
 
     public virtual DbSet<Employee> Employees { get; set; }
 
@@ -90,27 +78,6 @@ public partial class SVGSDbContext : DbContext
             entity.Property(e => e.Unit).HasDefaultValueSql("(NULL)");
 
             entity.HasOne(d => d.Member).WithMany(p => p.AddressTables).HasConstraintName("FK__AddressTa__Membe__47DBAE45");
-        });
-
-        modelBuilder.Entity<AspNetUser>(entity =>
-        {
-            entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
-                .IsUnique()
-                .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
-            entity.HasMany(d => d.Roles).WithMany(p => p.Users)
-                .UsingEntity<Dictionary<string, object>>(
-                    "AspNetUserRole",
-                    r => r.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
-                    l => l.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
-                    j =>
-                    {
-                        j.HasKey("UserId", "RoleId");
-                        j.ToTable("AspNetUserRoles");
-                        j.IndexerProperty<string>("UserId")
-                            .HasMaxLength(36)
-                            .IsUnicode(false);
-                    });
         });
 
         modelBuilder.Entity<Employee>(entity =>
