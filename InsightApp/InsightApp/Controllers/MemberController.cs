@@ -17,7 +17,7 @@ namespace InsightApp.Controllers
         public ActionResult MemberPortal()
         {
             ViewBag.Page = "MemberPortal";
-            ViewBag.Account = "Guest";
+            ViewBag.Account = "Member";
             return View("MemberPortal");
         }
         

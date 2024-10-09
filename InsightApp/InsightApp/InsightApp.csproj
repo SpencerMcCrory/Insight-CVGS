@@ -33,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Imgs\Events_title.png" />
+    <None Include="wwwroot\Imgs\Friends_title.png" />
+    <None Include="wwwroot\Imgs\Games_title.png" />
     <None Include="wwwroot\Imgs\TeamLogo.png" />
     <None Include="wwwroot\lib\Imgs\TeamLogo.png" />
   </ItemGroup>
