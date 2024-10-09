@@ -14,12 +14,12 @@ namespace InsightApp.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Entities.Account> _userManager;
+        private readonly SignInManager<Entities.Account> _signInManager;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<Entities.Account> userManager,
+            SignInManager<Entities.Account> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -60,7 +60,7 @@ namespace InsightApp.Areas.Identity.Pages.Account.Manage
             public string PhoneNumber { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(Entities.Account user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

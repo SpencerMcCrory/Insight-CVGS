@@ -13,12 +13,12 @@ namespace InsightApp.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Entities.Account> _userManager;
+        private readonly SignInManager<Entities.Account> _signInManager;
 
         public SetPasswordModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<Entities.Account> userManager,
+            SignInManager<Entities.Account> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

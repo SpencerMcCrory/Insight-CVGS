@@ -17,13 +17,13 @@ namespace InsightApp.Areas.Identity.Pages.Account.Manage
 {
     public class EmailModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Entities.Account> _userManager;
+        private readonly SignInManager<Entities.Account> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public EmailModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<Entities.Account> userManager,
+            SignInManager<Entities.Account> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -73,7 +73,7 @@ namespace InsightApp.Areas.Identity.Pages.Account.Manage
             public string NewEmail { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(Entities.Account user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;
