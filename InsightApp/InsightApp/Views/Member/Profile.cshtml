@@ -1,0 +1,50 @@
+﻿@model ProfileViewModel
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div class="d-inline-flex p-2 bd-highlight flex-column justify-content-start">
+    <h7 class="myHeader">Conestoga Virtual Game Store</h7>
+
+    <!------Breadcrumb------>
+    <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Member" asp-action="MemberPortal">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+        </ol>
+    </nav>
+</div>
+
+<div class=" pageBody container-xl  mt-4">
+    <!-- Account page navigation-->
+    <div class="row">
+        <div class="col-xl-6" id="profileDetails">
+            <!-- Profile Details-->
+            <div class="card mb-4">
+                <div class="card-header">Profile</div>
+                <div class="card-body">
+                    <!-------Profile view component---------->
+                    <vc:member-profile member-id="@Model.ActiveMember.MemberId" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <!-- Address card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Address</div>
+                <div class="card-body">
+                    <!-------Addresses view component---------->
+                    <vc:member-addresses member-id="@Model.ActiveMember.MemberId" />
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+

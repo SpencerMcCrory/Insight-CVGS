@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\EmanAbdeen\\source\\repos\\Microsoft Enterprise App -Group4\\InsightApp\\InsightApp\\InsightApp.csproj": {}
+    "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\EmanAbdeen\\source\\repos\\Microsoft Enterprise App -Group4\\InsightApp\\InsightApp\\InsightApp.csproj": {
+    "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\EmanAbdeen\\source\\repos\\Microsoft Enterprise App -Group4\\InsightApp\\InsightApp\\InsightApp.csproj",
+        "projectUniqueName": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
         "projectName": "InsightApp",
-        "projectPath": "C:\\Users\\EmanAbdeen\\source\\repos\\Microsoft Enterprise App -Group4\\InsightApp\\InsightApp\\InsightApp.csproj",
+        "projectPath": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\InsightApp.csproj",
         "packagesPath": "C:\\Users\\EmanAbdeen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\EmanAbdeen\\source\\repos\\Microsoft Enterprise App -Group4\\InsightApp\\InsightApp\\obj\\",
+        "outputPath": "C:\\Users\\EmanAbdeen\\source\\repos\\MSEnterpriseG4\\InsightApp\\InsightApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\EmanAbdeen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,26 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
