@@ -12,7 +12,14 @@ var connStr = builder.Configuration.GetConnectionString("SVGSContext");
 
 builder.Services.AddDbContext<InsightUpdateCvgs2Context>(options => options.UseSqlServer(connStr));
 
-builder.Services.AddDefaultIdentity<Account>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<InsightUpdateCvgs2Context>();
+builder.Services.AddDefaultIdentity<Account>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.User.RequireUniqueEmail = true;
+    options.Lockout.AllowedForNewUsers = true;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
+    options.Lockout.MaxFailedAccessAttempts = 3;
+}).AddEntityFrameworkStores<InsightUpdateCvgs2Context>();
 
 var app = builder.Build();
 
