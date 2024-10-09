@@ -1,14 +1,16 @@
-﻿using InsightApp.Entities;
+﻿//using InsightApp.Areas.Identity.Data;
+using InsightApp.Entities;
 using InsightApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace InsightApp.Controllers
 {
     public class EventController : Controller
     {
-        private SVGSDbContext _SVGSDbContext;
-        public EventController( SVGSDbContext sVGSDbContext)
+        private InsightUpdateCvgs2Context _SVGSDbContext;
+        public EventController( InsightUpdateCvgs2Context sVGSDbContext)
         {
             _SVGSDbContext = sVGSDbContext;
         }

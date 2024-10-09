@@ -44,7 +44,7 @@ public partial class Member
 
     [ForeignKey("AccountId")]
     [InverseProperty("Member")]
-    public virtual AspNetUser Account { get; set; } = null!;
+    public virtual Account Account { get; set; } = null!;
 
     [InverseProperty("Member")]
     public virtual ICollection<AddressTable> AddressTables { get; set; } = new List<AddressTable>();
