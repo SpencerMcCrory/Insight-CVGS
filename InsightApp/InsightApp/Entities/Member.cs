@@ -40,7 +40,7 @@ public partial class Member
 
     [StringLength(36)]
     [Unicode(false)]
-    public string AccountId { get; set; } = null!;
+    public Guid AccountId { get; set; }
 
     [ForeignKey("AccountId")]
     [InverseProperty("Member")]

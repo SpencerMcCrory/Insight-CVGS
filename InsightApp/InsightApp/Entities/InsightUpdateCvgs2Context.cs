@@ -68,6 +68,14 @@ public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, Iden
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Account>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+            entity.Property(x => x.Id).IsRequired().HasConversion(
+                guid => guid.ToString(), 
+                str => Guid.Parse(str));
+        });
+
         modelBuilder.Entity<AddressTable>(entity =>
         {
             entity.HasKey(e => e.AddressId).HasName("PK__AddressT__091C2AFBA86D2720");

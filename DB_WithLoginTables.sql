@@ -56,7 +56,7 @@ CREATE TABLE AspNetUserLogins (
     ProviderDisplayName NVARCHAR (MAX) NULL,
     UserId              VARCHAR (36) NOT NULL,
     CONSTRAINT PK_AspNetUserLogins PRIMARY KEY CLUSTERED (LoginProvider ASC, ProviderKey ASC),
-    CONSTRAINT FK_AspNetUserLogins_AspNetUsers_UserId FOREIGN KEY (UserId) REFERENCES .AspNetUsers (Id) ON DELETE CASCADE
+    CONSTRAINT FK_AspNetUserLogins_AspNetUsers_UserId FOREIGN KEY (UserId) REFERENCES AspNetUsers (Id) ON DELETE CASCADE
 );
 
 CREATE TABLE AspNetUserClaims (
