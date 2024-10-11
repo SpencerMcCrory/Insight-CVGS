@@ -116,7 +116,7 @@ namespace InsightApp.Controllers
         }
 
         [HttpPost("/createMember")]
-        public async Task<IActionResult> CreateMember(string displayName, string accountId)
+        public async Task<IActionResult> CreateMember(string displayName, Guid accountId)
         {
             Member newMember = new Member()
             {
