@@ -109,7 +109,7 @@ namespace InsightApp.Controllers
             var gameEvent = await _SVGSDbContext.GameEvents
                 .Include(e => e.EvType)
                 .Include(e => e.Address)
-                .Include(e => e.MemberEventRegists).ThenInclude(m => m.Member)
+                .Include(e => e.MemberEventRegists)
                 .Where(e => e.EventId == id).FirstOrDefaultAsync();
 
             EventDetailViewModel eventDetailViewModel = new EventDetailViewModel()

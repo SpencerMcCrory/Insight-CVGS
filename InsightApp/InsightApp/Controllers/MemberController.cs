@@ -115,7 +115,28 @@ namespace InsightApp.Controllers
             
         }
 
+        [HttpPost("/createMember")]
+        public async Task<IActionResult> CreateMember(string displayName, string accountId)
+        {
+            Member newMember = new Member()
+            {
+                DisplayName = displayName,
+                AccountId = accountId
+            };
 
-        
+            // it's valid so we want to update the existing Members in the DB:
+            await _SVGSDbContext.Members.AddAsync(newMember);
+            await _SVGSDbContext.SaveChangesAsync();
+
+            var lastMember = _SVGSDbContext.Members
+                                 .OrderByDescending(m => m.MemberId)
+                                 .FirstOrDefault();
+
+            return RedirectToAction("MemberProfile", "Member", new { id = lastMember.MemberId });
+
+        }
+
+
+
     }
 }

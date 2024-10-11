@@ -11,6 +11,8 @@
 # Miscellaneous
 ##############
 
+*.nuget.g.props
+
 /.vs
 *.bin
 *.obj
@@ -503,3 +505,4 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/InsightApp/InsightApp/obj/InsightApp.csproj.nuget.g.props
