@@ -210,6 +210,39 @@ INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
 	VALUES (5,'3','Erb Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
 
 
+--game_details_category table (junction table)
+INSERT INTO GameDetailsCategory (GameId, CategoryId)
+VALUES 
+(1, 7), -- Super Mario is in Platformer category
+(2, 7), -- Sonic Mania is in Platformer category
+(3, 2), -- Life is Strange is in Adventure category
+(4, 4), -- Minecraft is in Survival category
+(5, 1); -- Monopoly is in Board category
+
+--game_platform table 
+INSERT INTO GamePlatform (PlatformName)
+VALUES
+('Nintendo Switch'),
+('PC'),
+('PS2'),
+('PS3'),
+('PS4'),
+('PS5'),
+('Wii U'),
+('Xbox 360'),
+('Xbox One'),
+('Xbox Series X');
+
+--game_details_platform table
+INSERT INTO GameDetailsPlatform (GameId, PlatformId)
+VALUES
+(1,1),
+(2,7),
+(3,3),
+(4,2),
+(5,8);
+
+
 
 /*UPDATE GameEvent SET IsDeleted = 0
 WHERE EventId = 1;*/
