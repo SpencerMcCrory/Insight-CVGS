@@ -242,6 +242,16 @@ VALUES
 (4,2),
 (5,8);
 
+--game_details_language table (junction table)
+INSERT INTO GameDetailsLanguage (GameId, LanguageId)
+VALUES 
+(1, 1), -- Super Mario is in English
+(2, 2), -- Sonic Mania is in French
+(2, 1), -- Sonic Mania is in English
+(3, 1), -- Life is Strange is in English
+(4, 1), -- Minecraft is in English
+(5, 2); -- Monopoly is in French
+
 --country table
 INSERT INTO Country VALUES ('Canada');
 
