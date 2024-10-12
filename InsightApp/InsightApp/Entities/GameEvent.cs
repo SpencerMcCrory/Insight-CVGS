@@ -49,4 +49,5 @@ public partial class GameEvent
 
     [InverseProperty("Event")]
     public virtual ICollection<MemberEventRegist> MemberEventRegists { get; set; } = new List<MemberEventRegist>();
+
 }

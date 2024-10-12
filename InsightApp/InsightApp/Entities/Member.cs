@@ -43,7 +43,6 @@ public partial class Member
 
     private Guid _accountId;
 
-    [StringLength(36)]
     [Unicode(false)]
     public Guid AccountId { get => this._accountId; set => _accountId = new Guid(value.ToString()); }
 
