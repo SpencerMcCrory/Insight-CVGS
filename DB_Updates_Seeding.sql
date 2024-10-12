@@ -210,6 +210,65 @@ INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
 	VALUES (5,'3','Erb Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
 
 
+--game_details_category table (junction table)
+INSERT INTO GameDetailsCategory (GameId, CategoryId)
+VALUES 
+(1, 7), -- Super Mario is in Platformer category
+(2, 7), -- Sonic Mania is in Platformer category
+(3, 2), -- Life is Strange is in Adventure category
+(4, 4), -- Minecraft is in Survival category
+(5, 1); -- Monopoly is in Board category
+
+--game_platform table 
+INSERT INTO GamePlatform (PlatformName)
+VALUES
+('Nintendo Switch'),
+('PC'),
+('PS2'),
+('PS3'),
+('PS4'),
+('PS5'),
+('Wii U'),
+('Xbox 360'),
+('Xbox One'),
+('Xbox Series X');
+
+--game_details_platform table
+INSERT INTO GameDetailsPlatform (GameId, PlatformId)
+VALUES
+(1,1),
+(2,7),
+(3,3),
+(4,2),
+(5,8);
+
+--game_details_language table (junction table)
+INSERT INTO GameDetailsLanguage (GameId, LanguageId)
+VALUES 
+(1, 1), -- Super Mario is in English
+(2, 2), -- Sonic Mania is in French
+(2, 1), -- Sonic Mania is in English
+(3, 1), -- Life is Strange is in English
+(4, 1), -- Minecraft is in English
+(5, 2); -- Monopoly is in French
+
+--country table
+INSERT INTO Country VALUES ('Canada');
+
+--country table
+INSERT INTO Province VALUES ('Alberta');
+INSERT INTO Province VALUES ('British Columbia');
+INSERT INTO Province VALUES ('Manitoba');
+INSERT INTO Province VALUES ('New Brunswick');
+INSERT INTO Province VALUES ('Newfoundland and Labrador');
+INSERT INTO Province VALUES ('Nova Scotia');
+INSERT INTO Province VALUES ('Ontario');
+INSERT INTO Province VALUES ('Prince Edward Island');
+INSERT INTO Province VALUES ('Quebec');
+INSERT INTO Province VALUES ('Saskatchewan');
+INSERT INTO Province VALUES ('Northwest Territories');
+INSERT INTO Province VALUES ('Nunavut');
+INSERT INTO Province VALUES ('Yukon');
 
 /*UPDATE GameEvent SET IsDeleted = 0
 WHERE EventId = 1;*/

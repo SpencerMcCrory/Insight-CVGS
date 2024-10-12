@@ -56,7 +56,7 @@ CREATE TABLE AspNetUserLogins (
     ProviderDisplayName NVARCHAR (MAX) NULL,
     UserId              VARCHAR (36) NOT NULL,
     CONSTRAINT PK_AspNetUserLogins PRIMARY KEY CLUSTERED (LoginProvider ASC, ProviderKey ASC),
-    CONSTRAINT FK_AspNetUserLogins_AspNetUsers_UserId FOREIGN KEY (UserId) REFERENCES .AspNetUsers (Id) ON DELETE CASCADE
+    CONSTRAINT FK_AspNetUserLogins_AspNetUsers_UserId FOREIGN KEY (UserId) REFERENCES AspNetUsers (Id) ON DELETE CASCADE
 );
 
 CREATE TABLE AspNetUserClaims (
@@ -282,4 +282,14 @@ CREATE TABLE Friend ( /* junction table */
 	FriendId INT,
 	FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
 	FOREIGN KEY (FriendId) REFERENCES Member (MemberId),
+);
+
+CREATE TABLE Country ( 
+	id INT IDENTITY (1,1) PRIMARY KEY,
+	CountryName VARCHAR (30)
+);
+
+CREATE TABLE Province (
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	ProvinceName VARCHAR (30)
 );

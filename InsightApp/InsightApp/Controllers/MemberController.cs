@@ -2,15 +2,13 @@
 using InsightApp.Entities;
 using InsightApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace InsightApp.Controllers
 {
     public class MemberController : Controller
     {
-        private SVGSDbContext _SVGSDbContext;
-        public MemberController(SVGSDbContext sVGSDbContext)
+        private InsightUpdateCvgs2Context _SVGSDbContext;
+        public MemberController(InsightUpdateCvgs2Context sVGSDbContext)
         {
             _SVGSDbContext = sVGSDbContext;
         }
@@ -46,7 +44,7 @@ namespace InsightApp.Controllers
 
 
             //if same address checked copy the main properies will be the same
-            if (memberAddressesViewModel.IsAdressesSame == true) 
+            if (memberAddressesViewModel.IsAdressesSame == true)
             {
                 shippingAdr.Unit=memberAdr.Unit;
                 shippingAdr.StreetNumber=memberAdr.StreetNumber;
@@ -92,7 +90,7 @@ namespace InsightApp.Controllers
         [HttpPost("/edit-profile-requests")]
         public async Task<IActionResult> EditMemberProfileId( MemberProfileViewModel memberProfileViewModel)
         {
-
+            memberProfileViewModel.ActiveMember.Account = _SVGSDbContext.Accounts.FirstOrDefault(a => a.Id == memberProfileViewModel.ActiveMember.AccountId);
             if (ModelState.IsValid)
             {
 
@@ -106,16 +104,40 @@ namespace InsightApp.Controllers
             }
             else
             {
-                // it's invalid so we simply return the memberProfileViewModel object
+                // it's invalid so we simply return the profileViewModel object
                 // to the Edit view again:
+                ProfileViewModel profileViewModel = new ProfileViewModel();
+                profileViewModel.ActiveMember = new Member();
+                profileViewModel.ActiveMember.MemberId = memberProfileViewModel.ActiveMember.MemberId;
 
-                return View("Profile", memberProfileViewModel.ActiveMember.MemberId);
+                return View("Profile", profileViewModel);
             }
 
             
         }
 
+        [HttpPost("/createMember")]
+        public async Task<IActionResult> CreateMember(string displayName, Guid accountId)
+        {
+            Member newMember = new Member()
+            {
+                DisplayName = displayName,
+                AccountId = accountId
+            };
 
-        
+            // it's valid so we want to update the existing Members in the DB:
+            await _SVGSDbContext.Members.AddAsync(newMember);
+            await _SVGSDbContext.SaveChangesAsync();
+
+            var lastMember = _SVGSDbContext.Members
+                                 .OrderByDescending(m => m.MemberId)
+                                 .FirstOrDefault();
+
+            return RedirectToAction("MemberProfile", "Member", new { id = lastMember.MemberId });
+
+        }
+
+
+
     }
 }

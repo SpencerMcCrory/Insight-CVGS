@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsightApp.Entities;
 
-public partial class InsightUpdateCvgs2Context : DbContext
+public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, IdentityRole<Guid>, Guid>
 {
     public InsightUpdateCvgs2Context()
     {
@@ -15,19 +17,11 @@ public partial class InsightUpdateCvgs2Context : DbContext
     {
     }
 
+    public virtual DbSet<Country> Country { get; set; }
+    public virtual DbSet<Province> Province { get; set; }
+    public virtual DbSet<Account> Accounts { get; set; }
+
     public virtual DbSet<AddressTable> AddressTables { get; set; }
-
-    public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-
-    public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
-
-    public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-
-    public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-
-    public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-
-    public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
 
     public virtual DbSet<Employee> Employees { get; set; }
 
@@ -76,6 +70,16 @@ public partial class InsightUpdateCvgs2Context : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Account>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+            entity.Property(x => x.Id).IsRequired().HasConversion(
+                guid => guid.ToString(), 
+                str => Guid.Parse(str));
+        });
+
         modelBuilder.Entity<AddressTable>(entity =>
         {
             entity.HasKey(e => e.AddressId).HasName("PK__AddressT__091C2AFBA86D2720");
@@ -89,27 +93,6 @@ public partial class InsightUpdateCvgs2Context : DbContext
             entity.Property(e => e.Unit).HasDefaultValueSql("(NULL)");
 
             entity.HasOne(d => d.Member).WithMany(p => p.AddressTables).HasConstraintName("FK__AddressTa__Membe__47DBAE45");
-        });
-
-        modelBuilder.Entity<AspNetUser>(entity =>
-        {
-            entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
-                .IsUnique()
-                .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
-            entity.HasMany(d => d.Roles).WithMany(p => p.Users)
-                .UsingEntity<Dictionary<string, object>>(
-                    "AspNetUserRole",
-                    r => r.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
-                    l => l.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
-                    j =>
-                    {
-                        j.HasKey("UserId", "RoleId");
-                        j.ToTable("AspNetUserRoles");
-                        j.IndexerProperty<string>("UserId")
-                            .HasMaxLength(36)
-                            .IsUnicode(false);
-                    });
         });
 
         modelBuilder.Entity<Employee>(entity =>

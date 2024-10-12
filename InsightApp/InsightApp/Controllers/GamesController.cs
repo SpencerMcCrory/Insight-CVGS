@@ -11,9 +11,9 @@ namespace InsightApp.Controllers
 {
     public class GamesController : Controller
     {
-        private readonly SVGSDbContext _context;
+        private readonly InsightUpdateCvgs2Context _context;
 
-        public GamesController(SVGSDbContext context)
+        public GamesController(InsightUpdateCvgs2Context context)
         {
             _context = context;
         }
