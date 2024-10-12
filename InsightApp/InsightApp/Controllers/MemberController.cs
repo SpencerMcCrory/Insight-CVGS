@@ -104,10 +104,13 @@ namespace InsightApp.Controllers
             }
             else
             {
-                // it's invalid so we simply return the memberProfileViewModel object
+                // it's invalid so we simply return the profileViewModel object
                 // to the Edit view again:
+                ProfileViewModel profileViewModel = new ProfileViewModel();
+                profileViewModel.ActiveMember = new Member();
+                profileViewModel.ActiveMember.MemberId = memberProfileViewModel.ActiveMember.MemberId;
 
-                return View("Profile", memberProfileViewModel.ActiveMember.MemberId);
+                return View("Profile", profileViewModel);
             }
 
             

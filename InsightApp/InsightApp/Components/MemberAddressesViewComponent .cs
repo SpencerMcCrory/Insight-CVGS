@@ -15,9 +15,13 @@ namespace InsightApp.Components
 
         public async Task <IViewComponentResult> InvokeAsync(int memberId)
         {
+            var countries = await _SVGSDbContext.Country.ToListAsync();
+            var provinces = await _SVGSDbContext.Province.ToListAsync();
             MemberAddressesViewModel memberAddressesViewModel = new MemberAddressesViewModel()
             {
-                MemberId = memberId
+                MemberId = memberId,
+                Countries = countries,
+                Provinces = provinces
             };
             
             var memberAddress = await _SVGSDbContext.AddressTables

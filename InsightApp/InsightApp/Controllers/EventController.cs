@@ -15,19 +15,6 @@ namespace InsightApp.Controllers
             _SVGSDbContext = sVGSDbContext;
         }
 
-        //[HttpGet("/events")]
-        //public IActionResult GetAllEvents()
-        //{
-        //    //will return only the events that (isDeleted=false)
-        //    var allEvents = _SVGSDbContext.GameEvents
-        //        .Include(e => e.EvType)
-        //        .Include(e => e.Address)
-        //        .Where(e => e.IsDeleted == false)
-        //        .OrderBy(e => e.EventName).ToList();
-
-        //    return View("List", allEvents);
-        //}
-
 
         [HttpGet("/events")]
         public async Task<IActionResult> GetAllEvents(EventListModel eventListModel)

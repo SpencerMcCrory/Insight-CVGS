@@ -242,7 +242,23 @@ VALUES
 (4,2),
 (5,8);
 
+--country table
+INSERT INTO Country VALUES ('Canada');
 
+--country table
+INSERT INTO Province VALUES ('Alberta');
+INSERT INTO Province VALUES ('British Columbia');
+INSERT INTO Province VALUES ('Manitoba');
+INSERT INTO Province VALUES ('New Brunswick');
+INSERT INTO Province VALUES ('Newfoundland and Labrador');
+INSERT INTO Province VALUES ('Nova Scotia');
+INSERT INTO Province VALUES ('Ontario');
+INSERT INTO Province VALUES ('Prince Edward Island');
+INSERT INTO Province VALUES ('Quebec');
+INSERT INTO Province VALUES ('Saskatchewan');
+INSERT INTO Province VALUES ('Northwest Territories');
+INSERT INTO Province VALUES ('Nunavut');
+INSERT INTO Province VALUES ('Yukon');
 
 /*UPDATE GameEvent SET IsDeleted = 0
 WHERE EventId = 1;*/

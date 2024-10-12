@@ -283,3 +283,8 @@ CREATE TABLE Friend ( /* junction table */
 	FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
 	FOREIGN KEY (FriendId) REFERENCES Member (MemberId),
 );
+
+CREATE TABLE Country ( 
+	id INT IDENTITY (1,1) PRIMARY KEY,
+	CountryName VARCHAR (30)
+);

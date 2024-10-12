@@ -153,7 +153,8 @@ namespace InsightApp.Areas.Identity.Pages.Account
                     string userId = await _userManager.GetUserIdAsync(user);
                     Member newMember = new Member
                     {
-                        AccountId = new Guid(userId)
+                        AccountId = new Guid(userId), //<<<<<<<<<<<<<<<to add the AspNetUsers.userId to the Member.AccountId
+                        DisplayName = Input.UserName //<<<<<<<<<<<<<<<to add the AspNetUsers.userName to the Member.displayName
                     };
                     _insightUpdateCvgs2Context.Members.Add(newMember);
                     await _insightUpdateCvgs2Context.SaveChangesAsync();

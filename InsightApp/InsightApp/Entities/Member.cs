@@ -32,6 +32,7 @@ public partial class Member
     public string? Gender { get; set; }
 
     [Column("DOB")]
+    [MinimumAge(ErrorMessage = "You must be at least 16 years old.")]
     public DateOnly? Dob { get; set; }
 
     public bool RecievesEmails { get; set; }

@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InsightApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,9 @@ namespace InsightApp.Areas.Identity.Pages.Account
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
             StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
-            return Page();
+            
+            TempData["LastActionMessage"] = "Thank you for confirming your email! You can now log in.";
+            return LocalRedirect("~/");
         }
     }
 }

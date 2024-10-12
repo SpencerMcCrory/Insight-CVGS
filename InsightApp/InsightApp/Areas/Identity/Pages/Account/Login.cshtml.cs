@@ -127,7 +127,7 @@ namespace InsightApp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect("~/Member/MemberPortal");
+                    return LocalRedirect("~/"); //<<<<<<changed by eman
                 }
                 if (result.RequiresTwoFactor)
                 {

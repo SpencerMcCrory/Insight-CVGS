@@ -17,7 +17,10 @@ public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, Iden
     {
     }
 
+    public virtual DbSet<Country> Country { get; set; }
+    public virtual DbSet<Province> Province { get; set; }
     public virtual DbSet<Account> Accounts { get; set; }
+
     public virtual DbSet<AddressTable> AddressTables { get; set; }
 
     public virtual DbSet<Employee> Employees { get; set; }
