@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InsightApp.Entities
+namespace InsightApp.Attributes
 {
     public class FutureDateAttribute : ValidationAttribute
     {

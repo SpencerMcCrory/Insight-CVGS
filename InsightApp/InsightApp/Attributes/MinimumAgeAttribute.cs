@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InsightApp.Entities
+namespace InsightApp.Attributes
 {
     public class MinimumAgeAttribute : ValidationAttribute
     {
@@ -13,7 +13,7 @@ namespace InsightApp.Entities
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value is DateOnly date )
+            if (value is DateOnly date)
             {
                 var today = DateOnly.FromDateTime(DateTime.Now);
 
