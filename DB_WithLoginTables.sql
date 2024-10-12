@@ -288,3 +288,8 @@ CREATE TABLE Country (
 	id INT IDENTITY (1,1) PRIMARY KEY,
 	CountryName VARCHAR (30)
 );
+
+CREATE TABLE Province (
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	ProvinceName VARCHAR (30)
+);
