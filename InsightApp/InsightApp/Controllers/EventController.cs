@@ -2,13 +2,14 @@
 using InsightApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace InsightApp.Controllers
 {
     public class EventController : Controller
     {
-        private SVGSDbContext _SVGSDbContext;
-        public EventController( SVGSDbContext sVGSDbContext)
+        private InsightUpdateCvgs2Context _SVGSDbContext;
+        public EventController( InsightUpdateCvgs2Context sVGSDbContext)
         {
             _SVGSDbContext = sVGSDbContext;
         }
@@ -107,7 +108,7 @@ namespace InsightApp.Controllers
             var gameEvent = await _SVGSDbContext.GameEvents
                 .Include(e => e.EvType)
                 .Include(e => e.Address)
-                .Include(e => e.MemberEventRegists).ThenInclude(m => m.Member)
+                .Include(e => e.MemberEventRegists)
                 .Where(e => e.EventId == id).FirstOrDefaultAsync();
 
             EventDetailViewModel eventDetailViewModel = new EventDetailViewModel()

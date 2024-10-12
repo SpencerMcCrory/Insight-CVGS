@@ -7,8 +7,8 @@ namespace InsightApp.Components
 {
     public class MemberProfileViewComponent : ViewComponent
     {
-        private SVGSDbContext _SVGSDbContext;
-        public MemberProfileViewComponent(SVGSDbContext sVGSDbContext)
+        private InsightUpdateCvgs2Context _SVGSDbContext;
+        public MemberProfileViewComponent(InsightUpdateCvgs2Context sVGSDbContext)
         {
             _SVGSDbContext = sVGSDbContext;
         }

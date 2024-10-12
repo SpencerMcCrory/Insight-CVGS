@@ -19,7 +19,9 @@ public partial class GameEvent
     [Unicode(false)]
     public string Details { get; set; } = null!;
 
-    public DateOnly StartDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+    
+    [FutureDate(ErrorMessage = "The Start Date must be in the future.")]
+    public DateOnly? StartDate { get; set; } 
 
     public DateOnly? EndDate { get; set; }
 

@@ -1,11 +1,11 @@
 ﻿
 using InsightApp.Entities;
-using InsightApp.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsightApp.Entities;
 
-public partial class SVGSDbContext : DbContext
+public partial class SVGSDbContext : IdentityDbContext
 {
     public SVGSDbContext()
     {

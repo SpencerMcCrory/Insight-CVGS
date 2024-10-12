@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsightApp.Entities;
 
-public partial class InsightUpdateCvgs2Context : DbContext
+public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, IdentityRole<Guid>, Guid>
 {
     public InsightUpdateCvgs2Context()
     {
@@ -14,6 +16,10 @@ public partial class InsightUpdateCvgs2Context : DbContext
         : base(options)
     {
     }
+
+    public virtual DbSet<Country> Country { get; set; }
+    public virtual DbSet<Province> Province { get; set; }
+    public virtual DbSet<Account> Accounts { get; set; }
 
     public virtual DbSet<AddressTable> AddressTables { get; set; }
 
@@ -76,6 +82,16 @@ public partial class InsightUpdateCvgs2Context : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Account>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+            entity.Property(x => x.Id).IsRequired().HasConversion(
+                guid => guid.ToString(), 
+                str => Guid.Parse(str));
+        });
+
         modelBuilder.Entity<AddressTable>(entity =>
         {
             entity.HasKey(e => e.AddressId).HasName("PK__AddressT__091C2AFBA86D2720");
