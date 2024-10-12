@@ -19,9 +19,9 @@ public partial class Game
     [Unicode(false)]
     public string Details { get; set; } = null!;
 
-    public double? Price { get; set; }
+    public double? Price { get; set; } = 0;
 
-    public bool? PhysicalAvailable { get; set; }
+    public bool? PhysicalAvailable { get; set; } = false;
 
     public bool? IsDeleted { get; set; }
 
