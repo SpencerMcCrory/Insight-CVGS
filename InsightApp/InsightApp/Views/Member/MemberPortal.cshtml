@@ -12,6 +12,7 @@
                     <img src="~/Imgs/Games_title.png" class="card-img-top" alt="Games banner">
                     <figcaption><a href="http://www.freepik.com" style="font-size:8px; color:lightgray;">Designed by Freepik</a></figcaption>
                 </figure>
+                @* <img src="~/Imgs/Games_title.png" class="card-img-top" alt="Games banner"> *@
                     <div class="card-body">
                         <h5 class="card-title">GAMES</h5>
                         <p class="card-text"></p>
@@ -44,5 +45,25 @@
             </div>
             
         </div>
+
+    <div class="d-flex flex-column  mb-3" style="margin-top:80px;">
+
+        <!-----place holder for  profile link------->
+        <div class="d-flex justify-content-center">
+            <a asp-controller="Member" asp-action="MemberProfile" asp-route-id="1" role="button" style=" border-color:rgb(80, 140, 155);">Profile Member 1</a>
+
+        </div>
+        <div class="d-flex justify-content-center">
+            <a asp-controller="Member" asp-action="MemberProfile" asp-route-id="2" role="button" style=" border-color:rgb(80, 140, 155);">Profile Member 2</a>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a asp-controller="Member" asp-action="MemberProfile" asp-route-id="6" role="button" style=" border-color:rgb(80, 140, 155);">Profile Member 6</a>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a asp-controller="Member" asp-action="MemberProfile" asp-route-id="7" role="button" style=" border-color:rgb(80, 140, 155);">Profile Member 7</a>
+        </div>
+
+    </div>
+
 </div>
 

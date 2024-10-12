@@ -2,6 +2,8 @@
 using InsightApp.Entities;
 using InsightApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace InsightApp.Controllers
 {
@@ -44,7 +46,7 @@ namespace InsightApp.Controllers
 
 
             //if same address checked copy the main properies will be the same
-            if (memberAddressesViewModel.IsAdressesSame == true)
+            if (memberAddressesViewModel.IsAdressesSame == true) 
             {
                 shippingAdr.Unit=memberAdr.Unit;
                 shippingAdr.StreetNumber=memberAdr.StreetNumber;
@@ -113,8 +115,9 @@ namespace InsightApp.Controllers
                 return View("Profile", profileViewModel);
             }
 
-            
-        }
+
+                return View("Profile", memberProfileViewModel.ActiveMember.MemberId);
+            }
 
         [HttpPost("/createMember")]
         public async Task<IActionResult> CreateMember(string displayName, Guid accountId)
@@ -134,10 +137,10 @@ namespace InsightApp.Controllers
                                  .FirstOrDefault();
 
             return RedirectToAction("MemberProfile", "Member", new { id = lastMember.MemberId });
-
+            
         }
 
 
-
+        
     }
 }

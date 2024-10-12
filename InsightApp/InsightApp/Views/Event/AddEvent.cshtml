@@ -246,10 +246,17 @@
 </div>
 
 
+
 <script>
     // Get references to the radio buttons and input fields
     const onSiteRadio = document.getElementById('evType-On-Site');
     const virtualRadio = document.getElementById('evType-Virtual');
+    const onSiteInput1 = document.getElementById('on-site-input1');
+    const onSiteInput2 = document.getElementById('on-site-input2');
+    const onSiteInput3 = document.getElementById('on-site-input3');
+    const onSiteInput4 = document.getElementById('on-site-input4');
+    const onSiteInput5 = document.getElementById('on-site-input5');
+    const onSiteInput6 = document.getElementById('on-site-input6');
     const virtualInput = document.getElementById('virtual-input');
     const eventLinkDiv = document.getElementById('eventLinkDiv');
     const addressDiv = document.getElementById('addressDiv');
@@ -298,16 +305,16 @@
                 input.required = true;
             });
             
-            virtualInput.disabled = true; // Disable virtual input
-            virtualInput.required = false; //make it Not required
-            virtualInput.value = ''; // Clear virtual input
+        virtualInput.disabled = true; // Disable virtual input
+        virtualInput.required = false; //make it Not required
+        virtualInput.value = ''; // Clear virtual input
             addressDiv.hidden=false;
             eventLinkDiv.hidden=true;
         } 
         else if (virtualRadio.checked) 
         {
             virtualInput.disabled = false; // Enable virtual input
-            virtualInput.required = true; // make it required
+        virtualInput.required = true; // make it required
             
             // Loop through and set each input 
             addressInputs.forEach(input => {
