@@ -60,7 +60,7 @@
                 {
                     <tr>
                         <td > <a asp-controller="Event" asp-action="GetEventById" asp-route-id="@ev.EventId">@ev.EventName</a></td>
-                        <td class="itemsPage"> @ev.StartDate</td>
+                        <td class="itemsPage"> @ev.StartDate.ToString("dd MMMM yyyy")</td>
                         <td class="itemsPage"> @ev.EvType.EvTypeName</td>
 
                         <td class="itemsPage">

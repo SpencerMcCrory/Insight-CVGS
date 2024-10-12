@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Permissions;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsightApp.Entities;
@@ -25,31 +23,28 @@ public partial class Member
 
     [StringLength(15)]
     [Unicode(false)]
-    public string? DisplayName { get; set; } //not needed, stored in Account as UserName
+    public string? DisplayName { get; set; }
 
     [StringLength(20)]
     [Unicode(false)]
     public string? Gender { get; set; }
 
     [Column("DOB")]
-    [MinimumAge(ErrorMessage = "You must be at least 16 years old.")]
     public DateOnly? Dob { get; set; }
 
     public bool RecievesEmails { get; set; }
 
     [StringLength(20)]
     [Unicode(false)]
-    public string? PhoneNumber { get; set; } //not needed, stored in Account
-
-    private Guid _accountId;
+    public string? PhoneNumber { get; set; }
 
     [StringLength(36)]
     [Unicode(false)]
-    public Guid AccountId { get => this._accountId; set => _accountId = new Guid(value.ToString()); }
+    public string AccountId { get; set; } = null!;
 
     [ForeignKey("AccountId")]
     [InverseProperty("Member")]
-    public virtual Account? Account { get; set; } = null!;
+    public virtual AspNetUser Account { get; set; } = null!;
 
     [InverseProperty("Member")]
     public virtual ICollection<AddressTable> AddressTables { get; set; } = new List<AddressTable>();

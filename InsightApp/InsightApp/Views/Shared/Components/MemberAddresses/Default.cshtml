@@ -5,19 +5,9 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
 
-<style>
-	.error {
-		color: red;
-	}
-
-	.valid {
-		color: green;
-	}
-</style>
-
 <div class="card-body">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-	<form id="addressForm" asp-controller="Member" asp-action="AddAddressesById" method="post" enctype="application/x-www-form-urlencoded">
+    <form asp-controller="Member" asp-action="AddAddressesById" method="post" enctype="application/x-www-form-urlencoded">
         
         <!----Member Address-------->
         <div>
@@ -26,13 +16,13 @@
                 <!-- Form Group (Unit)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="unit">Unit</label>
-					<input class="form-control" id="unit" type="text" asp-for="MemberAddress.Unit">
+                    <input class="form-control" id="unit" type="text"  asp-for="MemberAddress.Unit">
                     <span asp-validation-for="MemberAddress.Unit" class="text-danger"></span>
                 </div>
                 <!-- Form Group (Street No)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="streetNo">Street Number</label>
-					<input class="form-control" id="streetNo" type="text" asp-for="MemberAddress.StreetNumber">
+                    <input class="form-control" id="streetNo" type="text"  asp-for="MemberAddress.StreetNumber">
                     <span asp-validation-for="MemberAddress.StreetNumber" class="text-danger"></span>
                 </div>
             </div>
@@ -42,13 +32,13 @@
                 <!-- Form Group (Street Number)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="streetName">Street Name</label>
-					<input class="form-control" id="streetName" type="text" asp-for="MemberAddress.StreetName">
+                    <input class="form-control" id="streetName" type="text"  asp-for="MemberAddress.StreetName">
                     <span asp-validation-for="MemberAddress.StreetName" class="text-danger"></span>
                 </div>
                 <!-- Form Group (Postal Code)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="city">City</label>
-					<input class="form-control" id="city" type="text" asp-for="MemberAddress.City">
+                    <input class="form-control" id="city" type="text"  asp-for="MemberAddress.City">
                     <span asp-validation-for="MemberAddress.City" class="text-danger"></span>
                 </div>
             </div>
@@ -59,36 +49,22 @@
                 <!-- Form Group (Postal Code)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="postalCode">Postal Code</label>
-					<input class="form-control" id="postalCode" type="text" asp-for="MemberAddress.PostalCode">
+                    <input class="form-control" id="postalCode" type="text"  asp-for="MemberAddress.PostalCode">
                     <span asp-validation-for="MemberAddress.PostalCode" class="text-danger"></span>
-					<span id="postalCodeError" class="error"></span>
                 </div>
             </div>
-
             <!-- Form Row-->
             <div class="row gx-3 mb-3">
                 <!-- Form Group (Province)-->
                 <div class="col-md-6">
-					<label class="small mb-1 required-label" for="inputPhone">Province</label>
-					<select class="form-control" asp-for="MemberAddress.Province">
-						<option value="">Select...</option>
-						@foreach (Province province in Model.Provinces)
-						{
-							<option value="@province.ProvinceName">@province.ProvinceName</option>
-						}
-					</select>
+                    <label class="small mb-1 required-label" for="province">Province</label>
+                    <input class="form-control" id="province" type="text"  asp-for="MemberAddress.Province">
                     <span asp-validation-for="MemberAddress.Province" class="text-danger"></span>
                 </div>
                 <!-- Form Group (Country)-->
                 <div class="col-md-6">
-					<label class="small mb-1 required-label" for="inputPhone">Country</label>
-					<select class="form-control" asp-for="MemberAddress.Country">
-						<option value="">Select...</option>
-						@foreach (Country country in Model.Countries)
-						{
-							<option value="@country.CountryName">@country.CountryName</option>
-						}
-					</select>
+                    <label class="small mb-1 required-label" for="country">Country</label>
+                    <input class="form-control" id="country" type="text"  asp-for="MemberAddress.Country">
                     <span asp-validation-for="MemberAddress.Country" class="text-danger"></span>
                 </div>
             </div>
@@ -124,13 +100,13 @@
                 <!-- Form Group (Unit)-->
                 <div class="col-md-6">
                     <label class="small mb-1" for="unitShipping">Unit</label>
-					<input class="form-control" id="unitShipping" type="text" asp-for="ShippingAddress.Unit">
+                    <input class="form-control" id="unitShipping" type="text"  asp-for="ShippingAddress.Unit">
                     <span asp-validation-for="ShippingAddress.Unit" class="text-danger"></span>
                 </div>
                 <!-- Form Group (Street No)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="streetNoShipping">Street Number</label>
-					<input class="form-control" id="streetNoShipping" type="text" asp-for="ShippingAddress.StreetNumber">
+                    <input class="form-control" id="streetNoShipping" type="text"  asp-for="ShippingAddress.StreetNumber">
                     <span asp-validation-for="ShippingAddress.StreetNumber" class="text-danger"></span>
                 </div>
             </div>
@@ -139,13 +115,13 @@
                 <!-- Form Group (Street Name)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="streetNameShipping">Street Name</label>
-					<input class="form-control" id="streetNameShipping" type="text" asp-for="ShippingAddress.StreetName">
+                    <input class="form-control" id="streetNameShipping" type="text"  asp-for="ShippingAddress.StreetName">
                     <span asp-validation-for="ShippingAddress.StreetName" class="text-danger"></span>
                 </div>
                 <!-- Form Group (City)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="cityShipping">City</label>
-					<input class="form-control" id="cityShipping" type="text" asp-for="ShippingAddress.City">
+                    <input class="form-control" id="cityShipping" type="text"  asp-for="ShippingAddress.City">
                     <span asp-validation-for="ShippingAddress.City" class="text-danger"></span>
                 </div>
             </div>
@@ -155,35 +131,22 @@
                 <!-- Form Group (Postal Code)-->
                 <div class="col-md-6">
                     <label class="small mb-1 required-label" for="postalCodeShipping">Postal Code</label>
-					<input class="form-control" id="postalCodeShipping" type="text" asp-for="ShippingAddress.PostalCode">
+                    <input class="form-control" id="postalCodeShipping" type="text"  asp-for="ShippingAddress.PostalCode">
                     <span asp-validation-for="ShippingAddress.PostalCode" class="text-danger"></span>
-					<span id="postalCodeShippingError" class="error"></span>
                 </div>
             </div>
             <!-- Form Row-->
             <div class="row gx-3 mb-3">
                 <!-- Form Group (Province)-->
                 <div class="col-md-6">
-					<label class="small mb-1 required-label" for="inputPhone">Province</label>
-					<select class="form-control" asp-for="ShippingAddress.Province">
-						<option value="">Select...</option>
-						@foreach (Province province in Model.Provinces)
-						{
-							<option value="@province.ProvinceName">@province.ProvinceName</option>
-						}
-					</select>
+                    <label class="small mb-1 required-label" for="provinceShipping">Province</label>
+                    <input class="form-control" id="provinceShipping" type="text"  asp-for="ShippingAddress.Province">
                     <span asp-validation-for="ShippingAddress.Province" class="text-danger"></span>
                 </div>
                 <!-- Form Group (Country)-->
                 <div class="col-md-6">
-					<label class="small mb-1 required-label" for="inputPhone">Country</label>
-					<select class="form-control" asp-for="ShippingAddress.Country">
-						<option value="">Select...</option>
-						@foreach (Country country in Model.Countries)
-						{
-							<option value="@country.CountryName">@country.CountryName</option>
-						}
-					</select>
+                    <label class="small mb-1 required-label" for="countryShipping">Country</label>
+                    <input class="form-control" id="countryShipping" type="text"  asp-for="ShippingAddress.Country">
                     <span asp-validation-for="ShippingAddress.Country" class="text-danger"></span>
                 </div>
             </div>
@@ -193,7 +156,7 @@
         <div class="row gx-3 mb-3">
             <!-- Form Group (Province)-->
             <div class="col-md-6">
-				<label class="small mb-1" for="provinceShipping">Delivery Instructions</label>
+                <label class="small mb-1" for="provinceShipping">Delivary Instructions</label>
                 <textarea maxlength="500" class="form-control" asp-for="ShippingAddress.DelivaryInstructions"> </textarea>
             </div>
         </div>
@@ -238,34 +201,4 @@
     // Add event listeners to radio buttons
     sameAsAddressCheckbox.addEventListener('change', handleRadioChange);
 
-	//-------------------------------------------------------------------------
-
-		$(document).ready(function()
-		{
-			// Define a regex pattern for Canadian postal code validation
-			var postalCodePattern = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
-
-			// Validate on form submit
-			$("#addressForm").on("submit", function(event)
-			{
-				var postalCode = $("#postalCode").val();
-				if (postalCodePattern.test(postalCode)) {
-					$("#postalCodeError").text("Valid postal code!").removeClass("error").addClass("valid");
-				} else {
-					$("#postalCodeError").text("Invalid postal code format.").removeClass("valid").addClass("error");
-					event.preventDefault(); // Prevent form submission if validation fails
-				}
-				if(!sameAsAddressCheckbox.checked)
-				{
-					var postalCodeShipping = $("#postalCodeShipping").val();
-					if (postalCodePattern.test(postalCodeShipping)) {
-						$("#postalCodeShippingError").text("Valid postal code!").removeClass("error").addClass("valid");
-					} else {
-						$("#postalCodeShippingError").text("Invalid postal code format.").removeClass("valid").addClass("error");
-						event.preventDefault(); // Prevent form submission if validation fails
-					}
-				}
-
-			});
-		});
 </script>

@@ -8,8 +8,8 @@ namespace InsightApp.Controllers
     /// </summary>
     public class ValidationController : Controller
     {
-        private InsightUpdateCvgs2Context _SVGSDbContext;
-        public ValidationController(InsightUpdateCvgs2Context SVGSDbContext)
+        private SVGSDbContext _SVGSDbContext;
+        public ValidationController(SVGSDbContext SVGSDbContext)
         {
             _SVGSDbContext = SVGSDbContext;
         }

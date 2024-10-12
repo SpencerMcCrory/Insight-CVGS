@@ -7,21 +7,17 @@ namespace InsightApp.Components
 {
     public class MemberAddressesViewComponent : ViewComponent
     {
-        private InsightUpdateCvgs2Context _SVGSDbContext;
-        public MemberAddressesViewComponent(InsightUpdateCvgs2Context sVGSDbContext)
+        private SVGSDbContext _SVGSDbContext;
+        public MemberAddressesViewComponent(SVGSDbContext sVGSDbContext)
         {
             _SVGSDbContext = sVGSDbContext;
         }
 
         public async Task <IViewComponentResult> InvokeAsync(int memberId)
         {
-            var countries = await _SVGSDbContext.Country.ToListAsync();
-            var provinces = await _SVGSDbContext.Province.ToListAsync();
             MemberAddressesViewModel memberAddressesViewModel = new MemberAddressesViewModel()
             {
-                MemberId = memberId,
-                Countries = countries,
-                Provinces = provinces
+                MemberId = memberId
             };
             
             var memberAddress = await _SVGSDbContext.AddressTables

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsightApp.Entities;
@@ -24,9 +23,9 @@ public partial class Employee
 
     [StringLength(36)]
     [Unicode(false)]
-    public Guid AccountId { get; set; }
+    public string AccountId { get; set; } = null!;
 
     [ForeignKey("AccountId")]
     [InverseProperty("Employee")]
-    public virtual Account Account { get; set; } = null!;
+    public virtual AspNetUser Account { get; set; } = null!;
 }

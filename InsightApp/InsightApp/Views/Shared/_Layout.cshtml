@@ -26,19 +26,34 @@
                 <div class ="d-inline-flex flex-row align-items-center">
                     <div class="navbar-collapse collapse d-sm-inline-flex ">
                         <!-- Right Icons and Links -->
-                        
+                        @if (ViewBag.Page == "MemberPortal")
+                        {
                             <div class="d-flex align-items-center">
                                 <!-- Icons Group -->
                                 <div class="icon-group d-flex align-items-center">
-                                    @if (ViewBag.Page == "MemberPortal")
+                                    <a class="navbar-brand" asp-area="" asp-controller="" asp-action=""><span class="icon" style="margin-right:30px;">❤️</span></a>  <!-- Favorite -->
+                                    <a class="navbar-brand" asp-area="" asp-controller="" asp-action=""><span class="icon" style="margin-right:10px;">🛒</span></a>  <!-- Shopping Cart -->
+                                    @if(ViewBag.Account == "Guest")
                                     {
-                                    <a class="navbar-brand" asp-controller="Member" asp-action="MemberPortal"><span class="icon" style="margin-right:30px;">❤️</span></a>  <!-- Favorite -->
-                                    <a class="navbar-brand" asp-controller="Member" asp-action="MemberPortal"><span class="icon" style="margin-right:10px;">🛒</span></a>  <!-- Shopping Cart -->
-                                    }   
-                                    <partial name="_LoginPartial" />
+                                        <a class="navbar-brand" asp-area="" asp-controller="Member" asp-action="MemberPortal"><span class="icon">👤 Log in | Register </span></a>  <!-- User Account -->
+                                    }
+                                    @if (ViewBag.Account == "Member")
+                                    {
+                                        @* <a class="navbar-brand" asp-area="" asp-controller="Member" asp-action="MemberPortal"><span class="icon">👤 My Account </span></a>  <!-- User Account --> *@
+                                        <ul >
+                                            <li>
+                                                <a ><span class="icon">👤 My Account </span></a>
+                                                <ul >
+                                                    <li><a>My Profile</a></li>
+                                                    <li ><a >Orders</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    }
+                                    
                                 </div>
                             </div>
-                        
+                        }
 
                         @* <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item">
