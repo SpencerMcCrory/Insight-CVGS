@@ -23,17 +23,17 @@ INSERT INTO LanguageTable VALUES ('French');
 
 
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (1,'Salma123','member5@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (1,'Salma123','salma123@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (2,'SalmaEssam','salma@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (2,'SalmaEssam','salma@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (3,'Ali123','ali@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (3,'Ali123','ali@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (4,'Omar123','omar@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (4,'Omar123','omar@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (5,'Aya123','aya@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (5,'Aya123','aya@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (6,'Hazem123','hazem@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (6,'Hazem123','hazem@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 
 
 -- Employee table
@@ -107,7 +107,7 @@ INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
 
 -- GameEvent table
 INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, AddressId) VALUES 
-('KW GamesCom', 'KW GamesCom details', '2025-02-30', '13:00', '14:00', 2, 1); --OnSite Event 
+('KW GamesCom', 'KW GamesCom details', '2025-02-15', '13:00', '14:00', 2, 1); --OnSite Event 
 INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
 ('Tokyo Game Show', 'Tokyo Game Show details', '2024-12-30', '14:00', '16:00', 1, 'https://www.example.com/events/event2');
 INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
