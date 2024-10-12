@@ -1,17 +1,25 @@
 using InsightApp.Entities;
 using Microsoft.EntityFrameworkCore;
-//using InsightApp.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using AspNetCore.ReCaptcha;
+using InsightApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddReCaptcha(options =>
+{
+    options.SiteKey = builder.Configuration["GoogleReCAPTCHA:SiteKey"];
+    options.SecretKey = builder.Configuration["GoogleReCAPTCHA:SecretKey"];
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var connStr = builder.Configuration.GetConnectionString("SVGSContext");
+string appPassword = builder.Configuration["EmailServiceConfig:AppPassword"];
 
+builder.Services.AddTransient<EmailService>();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddDbContext<InsightUpdateCvgs2Context>(options => options.UseSqlServer(connStr));
-
 builder.Services.AddDefaultIdentity<Account>(options =>
 {
     options.SignIn.RequireConfirmedAccount = true;

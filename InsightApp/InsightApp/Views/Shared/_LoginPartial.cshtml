@@ -1,13 +1,21 @@
 @using Microsoft.AspNetCore.Identity
+@using InsightApp.Entities
 
 @inject SignInManager<Account> SignInManager
 @inject UserManager<Account> UserManager
+@inject InsightUpdateCvgs2Context DbContext
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+
+    string? accountId = User.Identity.IsAuthenticated ? @UserManager.GetUserId(User) : "";
+    int memberId = 0;
+    Member? currentMember = DbContext.Members.FirstOrDefault(m => m.AccountId == new Guid(accountId));
+    memberId = currentMember.MemberId;
+
+        <li class="nav-item">
+        <a id="manage" class="nav-link text-dark" asp-action="MemberProfile" asp-route-id="@memberId" title="Manage">@UserManager.GetUserName(User)</a>
     </li>
     <li class="nav-item">
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

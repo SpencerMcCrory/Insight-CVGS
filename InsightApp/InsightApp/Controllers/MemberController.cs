@@ -2,8 +2,6 @@
 using InsightApp.Entities;
 using InsightApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace InsightApp.Controllers
 {
@@ -46,7 +44,7 @@ namespace InsightApp.Controllers
 
 
             //if same address checked copy the main properies will be the same
-            if (memberAddressesViewModel.IsAdressesSame == true) 
+            if (memberAddressesViewModel.IsAdressesSame == true)
             {
                 shippingAdr.Unit=memberAdr.Unit;
                 shippingAdr.StreetNumber=memberAdr.StreetNumber;
@@ -92,7 +90,7 @@ namespace InsightApp.Controllers
         [HttpPost("/edit-profile-requests")]
         public async Task<IActionResult> EditMemberProfileId( MemberProfileViewModel memberProfileViewModel)
         {
-
+            memberProfileViewModel.ActiveMember.Account = _SVGSDbContext.Accounts.FirstOrDefault(a => a.Id == memberProfileViewModel.ActiveMember.AccountId);
             if (ModelState.IsValid)
             {
 

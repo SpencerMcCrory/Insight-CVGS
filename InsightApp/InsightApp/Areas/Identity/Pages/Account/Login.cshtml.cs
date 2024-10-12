@@ -57,6 +57,8 @@ namespace InsightApp.Areas.Identity.Pages.Account
         [TempData]
         public string ErrorMessage { get; set; }
 
+        public string LoginType { get; set; }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -87,7 +89,7 @@ namespace InsightApp.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string loginType, string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -115,11 +117,17 @@ namespace InsightApp.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 Entities.Account userAccount = await _userManager.FindByEmailAsync(Input.Email);
+                if (userAccount == null)
+                {
+                    _logger.LogInformation("User account not found");
+                    ModelState.AddModelError(string.Empty, "Account not found. Please sign up or retry with another account.");
+                    return Page();
+                }
                 var result = await _signInManager.PasswordSignInAsync(userAccount.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return LocalRedirect("~/Member/MemberPortal");
                 }
                 if (result.RequiresTwoFactor)
                 {

@@ -1,4 +1,7 @@
-﻿@model MemberProfileViewModel
+﻿@using InsightApp.Entities
+@model MemberProfileViewModel
+@inject InsightUpdateCvgs2Context dbContext
+
 @section scripts {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
@@ -68,8 +71,11 @@
             </div>
         </div>
 
+        @{
+            //@Model.ActiveMember.Account = dbContext.Accounts.FirstOrDefault(a => a.Id == @Model.ActiveMember.AccountId);
+        }
         <input type="hidden" asp-for="ActiveMember.MemberId" /> @*to return the id with the object*@
-        <input type="hidden" asp-for="ActiveMember.AccountId" /> @*to return the id with the object*@
+        <input type="hidden" asp-for="ActiveMember.AccountId" value="@Model.ActiveMember.AccountId.ToString()"/> @*to return the id with the object*@
         
         <!-- Save changes button-->
         <div class=" flex-row d-flex ">

@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using InsightApp.Entities;
+using AspNetCore.ReCaptcha;
+using System.Security.Cryptography.X509Certificates;
 
 namespace InsightApp.Areas.Identity.Pages.Account
 {
@@ -30,13 +32,19 @@ namespace InsightApp.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<Entities.Account> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly InsightUpdateCvgs2Context _insightUpdateCvgs2Context;
+        private readonly IReCaptchaService _reCaptchaService;
+        private readonly IConfiguration _configuration;
 
         public RegisterModel(
             UserManager<Entities.Account> userManager,
             IUserStore<Entities.Account> userStore,
             SignInManager<Entities.Account> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            InsightUpdateCvgs2Context dbContext,
+            IReCaptchaService reCaptchaService,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +52,9 @@ namespace InsightApp.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _insightUpdateCvgs2Context = dbContext;
+            _reCaptchaService = reCaptchaService;
+            _configuration = configuration;
         }
 
         /// <summary>
@@ -64,6 +75,8 @@ namespace InsightApp.Areas.Identity.Pages.Account
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
+
+        public string CaptchaSiteKey {  get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -107,16 +120,26 @@ namespace InsightApp.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            this.CaptchaSiteKey = _configuration["GoogleReCAPTCHA:SiteKey"];
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            this.CaptchaSiteKey = _configuration["GoogleReCAPTCHA:SiteKey"];
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
+                var captchaResponse = Request.Form["g-recaptcha-response"];
+                bool recaptchaValid = await _reCaptchaService.VerifyAsync(captchaResponse);
+                if (!recaptchaValid)
+                {
+                    ModelState.AddModelError(string.Empty, "Captcha validation failed, please try again");
+                    return Page();
+                }
+
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
@@ -127,7 +150,14 @@ namespace InsightApp.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await _userManager.GetUserIdAsync(user);
+                    string userId = await _userManager.GetUserIdAsync(user);
+                    Member newMember = new Member
+                    {
+                        AccountId = new Guid(userId)
+                    };
+                    _insightUpdateCvgs2Context.Members.Add(newMember);
+                    await _insightUpdateCvgs2Context.SaveChangesAsync();
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
