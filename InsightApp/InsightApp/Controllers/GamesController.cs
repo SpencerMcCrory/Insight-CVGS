@@ -50,14 +50,14 @@ namespace InsightApp.Controllers
             }
             else
             {
-                //will return only the games that (isDeleted=false) && start with SearchText
-                // Filter games based on the search text (search by game name or category)
-                var allGames = await _SVGSDbContext.Games
+				//will return only the games that (isDeleted=false) && Contains SearchText
+				// Filter games based on the search text (search by game name or category)
+				var allGames = await _SVGSDbContext.Games
                     .Include(g => g.GameDetailsCategories)
                         .ThenInclude(gdc => gdc.Category)
                     .Where(g => g.IsDeleted == false &&
-                                (g.GameName.StartsWith(gamesListModel.SearchText) || // Search by game name
-                                 g.GameDetailsCategories.Any(gdc => gdc.Category.CategoryName.StartsWith(gamesListModel.SearchText)))) // Search by category name
+                                (g.GameName.Contains(gamesListModel.SearchText) || // Search by game name
+                                 g.GameDetailsCategories.Any(gdc => gdc.Category.CategoryName.Contains(gamesListModel.SearchText)))) // Search by category name
                     .Select(g => new GamesCategoriesViewModel
                     {
                         GameId = g.GameId,

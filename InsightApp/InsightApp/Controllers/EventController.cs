@@ -38,7 +38,7 @@ namespace InsightApp.Controllers
                 var allEvents = await _SVGSDbContext.GameEvents
                     .Include(e => e.EvType)
                     .Include(e => e.Address)
-                    .Where(e => e.IsDeleted == false && e.EventName.StartsWith(eventListModel.SearchText))
+                    .Where(e => e.IsDeleted == false && (e.EventName.Contains(eventListModel.SearchText) || e.EvType.EvTypeName.Contains(eventListModel.SearchText)))
                     .OrderBy(e => e.EventName).ToListAsync();
 
                 eventListModel.EventList = allEvents;
