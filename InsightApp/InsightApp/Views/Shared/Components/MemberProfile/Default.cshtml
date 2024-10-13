@@ -37,11 +37,12 @@
             <!-- Form Group (phone number)-->
             <div class="col-md-6">
                 <label class="small mb-1" for="inputPhone">Phone number</label>
-                <input class="form-control" id="inputPhone"   type="tel" asp-for="ActiveMember.PhoneNumber">
+                <input class="form-control" id="inputPhone"  type="tel" asp-for="ActiveMember.PhoneNumber">
+                <span asp-validation-for="ActiveMember.PhoneNumber" class="text-danger"></span>
             </div>
             <!-- Form Group (birthday)-->
             <div class="col-md-6">
-                <label class="small mb-1" for="inputBirthday">Birthday</label>
+                <label class="small mb-1" for="inputBirthday">Date of birth</label>
                 <input type="date" class="form-control" id="inputBirthday"   asp-for="ActiveMember.Dob">
                 <span asp-validation-for="ActiveMember.Dob" class="text-danger"></span>
             </div>

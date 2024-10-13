@@ -40,6 +40,7 @@ public partial class Member
 
     [StringLength(20)]
     [Unicode(false)]
+    [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "'123-123-1234' is the accepted phone number format.")]
     public string? PhoneNumber { get; set; } //not needed, stored in Account
 
     private Guid _accountId;
