@@ -15,15 +15,12 @@ namespace InsightApp.Components
 
         public async Task<IViewComponentResult> InvokeAsync(int memberId)
         {
-            var member = await  _SVGSDbContext.Members
-                .FirstOrDefaultAsync(m => m.MemberId == memberId);
-            var account = await _SVGSDbContext.Accounts
-                .FirstOrDefaultAsync(a => a.Id == member.AccountId);
-            
+            var member = await _SVGSDbContext.Members
+                .Where(e => e.MemberId == memberId).FirstOrDefaultAsync();
+
             MemberProfileViewModel memberProfileViewModel = new MemberProfileViewModel()
             {
                 ActiveMember = member,
-                ActiveMemberUsername = account.UserName,
             };
 
             return View(memberProfileViewModel);
