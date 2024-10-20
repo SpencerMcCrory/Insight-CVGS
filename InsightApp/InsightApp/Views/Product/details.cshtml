@@ -1,0 +1,85 @@
+﻿<div class="breadcrumbsPortal">
+    <!------Breadcrumb------>
+    <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Member" asp-action="MemberPortal">Home</a></li>
+            <li class="breadcrumb-item"><a>Games</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Mario</li>
+        </ol>
+    </nav>
+</div>
+<div class="container">
+    <div class="gameHeader">
+        <!-- Game Image -->
+			<img src="~/Imgs/Games/Super Mario.jpg" alt="Game Cover Image" class="game-image">
+
+        <!-- Game Information -->
+        <div class="col-md-6 gameDetails">
+            <div>
+                <div class="game-title">Game Title: <span id="game-title">Super Adventure</span></div>
+                <div class="game-description">
+                    <p id="game-description">
+                        Super Adventure is an exciting RPG where players embark on a journey through mystical lands filled with dangerous enemies, hidden treasures, and epic quests.
+                    </p>
+                </div>
+                <!-- Game Rating -->
+                <div class="rating">
+                    Rating: <span id="game-rating">★★★★☆</span> (4.5/5)
+                </div>
+            </div>
+            <div>
+                <!-- Action Buttons -->
+                <div class="actions">
+                    <button class="btn-add-cart" onclick="addToCart()">Add to Cart</button>
+                    <button class="btn-add-favorite" onclick="addToFavorites()">Add to Favorites</button>
+                </div>
+            </div>
+            <div class="gameSpecifications">
+                <p>Details:</p>
+                <ul>
+                    <li> Genre:  <span>CategoryName</span></li>
+                    <li> Platform:  <span>Platform name</span></li>
+                    <li> Language:  <span>English ,French</span></li>
+                </ul>
+
+            </div>
+           
+        </div>
+    </div>
+
+    <!-- Empty Placeholder Images -->
+    <div class="recommendedGames">
+        <div class="col-12">
+            <h4>Recommended games</h4>
+        </div>
+        <div >
+            <div class="scroll-container">
+                <img src="~/Imgs/Games/Minecraft.jpg" alt="Image 1">
+
+                <!----==========  DELETE THIS PART AFTER RETIVING THE RECOMENDED ITEMS .... its just demo============---->
+                <img src="~/Imgs/Games/Sonic Mania.jpg" alt="Image 2">
+                <img src="~/Imgs/Games/Monopoly.jpg" alt="Image 3">
+                <img src="~/Imgs/Games/Minecraft.jpg" alt="Image 4">
+                <img src="~/Imgs/Games/Minecraft.jpg" alt="Image 1">
+                <img src="~/Imgs/Games/Sonic Mania.jpg" alt="Image 2">
+                <img src="~/Imgs/Games/Monopoly.jpg" alt="Image 3">
+                <img src="~/Imgs/Games/Minecraft.jpg" alt="Image 4">
+                <!----==========  DELETE THIS PART AFTER RETIVING THE RECOMENDED ITEMS .... its just demo============---->
+
+            </div>
+        </div>
+		
+    </div>
+</div>
+
+<script>
+    function addToCart() {
+        // Simulate adding the game to the cart
+        alert("The game has been added to your cart!");
+    }
+
+    function addToFavorites() {
+        // Simulate adding the game to the favorites
+        alert("The game has been added to your favorites!");
+    }
+</script>
