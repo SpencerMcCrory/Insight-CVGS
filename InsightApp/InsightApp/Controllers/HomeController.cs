@@ -13,11 +13,13 @@ namespace InsightApp.Controllers
             _logger = logger;
         }
 
+        [HttpGet("Home/AdminPanel")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult FirstPage()
         {
             return View();

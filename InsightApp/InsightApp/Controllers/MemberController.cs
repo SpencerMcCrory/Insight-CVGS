@@ -12,14 +12,19 @@ namespace InsightApp.Controllers
         {
             _SVGSDbContext = sVGSDbContext;
         }
-        public ActionResult MemberPortal()
+
+        //-----Portal home page ------------
+        [HttpGet("Portal")]
+        public IActionResult MemberPortal()
         {
             ViewBag.Page = "MemberPortal";
             ViewBag.Account = "Member";
             return View("MemberPortal");
         }
-        
-        [HttpGet("/members/{id}")]
+
+
+        //-----Portal My profile ------------
+        [HttpGet("Portal/profile/{id}")]
         public async Task<ActionResult> MemberProfile(int id)
         {
             ProfileViewModel profileViewModel = new ProfileViewModel();
@@ -31,7 +36,7 @@ namespace InsightApp.Controllers
             return View("Profile", profileViewModel);
         }
 
-        [HttpPost("/add-edit-address-requests")]
+        [HttpPost("Portal/add-edit-address-requests")]
         public async Task<IActionResult> AddAddressesById(MemberAddressesViewModel memberAddressesViewModel)
         {
             //----Member Address------
@@ -87,7 +92,7 @@ namespace InsightApp.Controllers
             
         }
 
-        [HttpPost("/edit-profile-requests")]
+        [HttpPost("Portal/edit-profile-requests")]
         public async Task<IActionResult> EditMemberProfileId( MemberProfileViewModel memberProfileViewModel)
         {
             memberProfileViewModel.ActiveMember.Account = _SVGSDbContext.Accounts.FirstOrDefault(a => a.Id == memberProfileViewModel.ActiveMember.AccountId);
@@ -116,25 +121,45 @@ namespace InsightApp.Controllers
             
         }
 
-        [HttpPost("/createMember")]
-        public async Task<IActionResult> CreateMember(string displayName, Guid accountId)
+
+        //-----Portal wishlist ------------
+        [HttpGet("Portal/wish-list")]
+        public IActionResult wishlist()
         {
-            Member newMember = new Member()
-            {
-                DisplayName = displayName,
-                AccountId = accountId
-            };
+            WishlistViewModel wishlistViewModel = new WishlistViewModel();
+            
+            //Get all item from Wishlist table include Game table ==> wishlistViewModel.WishlistItems  & wishlistViewModel.MemberId
 
-            // it's valid so we want to update the existing Members in the DB:
-            await _SVGSDbContext.Members.AddAsync(newMember);
-            await _SVGSDbContext.SaveChangesAsync();
+            return View("wishlist", wishlistViewModel);
+        }
 
-            var lastMember = _SVGSDbContext.Members
-                                 .OrderByDescending(m => m.MemberId)
-                                 .FirstOrDefault();
+        [HttpPost("Portal/wish-list/delete-requests/{gameId}/{memberId}")]
+        public async Task<IActionResult> DeleteWhislistItem(int gameId, int memberId)
+        {
 
-            return RedirectToAction("MemberProfile", "Member", new { id = lastMember.MemberId });
+            // from Wishlist table, Delete the record where MemberId=memberId AND  GameId=gameId
 
+            return RedirectToAction("wishlist", "Member");
+
+        }
+
+
+        //-----Portal owned games ------------
+        [HttpGet("Portal/myGames")]
+        public IActionResult OwnedGames()
+        {
+            OwnedGamesViewModel ownedGamesViewModel = new OwnedGamesViewModel();
+
+            //Get all item from OwnedGame table include Game table ==> ownedGamesViewModel.MyGamesItems  & ownedGamesViewModel.MemberId
+
+            return View("OwnedGames", ownedGamesViewModel);
+        }
+
+        [HttpGet("Portal/myGames/id")]
+        public IActionResult MyGame()
+        {
+          
+            return View("MyGame");
         }
 
 

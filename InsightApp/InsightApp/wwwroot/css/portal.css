@@ -48,7 +48,7 @@
     }
 
 .btn-add-cart {
-    background-color: #28a745;
+    background-color:rgb(80,140,155);
     color: #fff;
 }
 
@@ -137,7 +137,7 @@
     align-items: start; /* align-items-center */
 }
 
-/*==========================================*/
+/*==================Products list========================*/
 
 /* Container for the grid */
 .productsContainer {
@@ -205,10 +205,11 @@
 }
 
     .btnView:hover {
-        background-color: #218838;
+        background-color: goldenrod;
     }
 
-    /*=====================Cart============================*/
+/*=====================Cart============================*/
+
 /* Cart container */
 .cart-container {
     max-width: 90%;
@@ -307,10 +308,11 @@
 }
 
     .checkout-btn:hover {
-        background-color: #0056b3;
+        background-color: goldenrod;
     }
 
-    /*=======================Check out====================================*/
+/*=======================Check out====================================*/
+
 /* Checkout container */
 .checkout-container {
     display: flex; /* d-flex */
@@ -374,7 +376,7 @@
 }
 
     .checkout-btn2:hover {
-        background-color: #218838;
+        background-color: goldenrod;
     }
 
 .side{
@@ -389,3 +391,189 @@
         background-color:rgb(0, 0, 0, 0.1);
         padding:8px;
     }
+
+/*=====================Wish list============================*/
+
+.wishlist-container {
+    max-width: 90%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.product-item {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+    .product-item:last-child {
+        border-bottom: none;
+    }
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+    .product-info img {
+        width: 70px;
+        height: auto;
+        border-radius: 8px;
+        margin-right: 20px;
+    }
+
+    .product-info h2 {
+        font-size: 18px;
+        margin: 0;
+        color: #333;
+    }
+
+
+.cart-btn {
+    background-color: rgb(80,140,155);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .cart-btn:hover {
+        background-color: goldenrod;
+    }
+
+.trash-icon {
+    font-size: 20px; 
+    color:black;
+}
+
+/*==============================My Games==========================================*/
+.myGames-item {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+    .myGames-item:last-child {
+        border-bottom: none;
+    }
+
+.myGames-btn {
+    width:180px;
+    background-color: rgb(80,140,155);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .myGames-btn:hover {
+        background-color:goldenrod;
+    }
+
+.MyProduct-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.MyProduct h1 {
+    text-align: center;
+    color: #333;
+}
+
+.MyProduct-info {
+    text-align: center;
+}
+
+.MyProduct-info img {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+    .MyProduct-info h2 {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top:5px;
+}
+
+    .rating input {
+        display: none;
+    }
+
+    .rating label {
+        font-size: 30px;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .rating input:checked ~ label {
+        color: gold;
+    }
+
+    .rating label:hover,
+    .rating label:hover ~ label {
+        color: gold;
+    }
+
+/* Inverse order for stars */
+.rating {
+    flex-direction: row-reverse;
+}
+
+.review-form {
+    margin-top: 20px;
+}
+
+    .review-form textarea {
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        resize: none;
+        margin-bottom:10px;
+    }
+
+.reviewSubmit-btn {
+    background-color: rgb(80,140,155);
+    color: #fff;
+    font-weight:bolder;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 200px;
+    box-shadow: 0 6px 12px rgb(117, 117, 113);
+}
+
+    .reviewSubmit-btn:hover {
+        background-color: goldenrod;
+    }
+

@@ -42,4 +42,10 @@ public partial class Game
 
     [InverseProperty("Game")]
     public virtual ICollection<WishList> WishLists { get; set; } = new List<WishList>();
+    
+    [InverseProperty("Game")]
+    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+
+    [InverseProperty("Game")]
+    public virtual ICollection<OwnedGame> OwnedGames { get; set; } = new List<OwnedGame>();
 }

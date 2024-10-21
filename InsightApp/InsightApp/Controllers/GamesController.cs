@@ -21,8 +21,8 @@ namespace InsightApp.Controllers
         }
 
         // GET: Games
-        [HttpGet]
-        [HttpPost]
+        [HttpGet("AdminPanel/Games")]
+        [HttpPost("AdminPanel/Games")]
         public async Task<IActionResult> List(GamesListModel gamesListModel)
         {
             if (gamesListModel.SearchText == null)
@@ -82,6 +82,7 @@ namespace InsightApp.Controllers
 
 
         // GET: Games/Details/5
+        [HttpGet("AdminPanel/Games/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -96,14 +97,14 @@ namespace InsightApp.Controllers
 
 
         // GET: Games/New
-        [HttpGet("Games/New")]
+        [HttpGet("AdminPanel/Games/add-request")]
         public async Task<IActionResult> AddNewGame()
         {
             // Call EditGame with null to indicate a new game
             return await EditGame(null);
         }
 
-        [HttpGet("Edit/{id}")]
+        [HttpGet("AdminPanel/Games/{id}/edit-request")]
         public async Task<IActionResult> ViewEditGame(int id)
         {
             // Call EditGame with null to indicate a new game
@@ -349,7 +350,7 @@ namespace InsightApp.Controllers
         }
 
         //---------------------------------------Hard deleting a game from database---------------------------------
-        //[HttpGet("Games/Delete/{id}")]
+        //[HttpGet("AdminPanel/Games/Delete/{id}")]
         //public async Task<IActionResult> HardDeleteConfirmed(int id)
         //{
         //    //----This is the hard delete version
@@ -395,7 +396,7 @@ namespace InsightApp.Controllers
         //}
 
         // POST: soft deleting game
-        [HttpPost("Games/Delete/{id}"), ActionName("Delete")]
+        [HttpPost("AdminPanel/Games/Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

@@ -81,4 +81,10 @@ public partial class Member
 
     [InverseProperty("Member")]
     public virtual ICollection<WishList> WishLists { get; set; } = new List<WishList>();
+
+    [InverseProperty("Member")]
+    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+
+    [InverseProperty("Member")]
+    public virtual ICollection<OwnedGame> OwnedGames { get; set; } = new List<OwnedGame>();
 }

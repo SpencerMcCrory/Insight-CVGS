@@ -11,24 +11,25 @@ namespace InsightApp.Controllers
             _SVGSDbContext = sVGSDbContext;
         }
 
-        [HttpGet("/product-details")]
+        [HttpGet("Portal/product-details")]
         public IActionResult details()
         {
             return View();
         }
-        [HttpGet("/products")]
+        
+        [HttpGet("Portal/products")]
         public IActionResult products()
         {
             return View();
         }
 
-        [HttpGet("/cart")]
+        [HttpGet("Portal/cart")]
         public IActionResult cart()
         {
             return View();
         }
 
-        [HttpGet("/cart/checkout")]
+        [HttpGet("Portal/cart/checkout")]
         public IActionResult checkout()
         {
             return View();

@@ -1,0 +1,59 @@
+﻿<div class="breadcrumbsPortal">
+    <!------Breadcrumb------>
+    <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Member" asp-action="MemberPortal">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="" asp-action="">My Games</a></li>
+            <li class="breadcrumb-item active" aria-current="page">--GameName--</li>
+        </ol>
+    </nav>
+</div>
+
+
+<div class="MyProductt-container">
+
+    <!-- Product Information -->
+    <div class="MyProduct-info">
+        <img src="https://via.placeholder.com/150" alt="Product Image">
+        <h2>Product Name</h2>
+    </div>
+
+    <!-- Star Rating System -->
+    <form class="rating">
+        <input type="radio" name="star" id="star1" value="1">
+        <label for="star1">&#9733;</label>
+
+        <input type="radio" name="star" id="star2" value="2">
+        <label for="star2">&#9733;</label>
+
+        <input type="radio" name="star" id="star3" value="3">
+        <label for="star3">&#9733;</label>
+
+        <input type="radio" name="star" id="star4" value="4">
+        <label for="star4">&#9733;</label>
+
+        <input type="radio" name="star" id="star5" value="5">
+        <label for="star5">&#9733;</label>
+    </form>
+
+    <!-- Review Form -->
+    <form class="review-form">
+        <textarea placeholder="Write your review here..."></textarea>
+        <button type="submit" class="reviewSubmit-btn">Submit Review</button>
+    </form>
+</div>
+
+<script>
+    // Optional: You can add JS to handle form submission, validation, etc.
+    document.querySelector('.review-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const rating = document.querySelector('input[name="star"]:checked');
+        const reviewText = document.querySelector('textarea').value;
+
+        if (rating && reviewText.trim()) {
+            alert(`Thank you for your review!\nRating: ${rating.value} stars\nReview: ${reviewText}`);
+        } else {
+            alert("Please select a star rating and write a review.");
+        }
+    });
+</script>

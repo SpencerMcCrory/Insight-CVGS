@@ -16,7 +16,7 @@ namespace InsightApp.Controllers
         }
 
 
-        [HttpGet("/events")]
+        [HttpGet("AdminPanel/events")]
         public async Task<IActionResult> GetAllEvents(EventListModel eventListModel)
         {
 
@@ -48,14 +48,14 @@ namespace InsightApp.Controllers
         }
 
         
-        [HttpPost("/events/searchResult")]
+        [HttpPost("AdminPanel/events/searchResult")]
         public async Task<IActionResult> GetsearchResultEvents(EventListModel eventListModel)
         {
             return RedirectToAction("GetAllEvents", "Event", new { EventList = eventListModel.EventList, SearchText = eventListModel.SearchText });
         }
 
         
-        [HttpGet("/events/add-request")]
+        [HttpGet("AdminPanel/events/add-request")]
         public async Task<IActionResult> GetAddEventRequest()
         {
             EventViewModel eventViewModel = new EventViewModel()
@@ -68,7 +68,7 @@ namespace InsightApp.Controllers
         }
 
         
-        [HttpPost("/events")]
+        [HttpPost("AdminPanel/events")]
         public async Task<IActionResult> AddNewEvent(EventViewModel eventViewModel)
         {            
             if (ModelState.IsValid)
@@ -90,7 +90,7 @@ namespace InsightApp.Controllers
         }
 
         
-        [HttpGet("/events/{id}")]
+        [HttpGet("AdminPanel/events/{id}")]
         public async Task<IActionResult> GetEventById(int id)
         {
             var gameEvent = await _SVGSDbContext.GameEvents
@@ -109,7 +109,7 @@ namespace InsightApp.Controllers
         }
 
         
-        [HttpGet("/events/{id}/edit-request")]
+        [HttpGet("AdminPanel/events/{id}/edit-request")]
         public async Task<IActionResult> GetEditRequestById(int id)
         {
             var gameEvent = await _SVGSDbContext.GameEvents
@@ -127,7 +127,7 @@ namespace InsightApp.Controllers
         }
 
         
-        [HttpPost("/events/edit-requests")]
+        [HttpPost("AdminPanel/events/edit-requests")]
         public async Task<IActionResult> ProcessEditRequest(EventViewModel eventViewModel)
         {
             if (ModelState.IsValid)
@@ -159,7 +159,7 @@ namespace InsightApp.Controllers
         }
 
         
-        [HttpGet("/events/{id}/delete-requests")]
+        [HttpGet("AdminPanel/events/{id}/delete-requests")]
         public async Task<IActionResult> ProcessDeleteRequest(int id)
         {
             //actually we are not deleting the event record, we only update "isDeleted" to true without saving any changes that happened in the form

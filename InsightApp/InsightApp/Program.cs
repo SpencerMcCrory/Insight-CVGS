@@ -47,9 +47,16 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Redirect from root to /Home/FirstPage
+app.MapGet("/", async context =>
+{
+    context.Response.Redirect("/Home/FirstPage");
+});
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=FirstPage}/{id?}");
+
 app.MapRazorPages();
 
 app.Run();
