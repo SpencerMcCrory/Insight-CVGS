@@ -25,18 +25,16 @@
     color: #555;
 }
 
-.rating {
+.ratingProductDetails {
     font-size: 18px;
     margin: 10px 0;
 }
 
-    .rating span {
-        color: gold;
-        font-size: 24px;
-    }
 
 .actions {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
     .actions button {
@@ -46,6 +44,7 @@
         cursor: pointer;
         font-size: 16px;
     }
+
 
 .btn-add-cart {
     background-color:rgb(80,140,155);
@@ -577,3 +576,38 @@ h1 {
         background-color: goldenrod;
     }
 
+
+/*==================profile========================*/
+.ProfileContainer {
+    display: flex;
+    flex-direction: row;
+
+}
+.tabs {
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.tab {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+    .tab.active {
+        background-color: rgb(80,140,155);
+        color: white;
+    }
+
+.content {
+    display: none;
+}
+
+    .content.active {
+        display: block;
+    }

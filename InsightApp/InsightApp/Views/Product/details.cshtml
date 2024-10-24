@@ -23,15 +23,27 @@
                     </p>
                 </div>
                 <!-- Game Rating -->
-                <div class="rating">
-                    Rating: <span id="game-rating">★★★★☆</span> (4.5/5)
+                <div class="ratingProductDetails">
+                    Rating: <span style="color:gold; font-size:18px;" id="game-rating">★★★★☆</span> (4.5/5)
+                </div>
+            </div>
+
+            <div>
+                <!-- Action Buttons -->
+                <div class="actions row">
+                    <button class="btn-add-cart col-md-4" onclick="addToCart()">Add to Cart 🛒</button>
+                    <div class="col-md-4 align-self-center">
+						<select  class="form-select" aria-label="Default select example">
+							<option selected value="1">Online</option>
+							<option value="2">Physical</option>
+						</select>
+                    </div>
                 </div>
             </div>
             <div>
                 <!-- Action Buttons -->
-                <div class="actions">
-                    <button class="btn-add-cart" onclick="addToCart()">Add to Cart 🛒</button>
-                    <button class="btn-add-favorite" onclick="addToFavorites()">Add to Favorites ❤️</button>
+                <div class="actions row">
+                    <button class="btn-add-favorite col-md-4" onclick="addToFavorites()">Add to Favorites ❤️</button>
                 </div>
             </div>
             <div class="gameSpecifications">

@@ -25,7 +25,7 @@ namespace InsightApp.Controllers
 
         //-----Portal My profile ------------
         [HttpGet("Portal/profile/{id}")]
-        public async Task<ActionResult> MemberProfile(int id)
+        public async Task<ActionResult> MemberProfile(int id , string? activeTab = "profileTab")
         {
             ProfileViewModel profileViewModel = new ProfileViewModel();
             profileViewModel.ActiveMember = new Member();           
@@ -88,7 +88,7 @@ namespace InsightApp.Controllers
 
             }
 
-            return RedirectToAction("MemberProfile", "Member", new { id = memberAddressesViewModel.MemberId });
+            return RedirectToAction("MemberProfile", "Member", new { id = memberAddressesViewModel.MemberId, activeTab = "addressTab" });
             
         }
 
@@ -105,7 +105,7 @@ namespace InsightApp.Controllers
 
                 TempData["LastActionMessage"] = $"The Profile has been updated.";
 
-                return RedirectToAction("MemberProfile", "Member", new { id = memberProfileViewModel.ActiveMember.MemberId });
+                return RedirectToAction("MemberProfile", "Member", new { id = memberProfileViewModel.ActiveMember.MemberId, activeTab = "profileTab" });
             }
             else
             {
@@ -160,6 +160,28 @@ namespace InsightApp.Controllers
         {
           
             return View("MyGame");
+        }
+
+
+        [HttpGet("Portal/NewProfile")]
+        public IActionResult NewProfile()
+        {
+
+            return View("NewProfile");
+        }
+
+
+        [HttpGet("Portal/NewProfile/6")]
+        public async Task<ActionResult> MemberProfile2(int id)
+        {
+            id = 6;
+            ProfileViewModel profileViewModel = new ProfileViewModel();
+            profileViewModel.ActiveMember = new Member();
+            profileViewModel.ActiveMember.MemberId = id;
+            ViewBag.Page = "MemberPortal";
+            ViewBag.Account = "Member";
+
+            return View("NewProfile", profileViewModel);
         }
 
 

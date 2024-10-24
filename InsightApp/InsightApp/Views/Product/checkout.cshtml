@@ -1,4 +1,11 @@
-﻿<div class="breadcrumbsPortal">
+﻿
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+<div class="breadcrumbsPortal">
     <!------Breadcrumb------>
     <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -14,7 +21,7 @@
     <div class="col-6 ">
         <!-- User Information -->
         <div class="side">
-            <h6>User Information</h6>
+            <h6>Customer Information</h6>
             <div class="row">
                 <div class="col-2"><label class="required-label" >Name:</label></div>
                 <div class="col-10"><input type="text"  required></div>
@@ -48,7 +55,11 @@
     </div>
     <!-- Shipping Address -->
     <div class="col-6 side">
-        <h6>Shipping Address</h6>
+        <h6>Address and shipping information</h6>
+        <!-------Addresses view component---------->
+        <vc:member-addresses member-id="6" />   @* Model.ActiveMember.MemberId *@
+
+        @* <h6>Shipping Address</h6>
         <div class="row">
             <div class="col-3"><label for="unit" class="required-label">unit:</label></div>
             <div class="col-9"><input type="text" id="unit" required></div>
@@ -76,7 +87,7 @@
         <div class="row">
             <div class="col-3"><label for="country" class="required-label">Country:</label></div>
             <div class="col-9"><input type="text" id="country" required></div>
-        </div>
+        </div> *@
     </div>
 
     
