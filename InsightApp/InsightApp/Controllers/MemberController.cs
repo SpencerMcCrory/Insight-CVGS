@@ -170,21 +170,5 @@ namespace InsightApp.Controllers
             return View("NewProfile");
         }
 
-
-        [HttpGet("Portal/NewProfile/6")]
-        public async Task<ActionResult> MemberProfile2(int id)
-        {
-            id = 6;
-            ProfileViewModel profileViewModel = new ProfileViewModel();
-            profileViewModel.ActiveMember = new Member();
-            profileViewModel.ActiveMember.MemberId = id;
-            ViewBag.Page = "MemberPortal";
-            ViewBag.Account = "Member";
-
-            return View("NewProfile", profileViewModel);
-        }
-
-
-
     }
 }

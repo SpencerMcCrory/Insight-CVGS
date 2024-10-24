@@ -611,3 +611,18 @@ h1 {
     .content.active {
         display: block;
     }
+
+/*==================prefrences========================*/
+.prefrencesColumn {
+    padding: 15px;
+    background-color:#ddd;
+    border-radius:8px;
+}
+    .prefrencesColumn h5 {
+        text-decoration: underline;
+        font-style: italic;
+    }
+    .PrefrencesContainer {
+        display: flex;
+        flex-direction: row;
+    }
