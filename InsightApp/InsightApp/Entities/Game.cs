@@ -25,6 +25,8 @@ public partial class Game
 
     public bool? IsDeleted { get; set; }
 
+    public string? GameImageLink { get; set; } = "";
+
     [InverseProperty("Game")]
     public virtual ICollection<GameDetailsCategory> GameDetailsCategories { get; set; } = new List<GameDetailsCategory>();
 

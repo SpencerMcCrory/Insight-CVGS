@@ -309,3 +309,17 @@ CREATE TABLE OwnedGame ( /* junction table */
 	FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
 	FOREIGN KEY (GameId) REFERENCES Game (GameId),
 );
+
+CREATE TABLE GameRating (
+    id INT IDENTITY (1,1) PRIMARY KEY,
+	MemberId INT,
+	GameId INT,
+	RateValue FLOAT DEFAULT NULL,
+	FOREIGN KEY (MemberId) REFERENCES Member (MemberId),
+	FOREIGN KEY (GameId) REFERENCES Game (GameId),
+);
+
+CREATE VIEW GameAverageRating AS
+SELECT GameId, ROUND(AVG(RateValue), 1) AS AverageRating
+FROM  GameRating
+GROUP BY GameId;

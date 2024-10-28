@@ -264,6 +264,28 @@ INSERT INTO Province VALUES ('Northwest Territories');
 INSERT INTO Province VALUES ('Nunavut');
 INSERT INTO Province VALUES ('Yukon');
 
+--GameRating table
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (1,1,5);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (2,1,2);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (3,1,4);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (1,2,5);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (2,2,4);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (2,3,2);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (3,3,4);
+
+
+
+-- add new column to game table and seed it
+ALTER TABLE Game
+ADD GameImageLink NVARCHAR (MAX) NULL;
+
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Super Mario.jpg'  WHERE GameId=1;
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Sonic Mania.jpg'  WHERE GameId=2;
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Life is Strange.jpg'  WHERE GameId=3;
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Minecraft.jpg'  WHERE GameId=4;
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Monopoly.jpg'  WHERE GameId=5;
+
+
 /*UPDATE GameEvent SET IsDeleted = 0
 WHERE EventId = 1;*/
 

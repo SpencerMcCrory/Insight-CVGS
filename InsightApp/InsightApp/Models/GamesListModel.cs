@@ -6,7 +6,6 @@ namespace InsightApp.Models
     {
         public List<GamesCategoriesViewModel>? GamesList { get; set; }
 
-
         public string SearchText { get; set; }
     }
 }

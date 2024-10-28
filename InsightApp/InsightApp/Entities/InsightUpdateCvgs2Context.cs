@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using InsightApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -64,6 +65,8 @@ public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, Iden
     public virtual DbSet<ReviewStatus> ReviewStatuses { get; set; }
 
     public virtual DbSet<WishList> WishLists { get; set; }
+
+    public virtual DbSet<GameAverageRating> GameAverageRatings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("name=SVGSContext");
@@ -304,6 +307,8 @@ public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, Iden
 
             entity.HasOne(d => d.Member).WithMany(p => p.OwnedGames).HasConstraintName("FK__OwnedGame__Membe__2645B050");
         });
+
+        modelBuilder.Entity<GameAverageRating>().HasNoKey().ToView("GameAverageRating");
 
 
         OnModelCreatingPartial(modelBuilder);
