@@ -19,11 +19,13 @@ public partial class Game
     [Unicode(false)]
     public string Details { get; set; } = null!;
 
-    public double? Price { get; set; }
+    public double? Price { get; set; } = 0;
 
-    public bool? PhysicalAvailable { get; set; }
+    public bool? PhysicalAvailable { get; set; } = false;
 
     public bool? IsDeleted { get; set; }
+
+    public string? GameImageLink { get; set; } = "";
 
     [InverseProperty("Game")]
     public virtual ICollection<GameDetailsCategory> GameDetailsCategories { get; set; } = new List<GameDetailsCategory>();
@@ -42,4 +44,10 @@ public partial class Game
 
     [InverseProperty("Game")]
     public virtual ICollection<WishList> WishLists { get; set; } = new List<WishList>();
+    
+    [InverseProperty("Game")]
+    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+
+    [InverseProperty("Game")]
+    public virtual ICollection<OwnedGame> OwnedGames { get; set; } = new List<OwnedGame>();
 }

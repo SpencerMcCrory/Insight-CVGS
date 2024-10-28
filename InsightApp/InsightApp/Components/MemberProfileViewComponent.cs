@@ -15,9 +15,9 @@ namespace InsightApp.Components
 
         public async Task<IViewComponentResult> InvokeAsync(int memberId)
         {
-            var member =await  _SVGSDbContext.Members
+            var member = await _SVGSDbContext.Members
                 .Where(e => e.MemberId == memberId).FirstOrDefaultAsync();
-            
+
             MemberProfileViewModel memberProfileViewModel = new MemberProfileViewModel()
             {
                 ActiveMember = member,

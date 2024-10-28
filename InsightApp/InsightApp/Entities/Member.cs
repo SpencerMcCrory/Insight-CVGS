@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Permissions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using InsightApp.Attributes;
 
 namespace InsightApp.Entities;
 
@@ -39,6 +40,7 @@ public partial class Member
 
     [StringLength(20)]
     [Unicode(false)]
+    [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "'123-123-1234' is the accepted phone number format.")]
     public string? PhoneNumber { get; set; } //not needed, stored in Account
 
     private Guid _accountId;
@@ -79,4 +81,10 @@ public partial class Member
 
     [InverseProperty("Member")]
     public virtual ICollection<WishList> WishLists { get; set; } = new List<WishList>();
+
+    [InverseProperty("Member")]
+    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+
+    [InverseProperty("Member")]
+    public virtual ICollection<OwnedGame> OwnedGames { get; set; } = new List<OwnedGame>();
 }

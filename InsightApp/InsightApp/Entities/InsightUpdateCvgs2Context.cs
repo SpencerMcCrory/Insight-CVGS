@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using InsightApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +66,8 @@ public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, Iden
 
     public virtual DbSet<WishList> WishLists { get; set; }
 
+    public virtual DbSet<GameAverageRating> GameAverageRatings { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("name=SVGSContext");
 
@@ -117,6 +120,7 @@ public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, Iden
 
             entity.HasOne(d => d.Member).WithMany(p => p.FriendMembers).HasConstraintName("FK__Friend__MemberId__10566F31");
         });
+
 
         modelBuilder.Entity<Game>(entity =>
         {
@@ -285,6 +289,27 @@ public partial class InsightUpdateCvgs2Context : IdentityDbContext<Account, Iden
 
             entity.HasOne(d => d.Member).WithMany(p => p.WishLists).HasConstraintName("FK__WishList__Member__08B54D69");
         });
+
+        modelBuilder.Entity<Cart>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Cart__3213E83F608080A8");
+
+            entity.HasOne(d => d.Game).WithMany(p => p.Carts).HasConstraintName("FK__Cart__GameId__236943A5");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.Carts).HasConstraintName("FK__Cart__MemberId__22751F6C");
+        });
+
+        modelBuilder.Entity<OwnedGame>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__OwnedGam__3213E83FD8565454");
+
+            entity.HasOne(d => d.Game).WithMany(p => p.OwnedGames).HasConstraintName("FK__OwnedGame__GameI__2739D489");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.OwnedGames).HasConstraintName("FK__OwnedGame__Membe__2645B050");
+        });
+
+        modelBuilder.Entity<GameAverageRating>().HasNoKey().ToView("GameAverageRating");
+
 
         OnModelCreatingPartial(modelBuilder);
     }

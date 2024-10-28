@@ -21,37 +21,19 @@ INSERT INTO EventType VALUES ('On-Site');
 INSERT INTO LanguageTable VALUES ('English');
 INSERT INTO LanguageTable VALUES ('French');
 
--- Account table
---INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('admin_acc@gmail.com', 'admin123', 'ADMIN');
---INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member1@gmail.com', 'member123', 'MEMBER');
---INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member2@gmail.com', 'member123', 'MEMBER');
---INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member3@gmail.com', 'member123', 'MEMBER');
---INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member4@gmail.com', 'member123', 'MEMBER');
---INSERT INTO Account (EmailAddress, UserPassword, AccountType) VALUES ('member5@gmail.com', 'member123', 'MEMBER');
 
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (1,'Salma123','member5@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (1,'Salma123','salma123@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (2,'SalmaEssam','salma@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (2,'SalmaEssam','salma@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (3,'Ali123','ali@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (3,'Ali123','ali@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (4,'Omar123','omar@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (4,'Omar123','omar@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (5,'Aya123','aya@gmail.com', 1,'123-123-1234', 1, 0,0,0);
+VALUES (5,'Aya123','aya@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 INSERT INTO AspNetUsers (id,UserName, Email, EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount) 
-VALUES (6,'Hazem123','hazem@gmail.com', 1,'123-123-1234', 1, 0,0,0);
-
-
--- GameEvent table
-INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
-('KW GamesCom', 'KW GamesCom details', '2024-08-30', '13:00', '14:00', 1, 'https://www.example.com/events/event1');
-INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
-('Tokyo Game Show', 'Tokyo Game Show details', '2024-12-30', '14:00', '16:00', 1, 'https://www.example.com/events/event2');
-INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
-('Astronomical Showdown', 'Astronomical Showdown details', '2024-05-30', '15:00', '17:00', 1, 'https://www.example.com/events/event3');
-INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
-('Collision Soundwave', 'Collision Soundwave details', '2024-01-30', '14:30', '16:30', 1, 'https://www.example.com/events/event4');
+VALUES (6,'Hazem123','hazem@mailinator.com', 1,'123-123-1234', 1, 0,0,0);
 
 
 -- Employee table
@@ -69,6 +51,70 @@ INSERT INTO Member (FirstName, LastName, DisplayName, Gender,AccountId) VALUES
 ('Aya', 'Khalid','Aya Khalid', 'Female',5);
 INSERT INTO Member (FirstName, LastName, DisplayName, Gender,AccountId) VALUES 
 ('Hazem', 'Tarek','Hazem Tarek', 'Male',6);
+
+
+
+--Address Table
+INSERT INTO AddressTable (StreetNumber, StreetName
+      , PostalCode , City , Province , Country) 
+	VALUES ('123','King Street','N2J 5T5','Waterloo','Ontario','canada'); -- Address for an onSite Event
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (1,'123','King Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (1,'123','King Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (2,'222','Weber Street','2B','N2K 5Y9','Waterloo','Ontario','canada',0);
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (2,'321','Westmount Street','3B','N2S 4R5','Kitchener','Ontario','canada',1,'My Delivary Instructions2');
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (3,'333','Alin Street','2B','N2K 5Y9','Toronto','Ontario','canada',0);
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (3,'32','Westmount Street','3B','N2S 4R5','Toronto','Ontario','canada',1,'My Delivary Instructions2');
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (4,'15','Bristol Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (4,'15','Bristol Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
+
+
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping) 
+	VALUES (5,'3','Erb Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
+INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
+      , PostalCode , City , Province , Country , IsShipping
+      ,DelivaryInstructions) 
+	VALUES (5,'3','Erb Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
+
+
+-- GameEvent table
+INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, AddressId) VALUES 
+('KW GamesCom', 'KW GamesCom details', '2025-02-15', '13:00', '14:00', 2, 1); --OnSite Event 
+INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
+('Tokyo Game Show', 'Tokyo Game Show details', '2024-12-30', '14:00', '16:00', 1, 'https://www.example.com/events/event2');
+INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
+('Astronomical Showdown', 'Astronomical Showdown details', '2025-03-25', '15:00', '17:00', 1, 'https://www.example.com/events/event3');
+INSERT INTO GameEvent (EventName, Details, StartDate, StartTime, EndTime, EvTypeId, EventLink) VALUES 
+('Collision Soundwave', 'Collision Soundwave details', '2024-01-30', '14:30', '16:30', 1, 'https://www.example.com/events/event4');
+
 
 
 -- Game table
@@ -158,57 +204,86 @@ INSERT INTO Friend (MemberId, FriendId) VALUES
 INSERT INTO Friend (MemberId, FriendId) VALUES 
 (3,5);
 
---Address Table
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping) 
-	VALUES (1,'123','King Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
+--game_details_category table (junction table)
+INSERT INTO GameDetailsCategory (GameId, CategoryId)
+VALUES 
+(1, 7), -- Super Mario is in Platformer category
+(2, 7), -- Sonic Mania is in Platformer category
+(3, 2), -- Life is Strange is in Adventure category
+(4, 4), -- Minecraft is in Survival category
+(5, 1); -- Monopoly is in Board category
 
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping
-      ,DelivaryInstructions) 
-	VALUES (1,'123','King Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
+--game_platform table 
+INSERT INTO GamePlatform (PlatformName)
+VALUES
+('Nintendo Switch'),
+('PC'),
+('PS2'),
+('PS3'),
+('PS4'),
+('PS5'),
+('Wii U'),
+('Xbox 360'),
+('Xbox One'),
+('Xbox Series X');
+
+--game_details_platform table
+INSERT INTO GameDetailsPlatform (GameId, PlatformId)
+VALUES
+(1,1),
+(2,7),
+(3,3),
+(4,2),
+(5,8);
+
+--game_details_language table (junction table)
+INSERT INTO GameDetailsLanguage (GameId, LanguageId)
+VALUES 
+(1, 1), -- Super Mario is in English
+(2, 2), -- Sonic Mania is in French
+(2, 1), -- Sonic Mania is in English
+(3, 1), -- Life is Strange is in English
+(4, 1), -- Minecraft is in English
+(5, 2); -- Monopoly is in French
+
+--country table
+INSERT INTO Country VALUES ('Canada');
+
+--Province table
+INSERT INTO Province VALUES ('Alberta');
+INSERT INTO Province VALUES ('British Columbia');
+INSERT INTO Province VALUES ('Manitoba');
+INSERT INTO Province VALUES ('New Brunswick');
+INSERT INTO Province VALUES ('Newfoundland and Labrador');
+INSERT INTO Province VALUES ('Nova Scotia');
+INSERT INTO Province VALUES ('Ontario');
+INSERT INTO Province VALUES ('Prince Edward Island');
+INSERT INTO Province VALUES ('Quebec');
+INSERT INTO Province VALUES ('Saskatchewan');
+INSERT INTO Province VALUES ('Northwest Territories');
+INSERT INTO Province VALUES ('Nunavut');
+INSERT INTO Province VALUES ('Yukon');
+
+--GameRating table
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (1,1,5);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (2,1,2);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (3,1,4);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (1,2,5);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (2,2,4);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (2,3,2);
+INSERT INTO GameRating (MemberId, GameId, RateValue) VALUES (3,3,4);
 
 
 
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping) 
-	VALUES (2,'222','Weber Street','2B','N2K 5Y9','Waterloo','Ontario','canada',0);
+-- add new column to game table and seed it
+ALTER TABLE Game
+ADD GameImageLink NVARCHAR (MAX) NULL;
 
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping
-      ,DelivaryInstructions) 
-	VALUES (2,'321','Westmount Street','3B','N2S 4R5','Kitchener','Ontario','canada',1,'My Delivary Instructions2');
-
-
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping) 
-	VALUES (3,'333','Alin Street','2B','N2K 5Y9','Toronto','Ontario','canada',0);
-
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping
-      ,DelivaryInstructions) 
-	VALUES (3,'32','Westmount Street','3B','N2S 4R5','Toronto','Ontario','canada',1,'My Delivary Instructions2');
-
-
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping) 
-	VALUES (4,'15','Bristol Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
-
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping
-      ,DelivaryInstructions) 
-	VALUES (4,'15','Bristol Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
-
-
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping) 
-	VALUES (5,'3','Erb Street','1A','N2J 5T5','Waterloo','Ontario','canada',0);
-
-INSERT INTO AddressTable (MemberId, StreetNumber, StreetName, Unit
-      , PostalCode , City , Province , Country , IsShipping
-      ,DelivaryInstructions) 
-	VALUES (5,'3','Erb Street','1A','N2J 5T5','Waterloo','Ontario','canada',1,'My Delivary Instructions');
-
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Super Mario.jpg'  WHERE GameId=1;
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Sonic Mania.jpg'  WHERE GameId=2;
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Life is Strange.jpg'  WHERE GameId=3;
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Minecraft.jpg'  WHERE GameId=4;
+UPDATE Game SET GameImageLink = '~/Imgs/Games/Monopoly.jpg'  WHERE GameId=5;
 
 --game_details_category table (junction table)
 INSERT INTO GameDetailsCategory (GameId, CategoryId)

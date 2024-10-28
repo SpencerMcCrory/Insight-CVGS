@@ -1,0 +1,46 @@
+﻿<div class="breadcrumbsPortal">
+    <!------Breadcrumb------>
+    <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Member" asp-action="MemberPortal">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cart</li>
+        </ol>
+    </nav>
+</div>
+<div class="cart-container">
+    <h3>Your Shopping Cart</h3>
+
+    <!-- Cart Items -->
+    <div class="cart-items">
+        <!-- Item 1 -->
+        <div class="cart-item">
+            <img src="~/Imgs/Games/Monopoly.jpg" alt="Game Image 1">
+            <div class="item-details">
+                <h5>Super Adventure</h5>
+                <p class="price">$49.99</p>
+                <button class="remove-btn">Remove</button>
+            </div>
+        </div>
+
+
+        <!-----==========  DELETE THIS PART AFTER RETIVING THE CART ITEMS .... its just demo============---->
+        <!-- Item 2 -->
+        <div class="cart-item">
+            <img src="~/Imgs/Games/Sonic Mania.jpg" alt="Game Image 2">
+            <div class="item-details">
+                <h5>Racing Pro</h5>
+                <p class="price">$59.99</p>
+                <button class="remove-btn">Remove</button>
+            </div>
+        </div>
+        <!----==========================================================================================---->
+
+
+    </div>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary">
+        <p>Total: <span id="total-price">$149.97</span></p>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+</div>

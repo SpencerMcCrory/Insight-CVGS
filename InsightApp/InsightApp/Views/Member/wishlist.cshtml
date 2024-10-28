@@ -1,0 +1,43 @@
+﻿@model WishlistViewModel
+
+<div class="breadcrumbsPortal">
+    <!------Breadcrumb------>
+    <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Member" asp-action="MemberPortal">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">My Wishlist</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="wishlist-container">
+    <h1>My Wishlist</h1>
+    @foreach (var item in Model.WishlistItems)
+    {
+        <!-- Example of product item -->
+        <div class="product-item">
+            <a class="col-1" role="button" asp-controller="Member" asp-action="DeleteWhislistItem" asp-route-gameId="@item.GameId" asp-route-memberId="@Model.MemberId"><i class="bi bi-trash3 trash-icon"></i></a>
+            <div class="product-info col-9">
+                <img src="~/Imgs/Games/Life is Strange.jpg" alt="Product Image">
+                <h2>@item.GameName</h2>
+            </div>
+            <button class="cart-btn col-2" asp-controller="Product" asp-action="AddToCart" asp-route-gameId="@item.GameId" asp-route-memberId="@Model.MemberId">
+                Add to cart <i class="bi bi-cart3"></i>
+            </button>
+        </div>
+    }
+
+    <!-----==========  DELETE THIS PART AFTER RETIVING THE CART ITEMS .... its just demo============---->
+    <div class="product-item">
+        <a class="col-1" role="button"><i class="bi bi-trash3 trash-icon"></i></a>
+        <div class="product-info col-9">
+            <img src="~/Imgs/Games/Life is Strange.jpg" alt="Product Image">
+            <h2>GameName</h2>
+        </div>
+        <button class="cart-btn col-2">
+            Add to cart <i class="bi bi-cart3"></i>
+        </button>
+    </div>
+    <!-----=======================================================================================---->
+
+</div>

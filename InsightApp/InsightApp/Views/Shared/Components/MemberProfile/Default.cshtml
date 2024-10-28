@@ -8,7 +8,7 @@
 }
 
 <div class="card-body">
-    <form asp-controller="Member" asp-action="EditMemberProfileId"  method="post" enctype="application/x-www-form-urlencoded">
+    <form asp-controller="Member" asp-action="EditMemberProfileId" method="post" enctype="application/x-www-form-urlencoded">
 
         <!-- Form Group (username)-->
         <div class="mb-3">
@@ -21,13 +21,13 @@
             <!-- Form Group (first name)-->
             <div class="col-md-6">
                 <label class="small mb-1" for="inputFirstName">First name</label>
-                <input class="form-control" id="inputFirstName"   type="text" asp-for="ActiveMember.FirstName">
+                <input class="form-control" id="inputFirstName" type="text" asp-for="ActiveMember.FirstName">
                 <span asp-validation-for="ActiveMember.FirstName" class="text-danger"></span>
             </div>
             <!-- Form Group (last name)-->
             <div class="col-md-6">
                 <label class="small mb-1" for="inputLastName">Last name</label>
-                <input class="form-control" id="inputLastName"   type="text" asp-for="ActiveMember.LastName">
+                <input class="form-control" id="inputLastName" type="text" asp-for="ActiveMember.LastName">
                 <span asp-validation-for="ActiveMember.LastName" class="text-danger"></span>
             </div>
         </div>
@@ -37,12 +37,13 @@
             <!-- Form Group (phone number)-->
             <div class="col-md-6">
                 <label class="small mb-1" for="inputPhone">Phone number</label>
-                <input class="form-control" id="inputPhone"   type="tel" asp-for="ActiveMember.PhoneNumber">
+                <input class="form-control" id="inputPhone" type="tel" asp-for="ActiveMember.PhoneNumber">
+                <span asp-validation-for="ActiveMember.PhoneNumber" class="text-danger"></span>
             </div>
             <!-- Form Group (birthday)-->
             <div class="col-md-6">
-                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                <input type="date" class="form-control" id="inputBirthday"   asp-for="ActiveMember.Dob">
+                <label class="small mb-1" for="inputBirthday">Date of birth</label>
+                <input type="date" class="form-control" id="inputBirthday" asp-for="ActiveMember.Dob">
                 <span asp-validation-for="ActiveMember.Dob" class="text-danger"></span>
             </div>
         </div>
@@ -67,17 +68,13 @@
         <div class="row gx-3 mb-3" style="margin-top:30px; font-weight:bold;">
             <!-- Form Group (RecievesEmails)-->
             <div class="col-md-6">
-                <input type="checkbox" id="RecievesEmails"   asp-for="ActiveMember.RecievesEmails">
+                <input type="checkbox" id="RecievesEmails" asp-for="ActiveMember.RecievesEmails">
                 <label> Recieves Emails</label><br>
             </div>
         </div>
-
-        @{
-            //@Model.ActiveMember.Account = dbContext.Accounts.FirstOrDefault(a => a.Id == @Model.ActiveMember.AccountId);
-        }
         <input type="hidden" asp-for="ActiveMember.MemberId" /> @*to return the id with the object*@
-        <input type="hidden" asp-for="ActiveMember.AccountId" value="@Model.ActiveMember.AccountId.ToString()"/> @*to return the id with the object*@
-        
+        <input type="hidden" asp-for="ActiveMember.AccountId" value="@Model.ActiveMember.AccountId.ToString()" /> @*to return the id with the object*@
+
         <!-- Save changes button-->
         <div class=" flex-row d-flex ">
             <button type="submit" class=" viewComponent btn btn-custom btn-lg">Save</button>

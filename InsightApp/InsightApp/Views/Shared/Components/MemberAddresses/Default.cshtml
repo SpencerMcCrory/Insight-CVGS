@@ -60,7 +60,7 @@
 				<div class="col-md-6">
 					<label class="small mb-1 required-label" for="postalCode">Postal Code</label>
 					<input class="form-control" id="postalCode" type="text" asp-for="MemberAddress.PostalCode">
-					<span asp-validation-for="MemberAddress.PostalCode" class="text-danger"></span>
+					@* <span asp-validation-for="MemberAddress.PostalCode" class="text-danger"></span> *@
 					<span id="postalCodeError" class="error"></span>
 				</div>
 			</div>
@@ -156,7 +156,7 @@
 				<div class="col-md-6">
 					<label class="small mb-1 required-label" for="postalCodeShipping">Postal Code</label>
 					<input class="form-control" id="postalCodeShipping" type="text" asp-for="ShippingAddress.PostalCode">
-					<span asp-validation-for="ShippingAddress.PostalCode" class="text-danger"></span>
+					@* <span asp-validation-for="ShippingAddress.PostalCode" class="text-danger"></span> *@
 					<span id="postalCodeShippingError" class="error"></span>
 				</div>
 			</div>
@@ -243,25 +243,25 @@
 		$(document).ready(function()
 		{
 			// Define a regex pattern for Canadian postal code validation
-			var postalCodePattern = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+			var postalCodePattern = /^[A-Z]\d[A-Z][ ]\d[A-Z]\d$/;
 
 			// Validate on form submit
 			$("#addressForm").on("submit", function(event)
 			{
 				var postalCode = $("#postalCode").val();
 				if (postalCodePattern.test(postalCode)) {
-					$("#postalCodeError").text("Valid postal code!").removeClass("error").addClass("valid");
+				$("#postalCodeError").text("Valid postal code format!").removeClass("error").addClass("valid");
 				} else {
-					$("#postalCodeError").text("Invalid postal code format.").removeClass("valid").addClass("error");
+				$("#postalCodeError").text("Invalid postal code 'A1A 2B2'.").removeClass("valid").addClass("error");
 					event.preventDefault(); // Prevent form submission if validation fails
 				}
 				if(!sameAsAddressCheckbox.checked)
 				{
 					var postalCodeShipping = $("#postalCodeShipping").val();
 					if (postalCodePattern.test(postalCodeShipping)) {
-						$("#postalCodeShippingError").text("Valid postal code!").removeClass("error").addClass("valid");
+						$("#postalCodeShippingError").text("Valid postal code format!").removeClass("error").addClass("valid");
 					} else {
-						$("#postalCodeShippingError").text("Invalid postal code format.").removeClass("valid").addClass("error");
+					$("#postalCodeShippingError").text("Invalid postal code 'A1A 2B2'").removeClass("valid").addClass("error");
 						event.preventDefault(); // Prevent form submission if validation fails
 					}
 				}

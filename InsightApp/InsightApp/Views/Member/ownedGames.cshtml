@@ -1,0 +1,53 @@
+﻿@model OwnedGamesViewModel
+
+<div class="breadcrumbsPortal">
+    <!------Breadcrumb------>
+    <nav style="--bs-breadcrumb-divider: '>'; margin-top:10px; font-size:18px; font-weight: bold;" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Member" asp-action="MemberPortal">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">My Games</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="wishlist-container">
+    <h1>My Games</h1>
+    @foreach (var item in Model.MyGamesItems)
+    {
+        <!-- Example of product item -->
+        <div class="myGames-item">
+            <div class="product-info col-7">
+                <img src="" alt="Product Image">
+                <h2>@item.GameName</h2>
+            </div>
+            <div class="myGames-item col-5">
+				<button class="cart-btn col-2" asp-controller="" asp-action="" asp-route-gameId="@item.GameId" asp-route-memberId="@Model.MemberId">
+                    View <i class="bi bi-eye"></i>
+				</button>
+				<button class="cart-btn col-2" asp-controller="" asp-action="" asp-route-gameId="@item.GameId" asp-route-memberId="@Model.MemberId">
+                    Download <i class="bi bi-download"></i>
+				</button>
+            </div>
+            
+        </div>
+    }
+
+    <!-----==========  DELETE THIS PART AFTER RETIVING THE CART ITEMS .... its just demo============---->
+    <div class="myGames-item">
+        <div class="product-info col-7">
+            <img src="~/Imgs/Games/Life is Strange.jpg" alt="Product Image">
+            <h2>GameName</h2>
+        </div>
+        <div class="myGames-item col-5">
+            <button class="myGames-btn">
+                View <i class="bi bi-eye"></i>
+			</button>
+			<button class="myGames-btn">
+                Download <i class="bi bi-download"></i>
+			</button>
+        </div>
+        
+    </div>
+    <!-----=======================================================================================---->
+
+</div>
