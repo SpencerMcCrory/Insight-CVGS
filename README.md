@@ -1,7 +1,5 @@
 # Conestoga Virtual Game Store
 
-**Web Application User Guide**
-
 ---
 
 ## **Contents**
